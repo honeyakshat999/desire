@@ -53,10 +53,14 @@ const EnquiryForm = ({ selectedProject, onSuccess }: EnquiryFormProps) => {
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText || "Failed to submit enquiry");
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        console.error('Server error:', errorData);
+        throw new Error(errorData.error || errorData.details || "Failed to submit enquiry");
       }
 
+      const result = await response.json();
+      console.log('Success:', result);
+      
       setIsSubmitted(true);
       onSuccess?.();
       
@@ -66,9 +70,10 @@ const EnquiryForm = ({ selectedProject, onSuccess }: EnquiryFormProps) => {
       });
     } catch (error) {
       console.error("Submission error:", error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       toast({
         title: "Something went wrong",
-        description: "Please try again or call us directly.",
+        description: errorMessage || "Please try again or call us directly.",
         variant: "destructive",
       });
     } finally {

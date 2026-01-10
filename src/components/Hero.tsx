@@ -73,8 +73,7 @@ const Hero = () => {
               </Button>
               <Button
                 size="lg"
-                variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 text-base px-8"
+                className="border-2 border-white text-white hover:bg-white hover:text-black text-base px-8 transition-all"
                 onClick={() =>
                   document
                     .getElementById("projects")
