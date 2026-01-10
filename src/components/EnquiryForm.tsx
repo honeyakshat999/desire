@@ -12,8 +12,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { projects } from "@/data/projects";
-import { supabase } from "@/integrations/supabase/client";
-import type { Database } from "@/integrations/supabase/types";
 import { useToast } from "@/hooks/use-toast";
 
 interface EnquiryFormProps {
@@ -39,34 +37,24 @@ const EnquiryForm = ({ selectedProject, onSuccess }: EnquiryFormProps) => {
     setIsSubmitting(true);
 
     try {
-      // Save to database
-      const { error: dbError } = await supabase.from("enquiries").insert({
-        name: formData.name,
-        mobile: formData.mobile,
-        email: formData.email,
-        project: formData.project,
-        message: formData.message || null,
+      // Save to database via Netlify function
+      const response = await fetch("/.netlify/functions/submit-enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          mobile: formData.mobile,
+          email: formData.email,
+          project: formData.project,
+          message: formData.message || null,
+        }),
       });
 
-      if (dbError) throw dbError;
-
-      // Send email notification
-      const { error: emailError } = await supabase.functions.invoke(
-        "send-enquiry-email",
-        {
-          body: {
-            name: formData.name,
-            mobile: formData.mobile,
-            email: formData.email,
-            project: formData.project,
-            message: formData.message,
-          },
-        }
-      );
-
-      if (emailError) {
-        console.error("Email error:", emailError);
-        // Don't fail the form if email fails, enquiry is saved
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || "Failed to submit enquiry");
       }
 
       setIsSubmitted(true);
