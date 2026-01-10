@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Desire Realty Design System
+   Color palette derived from logo: Deep Navy + Champagne Gold
+   All colors in HSL format
+*/
+
+@layer base {
+  :root {
+    /* Deep Navy - Primary Brand Color */
+    --primary: 213 52% 24%;
+    --primary-foreground: 40 33% 98%;
+
+    /* Champagne Gold - Accent Color */
+    --accent: 40 45% 60%;
+    --accent-foreground: 213 52% 15%;
+
+    /* Backgrounds */
+    --background: 40 33% 99%;
+    --foreground: 213 52% 15%;
+
+    /* Warm Off-White for Cards */
+    --card: 40 33% 98%;
+    --card-foreground: 213 52% 15%;
+
+    /* Light Gray for Muted Sections */
+    --muted: 40 20% 96%;
+    --muted-foreground: 213 20% 40%;
+
+    /* Secondary - Soft Navy */
+    --secondary: 213 30% 92%;
+    --secondary-foreground: 213 52% 24%;
+
+    --popover: 40 33% 99%;
+    --popover-foreground: 213 52% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 20% 88%;
+    --input: 40 20% 90%;
+    --ring: 40 45% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom Colors */
+    --gold: 40 45% 60%;
+    --gold-light: 40 50% 75%;
+    --gold-dark: 40 40% 45%;
+    --navy: 213 52% 24%;
+    --navy-light: 213 40% 35%;
+    --navy-dark: 213 55% 15%;
+    --cream: 40 33% 97%;
+    --cream-dark: 40 25% 92%;
+
+    /* Sidebar */
+    --sidebar-background: 213 52% 15%;
+    --sidebar-foreground: 40 33% 98%;
+    --sidebar-primary: 40 45% 60%;
+    --sidebar-primary-foreground: 213 52% 15%;
+    --sidebar-accent: 213 40% 25%;
+    --sidebar-accent-foreground: 40 33% 98%;
+    --sidebar-border: 213 40% 25%;
+    --sidebar-ring: 40 45% 60%;
+  }
+
+  .dark {
+    --background: 213 55% 8%;
+    --foreground: 40 33% 95%;
+
+    --card: 213 52% 12%;
+    --card-foreground: 40 33% 95%;
+
+    --popover: 213 52% 10%;
+    --popover-foreground: 40 33% 95%;
+
+    --primary: 40 45% 60%;
+    --primary-foreground: 213 52% 15%;
+
+    --secondary: 213 40% 18%;
+    --secondary-foreground: 40 33% 95%;
+
+    --muted: 213 40% 15%;
+    --muted-foreground: 40 20% 65%;
+
+    --accent: 40 45% 55%;
+    --accent-foreground: 213 52% 10%;
+
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 213 40% 20%;
+    --input: 213 40% 18%;
+    --ring: 40 45% 60%;
+
+    --sidebar-background: 213 55% 8%;
+    --sidebar-foreground: 40 33% 95%;
+    --sidebar-primary: 40 45% 60%;
+    --sidebar-primary-foreground: 213 52% 10%;
+    --sidebar-accent: 213 40% 15%;
+    --sidebar-accent-foreground: 40 33% 95%;
+    --sidebar-border: 213 40% 20%;
+    --sidebar-ring: 40 45% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent;
+  }
+
+  .bg-gradient-navy {
+    @apply bg-gradient-to-br from-navy via-navy-light to-navy-dark;
+  }
+
+  .shadow-luxury {
+    box-shadow: 0 25px 50px -12px rgba(30, 58, 95, 0.15);
+  }
+
+  .shadow-gold {
+    box-shadow: 0 10px 40px -10px rgba(201, 169, 98, 0.3);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--cream));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--navy) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--navy) / 0.5);
+}
