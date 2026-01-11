@@ -20,9 +20,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquiryForm from "@/components/EnquiryForm";
 
 const statusColors = {
-  ongoing: "bg-emerald-500/10 text-emerald-600 border-emerald-200",
-  completed: "bg-blue-500/10 text-blue-600 border-blue-200",
-  upcoming: "bg-amber-500/10 text-amber-600 border-amber-200",
+  ongoing: "bg-emerald-600 text-white border-emerald-700 shadow-sm",
+  completed: "bg-blue-600 text-white border-blue-700 shadow-sm",
+  upcoming: "bg-amber-500 text-white border-amber-600 shadow-sm",
 };
 
 const amenityIcons: Record<string, string> = {
@@ -298,8 +298,18 @@ const ProjectDetail = () => {
                     </Button>
                     <Button
                       size="lg"
-                      variant="outline"
-                      className="w-full border-white/30 text-white hover:bg-white/10 gap-2"
+                      className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 hover:text-primary gap-2"
+                      onClick={() =>
+                        document
+                          .getElementById("enquiry-form")
+                          ?.scrollIntoView({ behavior: "smooth" })
+                      }
+                    >
+                      Schedule Site Visit
+                    </Button>
+                    <Button
+                      size="lg"
+                      className="w-full bg-emerald-500 hover:bg-emerald-600 text-white gap-2 shadow-sm"
                       onClick={() =>
                         window.open(
                           `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
@@ -315,6 +325,7 @@ const ProjectDetail = () => {
 
                 {/* Enquiry Form */}
                 <motion.div
+                  id="enquiry-form"
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 }}

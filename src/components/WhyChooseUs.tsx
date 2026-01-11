@@ -7,6 +7,11 @@ import {
   Clock,
   HeartHandshake,
 } from "lucide-react";
+import sbiLogo from "@/assets/banks/sbi.png";
+import hdfcLogo from "@/assets/banks/hdfc.jpg";
+import iciciLogo from "@/assets/banks/icici.jpg";
+import axisLogo from "@/assets/banks/axis.jpg";
+import licLogo from "@/assets/banks/LIC.png";
 
 const stats = [
   {
@@ -143,17 +148,25 @@ const WhyChooseUs = () => {
           <p className="text-center text-sm text-muted-foreground mb-8">
             Approved by leading financial institutions
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
-            {["SBI", "HDFC", "ICICI", "Axis Bank", "LIC Housing"].map(
-              (bank, index) => (
-                <div
-                  key={index}
-                  className="text-lg font-semibold text-muted-foreground"
-                >
-                  {bank}
-                </div>
-              )
-            )}
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {[
+              { name: "SBI", logo: sbiLogo },
+              { name: "HDFC Bank", logo: hdfcLogo },
+              { name: "ICICI Bank", logo: iciciLogo },
+              { name: "Axis Bank", logo: axisLogo },
+              { name: "LIC Housing Finance", logo: licLogo },
+            ].map((bank) => (
+              <div
+                key={bank.name}
+                className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <img
+                  src={bank.logo}
+                  alt={bank.name}
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>

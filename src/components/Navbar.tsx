@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,14 +27,38 @@ const Navbar = () => {
     { name: "Contact", path: "/#contact" },
   ];
 
-  const scrollToSection = (hash: string) => {
-    if (hash.startsWith("/#")) {
-      const element = document.querySelector(hash.replace("/", ""));
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (path: string) => {
+    // Always close mobile nav
+    setIsOpen(false);
+
+    // Home should scroll to top
+    if (path === "/") {
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return;
+    }
+
+    // Section links like /#projects
+    if (path.startsWith("/#")) {
+      const sectionId = path.replace("/#", "");
+      const doScroll = () => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      };
+
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(doScroll, 80);
+      } else {
+        doScroll();
       }
     }
-    setIsOpen(false);
   };
 
   return (

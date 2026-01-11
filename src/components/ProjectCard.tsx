@@ -11,9 +11,9 @@ interface ProjectCardProps {
 }
 
 const statusColors = {
-  ongoing: "bg-emerald-500/10 text-emerald-600 border-emerald-200",
-  completed: "bg-blue-500/10 text-blue-600 border-blue-200",
-  upcoming: "bg-amber-500/10 text-amber-600 border-amber-200",
+  ongoing: "bg-emerald-600 text-white border-emerald-700 shadow-sm",
+  completed: "bg-blue-600 text-white border-blue-700 shadow-sm",
+  upcoming: "bg-amber-500 text-white border-amber-600 shadow-sm",
 };
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
