@@ -6,7 +6,7 @@ interface WhatsAppButtonProps {
 }
 
 const WhatsAppButton = ({ projectName }: WhatsAppButtonProps) => {
-  const whatsappNumber = "919876543210";
+  const whatsappNumber = "918619421661";
   const defaultMessage = "Hi, I'm interested in learning more about Desire Realty projects. Please share details.";
   const projectMessage = projectName
     ? `Hi, I'm interested in ${projectName}. Please share more details.`

@@ -50,14 +50,14 @@ const Hero = () => {
             {/* Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-white leading-tight mb-6">
               Crafting{" "}
-              <span className="text-gold-light">Landmark</span>
+              <span className="text-gold-light">Premium Land</span>
               <br />
-              Living Spaces
+              & Residential living spaces
             </h1>
 
             {/* Sub-headline */}
             <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
-              With over 15 years of trust and 2 million sq.ft. delivered, we
+              With over 10 years of trust and 1 million sq.ft. delivered, we
               transform your aspirations into addresses of prestige.
             </p>
 
@@ -93,9 +93,9 @@ const Hero = () => {
               className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-white/20"
             >
               {[
-                { value: "15+", label: "Years of Trust" },
-                { value: "2M+", label: "Sq.Ft. Delivered" },
-                { value: "1500+", label: "Happy Families" },
+                { value: "10+", label: "Years of Trust" },
+                { value: "1M+", label: "Sq.Ft. Delivered" },
+                { value: "500+", label: "Happy Families" },
               ].map((stat, index) => (
                 <div key={index} className="text-center sm:text-left">
                   <div className="text-2xl md:text-3xl font-serif text-gold-light">

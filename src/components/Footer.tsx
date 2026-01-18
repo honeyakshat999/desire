@@ -25,8 +25,7 @@ const Footer = () => {
               className="h-16 w-auto mb-4 bg-white rounded-lg p-2"
             />
             <p className="text-white/70 text-sm leading-relaxed mb-6">
-              Crafting landmark living spaces with over 15 years of trust and
-              excellence in real estate development.
+              Crafting premium land, farmhouses, and residential living spaces with 10 years of trusted real estate expertise.
             </p>
             <div className="flex gap-4">
               {[Facebook, Instagram, Twitter, Linkedin].map((Icon, index) => (
@@ -93,18 +92,18 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-gold-light flex-shrink-0 mt-0.5" />
                 <span className="text-white/70 text-sm">
-                  123, Business Tower, MG Road
+                  111/14, Sector-11, Kumbha Marg, Pratap Nagar
                   <br />
-                  Bangalore, Karnataka 560001
+                  Jaipur, Rajasthan 302033
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-gold-light" />
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+918619421661"
                   className="text-white/70 hover:text-gold-light transition-colors text-sm"
                 >
-                  +91 98765 43210
+                  +91 86194 21661
                 </a>
               </li>
               <li className="flex items-center gap-3">

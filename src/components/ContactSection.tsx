@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import EnquiryForm from "./EnquiryForm";
 
 const ContactSection = () => {
-  const whatsappNumber = "919876543210";
+  const whatsappNumber = "918619421661";
   const whatsappMessage = encodeURIComponent(
     "Hi, I'm interested in learning more about Desire Realty projects. Please share details."
   );
@@ -39,10 +39,10 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-medium text-foreground mb-1">Call Us</h3>
                   <a
-                    href="tel:+919876543210"
+                    href="tel:+918619421661"
                     className="text-muted-foreground hover:text-accent transition-colors"
                   >
-                    +91 98765 43210
+                    +91 86194 21661
                   </a>
                 </div>
               </div>
@@ -71,9 +71,9 @@ const ContactSection = () => {
                     Visit Our Office
                   </h3>
                   <p className="text-muted-foreground">
-                    123, Business Tower, MG Road
+                    111/14, Sector-11, Kumbha Marg, Pratap Nagar
                     <br />
-                    Bangalore, Karnataka 560001
+                    Jaipur, Rajasthan 302033
                   </p>
                 </div>
               </div>

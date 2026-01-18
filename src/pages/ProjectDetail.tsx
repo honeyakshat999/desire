@@ -82,7 +82,7 @@ const ProjectDetail = () => {
     );
   }
 
-  const whatsappNumber = "919876543210";
+  const whatsappNumber = "918619421661";
   const whatsappMessage = encodeURIComponent(
     `Hi, I'm interested in ${project.name}. Please share more details.`
   );
@@ -291,7 +291,7 @@ const ProjectDetail = () => {
                     <Button
                       size="lg"
                       className="w-full bg-accent hover:bg-accent/90 text-accent-foreground gap-2"
-                      onClick={() => window.open("tel:+919876543210")}
+                      onClick={() => window.open("tel:+918619421661")}
                     >
                       <Phone className="h-4 w-4" />
                       Call Now
