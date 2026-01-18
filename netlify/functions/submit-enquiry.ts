@@ -58,8 +58,11 @@ export const handler = async (event) => {
     if (process.env.RESEND_API_KEY && process.env.NOTIFICATION_EMAIL) {
       try {
         console.log('Attempting to send email...');
-        await resend.emails.send({
-          from: 'Desire Realty <onboarding@resend.dev>', // Change after domain verification
+        console.log('FROM:', 'notifications@send.desirerealty.in');
+        console.log('TO:', process.env.NOTIFICATION_EMAIL);
+        
+        const emailResponse = await resend.emails.send({
+          from: 'Desire Realty <notifications@send.desirerealty.in>',
           to: process.env.NOTIFICATION_EMAIL,
           subject: `New Enquiry: ${project}`,
           html: `
@@ -72,7 +75,14 @@ export const handler = async (event) => {
             <p><em>Submitted on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</em></p>
           `,
         });
-        console.log('Email notification sent');
+        
+        console.log('Resend API Response:', JSON.stringify(emailResponse, null, 2));
+        
+        if (emailResponse.error) {
+          console.error('Resend error:', emailResponse.error);
+        } else {
+          console.log('Email sent successfully! ID:', emailResponse.data?.id);
+        }
       } catch (emailError) {
         console.error('Email error (non-critical):', emailError);
         // Don't fail the request if email fails
