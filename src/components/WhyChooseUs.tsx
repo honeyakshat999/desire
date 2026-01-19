@@ -16,25 +16,25 @@ import licLogo from "@/assets/banks/LIC.png";
 const stats = [
   {
     icon: Clock,
-    value: "15+",
+    value: "10+",
     label: "Years of Excellence",
-    description: "Building trust since 2009",
+    description: "Building trust since 2015",
   },
   {
     icon: Building2,
-    value: "2M+",
+    value: "1M+",
     label: "Sq.Ft. Delivered",
     description: "Premium spaces crafted",
   },
   {
     icon: Users,
-    value: "1,500+",
+    value: "500+",
     label: "Happy Families",
     description: "Dreams turned to reality",
   },
   {
     icon: Award,
-    value: "12",
+    value: "10",
     label: "Projects Completed",
     description: "Landmark developments",
   },

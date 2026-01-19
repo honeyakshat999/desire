@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Phone,
   Mail,
@@ -12,6 +12,39 @@ import logo from "@/assets/logo.jpeg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (path: string) => {
+    // Home should scroll to top
+    if (path === "/") {
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return;
+    }
+
+    // Section links like /#projects
+    if (path.startsWith("/#")) {
+      const sectionId = path.replace("/#", "");
+      const doScroll = () => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      };
+
+      if (location.pathname !== "/") {
+        navigate("/");
+        setTimeout(doScroll, 80);
+      } else {
+        doScroll();
+      }
+    }
+  };
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -52,12 +85,12 @@ const Footer = () => {
                 { name: "Contact", path: "/#contact" },
               ].map((link, index) => (
                 <li key={index}>
-                  <Link
-                    to={link.path}
-                    className="text-white/70 hover:text-gold-light transition-colors text-sm"
+                  <button
+                    onClick={() => scrollToSection(link.path)}
+                    className="text-white/70 hover:text-gold-light transition-colors text-sm cursor-pointer text-left"
                   >
                     {link.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -74,12 +107,15 @@ const Footer = () => {
                 { name: "Desire Urbania", id: "desire-urbania" },
               ].map((project, index) => (
                 <li key={index}>
-                  <Link
-                    to={`/project/${project.id}`}
-                    className="text-white/70 hover:text-gold-light transition-colors text-sm"
+                  <button
+                    onClick={() => {
+                      navigate(`/project/${project.id}`);
+                      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
+                    }}
+                    className="text-white/70 hover:text-gold-light transition-colors text-sm cursor-pointer text-left"
                   >
                     {project.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MapPin, ArrowUpRight, CheckCircle2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Project } from "@/data/projects";
@@ -17,6 +17,12 @@ const statusColors = {
 };
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
+  const navigate = useNavigate();
+
+  const handleProjectNavigation = (projectId: string) => {
+    navigate(`/project/${projectId}`);
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -43,7 +49,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
         {/* Quick View on Hover */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <Link to={`/project/${project.id}`}>
+          <button
+            onClick={() => handleProjectNavigation(project.id)}
+            className="cursor-pointer"
+          >
             <Button
               size="lg"
               className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2"
@@ -51,7 +60,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               View Project
               <ArrowUpRight className="h-4 w-4" />
             </Button>
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -84,7 +93,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <span className="text-xs text-muted-foreground">Starting from</span>
             <p className="text-lg font-semibold text-primary">{project.price}</p>
           </div>
-          <Link to={`/project/${project.id}`}>
+          <button
+            onClick={() => handleProjectNavigation(project.id)}
+            className="cursor-pointer"
+          >
             <Button
               variant="ghost"
               className="text-accent hover:text-accent hover:bg-accent/10 gap-2"
@@ -92,7 +104,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               Details
               <ArrowUpRight className="h-4 w-4" />
             </Button>
-          </Link>
+          </button>
         </div>
       </div>
     </motion.div>

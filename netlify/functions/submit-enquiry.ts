@@ -12,10 +12,10 @@ export const handler = async (event) => {
     const body = JSON.parse(event.body || '{}');
     const { name, mobile, email, project, message } = body;
     
-    if (!name || !mobile || !email || !project) {
+    if (!name || !mobile) {
       return { 
         statusCode: 400, 
-        body: JSON.stringify({ error: 'Missing required fields', required: ['name', 'mobile', 'email', 'project'] })
+        body: JSON.stringify({ error: 'Missing required fields', required: ['name', 'mobile'] })
       };
     }
 
@@ -42,7 +42,13 @@ export const handler = async (event) => {
     await client.query(
       `insert into enquiries (name, mobile, email, project, message)
        values ($1, $2, $3, $4, $5)`,
-      [name, mobile, email, project, message || null]
+      [
+        name,
+        mobile,
+        email || '', // DB may require NOT NULL; use empty string if missing
+        project || 'General Enquiry', // Provide default to satisfy NOT NULL schemas
+        message || null,
+      ]
     );
     
     await client.end();
@@ -61,16 +67,18 @@ export const handler = async (event) => {
         console.log('FROM:', 'notifications@send.desirerealty.in');
         console.log('TO:', process.env.NOTIFICATION_EMAIL);
         
+        const displayProject = project || 'General Enquiry';
+        const displayEmail = email || 'Not provided';
         const emailResponse = await resend.emails.send({
           from: 'Desire Realty <notifications@send.desirerealty.in>',
           to: process.env.NOTIFICATION_EMAIL,
-          subject: `New Enquiry: ${project}`,
+          subject: `New Enquiry: ${displayProject}`,
           html: `
             <h2>New Enquiry Received</h2>
-            <p><strong>Project:</strong> ${project}</p>
+            <p><strong>Project:</strong> ${displayProject}</p>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Mobile:</strong> ${mobile}</p>
-            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Email:</strong> ${displayEmail}</p>
             ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
             <p><em>Submitted on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</em></p>
           `,

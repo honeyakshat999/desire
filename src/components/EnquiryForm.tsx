@@ -135,12 +135,11 @@ const EnquiryForm = ({ selectedProject, onSuccess }: EnquiryFormProps) => {
         <div>
           <Input
             type="email"
-            placeholder="Email Address *"
+            placeholder="Email Address (Optional)"
             value={formData.email}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
-            required
             className="bg-background"
           />
         </div>
@@ -152,7 +151,7 @@ const EnquiryForm = ({ selectedProject, onSuccess }: EnquiryFormProps) => {
             }
           >
             <SelectTrigger className="bg-background">
-              <SelectValue placeholder="Interested Project *" />
+              <SelectValue placeholder="Interested Projects (Optional)" />
             </SelectTrigger>
             <SelectContent>
               {projects.map((project) => (

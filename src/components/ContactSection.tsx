@@ -97,7 +97,7 @@ const ContactSection = () => {
             {/* Map */}
             <div className="mt-8 rounded-xl overflow-hidden shadow-lg h-64">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.985594257695!2d77.60959621482162!3d12.971598990854855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sMG%20Road%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.2018440606857!2d75.82188627511756!3d26.801700964853058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dc9940991979f%3A0x20c215a9012762a4!2s143%2F111%2C%20Sector%2011%20Rd%2C%20Kumbha%20Marg%2C%20Sanganer%2C%20Sector%2011%2C%20Pratap%20Nagar%2C%20Jaipur%2C%20Rajasthan%20302033!5e0!3m2!1sen!2sin!4v1768761364202!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
