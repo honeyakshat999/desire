@@ -452,7 +452,7 @@ const ProjectDetail = () => {
 
           {/* Image container with swipe support */}
           <div 
-            className="relative w-full flex-1 flex items-center justify-center p-4 touch-pan-x overflow-hidden"
+            className="relative w-full flex-1 flex items-center justify-center touch-pan-x overflow-hidden"
             onTouchStart={(e) => {
               const touch = e.touches[0];
               (e.currentTarget as any).startX = touch.clientX;
@@ -484,17 +484,50 @@ const ProjectDetail = () => {
               setIsSwiping(false);
             }}
           >
-            <img
-              src={(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image])[currentImageIndex]}
-              alt={`${project.name} - Image ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain select-none"
-              style={{
-                transform: `translateX(${swipeOffset}px) scale(${1 - Math.abs(swipeOffset) * 0.0005})`,
-                opacity: 1 - Math.abs(swipeOffset) * 0.002,
-                transition: isSwiping ? 'none' : 'transform 0.3s ease-out, opacity 0.3s ease-out'
-              }}
-              draggable={false}
-            />
+            {/* Show all images in a row for smooth sliding */}
+            {(() => {
+              const allImages = project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image];
+              const prevIndex = currentImageIndex === 0 ? allImages.length - 1 : currentImageIndex - 1;
+              const nextIndex = currentImageIndex === allImages.length - 1 ? 0 : currentImageIndex + 1;
+              
+              return (
+                <div 
+                  className="flex items-center justify-center h-full"
+                  style={{
+                    transform: `translateX(${swipeOffset}px)`,
+                    transition: isSwiping ? 'none' : 'transform 0.3s ease-out'
+                  }}
+                >
+                  {/* Previous image */}
+                  <img
+                    src={allImages[prevIndex]}
+                    alt={`${project.name} - Image ${prevIndex + 1}`}
+                    className="absolute max-w-full max-h-full object-contain select-none p-4"
+                    style={{
+                      transform: 'translateX(-100vw)',
+                    }}
+                    draggable={false}
+                  />
+                  {/* Current image */}
+                  <img
+                    src={allImages[currentImageIndex]}
+                    alt={`${project.name} - Image ${currentImageIndex + 1}`}
+                    className="max-w-full max-h-full object-contain select-none p-4"
+                    draggable={false}
+                  />
+                  {/* Next image */}
+                  <img
+                    src={allImages[nextIndex]}
+                    alt={`${project.name} - Image ${nextIndex + 1}`}
+                    className="absolute max-w-full max-h-full object-contain select-none p-4"
+                    style={{
+                      transform: 'translateX(100vw)',
+                    }}
+                    draggable={false}
+                  />
+                </div>
+              );
+            })()}
           </div>
 
           {/* Dot indicators at bottom */}
