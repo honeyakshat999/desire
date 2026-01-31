@@ -37,6 +37,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           src={project.image}
           alt={project.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/60 to-transparent" />
         

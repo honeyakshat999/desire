@@ -149,6 +149,9 @@ const ProjectDetail = () => {
                     src={img}
                     alt={`${project.name} - ${index + 1}`}
                     className="w-full h-full object-cover"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    decoding="async"
                   />
                   {/* Click hint */}
                   <div className="absolute top-4 right-4 bg-black/80 text-white px-4 py-2 rounded-full text-sm flex items-center gap-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
