@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+﻿import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -86,6 +86,16 @@ const ProjectDetail = () => {
   const [showOverlay, setShowOverlay] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [api, setApi] = useState<any>(null);
+
+  // Track current slide
+  React.useEffect(() => {
+    if (!api) return;
+    api.on('select', () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    });
+  }, [api]);
 
   if (!project) {
     return (
@@ -121,13 +131,16 @@ const ProjectDetail = () => {
 
       {/* Hero Section with Image Slider */}
       <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
-        <Carousel className="w-full h-full" opts={{ loop: true }}>
+        <Carousel className="w-full h-full" opts={{ loop: true }} setApi={setApi}>
           <CarouselContent className="h-[60vh] min-h-[400px] ml-0">
             {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).map((img, index) => (
               <CarouselItem key={index} className="pl-0 basis-full">
                 <div
-                  className="relative w-full h-[60vh] min-h-[400px] cursor-pointer"
-                  onClick={() => setShowOverlay(!showOverlay)}
+                  className="relative w-full h-[60vh] min-h-[400px] cursor-pointer group"
+                  onClick={() => {
+                    setCurrentImageIndex(index);
+                    setLightboxOpen(true);
+                  }}
                 >
                   <img
                     src={img}
@@ -135,21 +148,28 @@ const ProjectDetail = () => {
                     className="w-full h-full object-cover"
                   />
                   {/* Click hint */}
-                  {showOverlay && (
-                    <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2 pointer-events-none">
-                      <ZoomIn className="h-4 w-4" />
-                      Click to view
-                    </div>
-                  )}
+                  <div className="absolute top-4 right-4 bg-black/80 text-white px-4 py-2 rounded-full text-sm flex items-center gap-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ZoomIn className="h-4 w-4" />
+                    View Fullscreen
+                  </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
+          {/* Dot indicators at bottom */}
           {project.gallery.length > 0 && (
-            <>
-              <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 border-none text-white h-12 w-12 z-20" />
-              <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 border-none text-white h-12 w-12 z-20" />
-            </>
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+              {[project.image, ...project.gallery].map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    api?.scrollTo(idx);
+                  }}
+                  className={`w-3 h-3 rounded-full transition-all ${idx === currentSlide ? 'bg-white scale-110' : 'bg-white/50 hover:bg-white/70'}`}
+                />
+              ))}
+            </div>
           )}
         </Carousel>
 
@@ -417,52 +437,58 @@ const ProjectDetail = () => {
 
       {/* Fullscreen Lightbox Modal */}
       {lightboxOpen && (
-        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center">
+        <div 
+          className="fixed inset-0 bg-black z-[100] flex flex-col items-center justify-center"
+        >
           {/* Close button */}
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full z-60 transition-colors backdrop-blur-sm"
+            className="absolute top-6 right-6 bg-white text-black p-3 rounded-full z-[110] transition-colors hover:bg-gray-200 shadow-lg"
           >
-            <X className="h-8 w-8" />
+            <X className="h-6 w-6" />
           </button>
 
-          {/* Image container */}
-          <div className="relative w-full h-full flex items-center justify-center p-4">
+          {/* Image container with swipe support */}
+          <div 
+            className="relative w-full flex-1 flex items-center justify-center p-4 touch-pan-x"
+            onTouchStart={(e) => {
+              const touch = e.touches[0];
+              (e.currentTarget as any).startX = touch.clientX;
+            }}
+            onTouchEnd={(e) => {
+              const touch = e.changedTouches[0];
+              const startX = (e.currentTarget as any).startX;
+              const diff = touch.clientX - startX;
+              const allImages = project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image];
+              if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                  // Swipe right - go to previous
+                  setCurrentImageIndex(currentImageIndex === 0 ? allImages.length - 1 : currentImageIndex - 1);
+                } else {
+                  // Swipe left - go to next
+                  setCurrentImageIndex(currentImageIndex === allImages.length - 1 ? 0 : currentImageIndex + 1);
+                }
+              }
+            }}
+          >
             <img
               src={(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image])[currentImageIndex]}
               alt={`${project.name} - Image ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain"
+              className="max-w-full max-h-full object-contain select-none"
+              draggable={false}
             />
-
-            {/* Navigation arrows - only show if multiple images */}
-            {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length > 1 && (
-              <>
-                <button
-                  onClick={() => {
-                    const totalImages = (project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length;
-                    setCurrentImageIndex(currentImageIndex === 0 ? totalImages - 1 : currentImageIndex - 1);
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full z-60 transition-colors backdrop-blur-sm"
-                >
-                  <ArrowLeft className="h-8 w-8" />
-                </button>
-                <button
-                  onClick={() => {
-                    const totalImages = (project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length;
-                    setCurrentImageIndex(currentImageIndex === totalImages - 1 ? 0 : currentImageIndex + 1);
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full z-60 transition-colors backdrop-blur-sm"
-                >
-                  <ArrowLeft className="h-8 w-8 rotate-180" />
-                </button>
-              </>
-            )}
           </div>
 
-          {/* Image counter */}
+          {/* Dot indicators at bottom */}
           {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length > 1 && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full backdrop-blur-sm">
-              {currentImageIndex + 1} / {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-[110]">
+              {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImageIndex(idx)}
+                  className={`w-3 h-3 rounded-full transition-all ${idx === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40 hover:bg-white/70'}`}
+                />
+              ))}
             </div>
           )}
         </div>
