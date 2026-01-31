@@ -91,6 +91,8 @@ const ProjectDetail = () => {
   const [swipeOffset, setSwipeOffset] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
   const [slideDirection, setSlideDirection] = useState(0); // -1 for left, 1 for right
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = React.useRef(0);
 
   // Track current slide
   React.useEffect(() => {
@@ -99,6 +101,28 @@ const ProjectDetail = () => {
       setCurrentSlide(api.selectedScrollSnap());
     });
   }, [api]);
+
+  // Keyboard navigation for lightbox
+  React.useEffect(() => {
+    if (!lightboxOpen || !project) return;
+    
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const allImages = project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image];
+      
+      if (e.key === 'ArrowLeft') {
+        setSlideDirection(-1);
+        setCurrentImageIndex(prev => prev === 0 ? allImages.length - 1 : prev - 1);
+      } else if (e.key === 'ArrowRight') {
+        setSlideDirection(1);
+        setCurrentImageIndex(prev => prev === allImages.length - 1 ? 0 : prev + 1);
+      } else if (e.key === 'Escape') {
+        setLightboxOpen(false);
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, project]);
 
   if (!project) {
     return (
@@ -454,9 +478,9 @@ const ProjectDetail = () => {
             <X className="h-6 w-6" />
           </button>
 
-          {/* Image container with swipe support */}
+          {/* Image container with swipe and drag support */}
           <div 
-            className="relative w-full flex-1 flex items-center justify-center overflow-hidden"
+            className="relative w-full flex-1 flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing"
             onTouchStart={(e) => {
               const touch = e.touches[0];
               (e.currentTarget as any).startX = touch.clientX;
@@ -489,6 +513,42 @@ const ProjectDetail = () => {
               setSwipeOffset(0);
               setIsSwiping(false);
             }}
+            onMouseDown={(e) => {
+              e.preventDefault();
+              dragStartX.current = e.clientX;
+              setIsDragging(true);
+              setIsSwiping(true);
+            }}
+            onMouseMove={(e) => {
+              if (!isDragging) return;
+              const diff = e.clientX - dragStartX.current;
+              setSwipeOffset(diff);
+            }}
+            onMouseUp={(e) => {
+              if (!isDragging) return;
+              const diff = e.clientX - dragStartX.current;
+              const allImages = project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image];
+              
+              if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                  setSlideDirection(-1);
+                  setCurrentImageIndex(currentImageIndex === 0 ? allImages.length - 1 : currentImageIndex - 1);
+                } else {
+                  setSlideDirection(1);
+                  setCurrentImageIndex(currentImageIndex === allImages.length - 1 ? 0 : currentImageIndex + 1);
+                }
+              }
+              setSwipeOffset(0);
+              setIsDragging(false);
+              setIsSwiping(false);
+            }}
+            onMouseLeave={() => {
+              if (isDragging) {
+                setSwipeOffset(0);
+                setIsDragging(false);
+                setIsSwiping(false);
+              }
+            }}
           >
             <AnimatePresence initial={false} custom={slideDirection} mode="popLayout">
               <motion.img
@@ -518,12 +578,15 @@ const ProjectDetail = () => {
 
           {/* Dot indicators at bottom */}
           {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length > 1 && (
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-[110]">
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-[110] bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm">
               {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  className={`w-3 h-3 rounded-full transition-all ${idx === currentImageIndex ? 'bg-white scale-125' : 'bg-white/40 hover:bg-white/70'}`}
+                  onClick={() => {
+                    setSlideDirection(idx > currentImageIndex ? 1 : -1);
+                    setCurrentImageIndex(idx);
+                  }}
+                  className={`w-3 h-3 rounded-full transition-all border-2 ${idx === currentImageIndex ? 'bg-white border-white scale-125' : 'bg-transparent border-white/70 hover:bg-white/50'}`}
                 />
               ))}
             </div>
