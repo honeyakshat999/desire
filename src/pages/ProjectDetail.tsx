@@ -1,6 +1,6 @@
 ﻿import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
   MapPin,
@@ -90,6 +90,7 @@ const ProjectDetail = () => {
   const [api, setApi] = useState<any>(null);
   const [swipeOffset, setSwipeOffset] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
+  const [slideDirection, setSlideDirection] = useState(0); // -1 for left, 1 for right
 
   // Track current slide
   React.useEffect(() => {
@@ -452,7 +453,7 @@ const ProjectDetail = () => {
 
           {/* Image container with swipe support */}
           <div 
-            className="relative w-full flex-1 flex items-center justify-center touch-pan-x overflow-hidden"
+            className="relative w-full flex-1 flex items-center justify-center overflow-hidden"
             onTouchStart={(e) => {
               const touch = e.touches[0];
               (e.currentTarget as any).startX = touch.clientX;
@@ -474,9 +475,11 @@ const ProjectDetail = () => {
               if (Math.abs(diff) > 50) {
                 if (diff > 0) {
                   // Swipe right - go to previous
+                  setSlideDirection(-1);
                   setCurrentImageIndex(currentImageIndex === 0 ? allImages.length - 1 : currentImageIndex - 1);
                 } else {
                   // Swipe left - go to next
+                  setSlideDirection(1);
                   setCurrentImageIndex(currentImageIndex === allImages.length - 1 ? 0 : currentImageIndex + 1);
                 }
               }
@@ -484,50 +487,30 @@ const ProjectDetail = () => {
               setIsSwiping(false);
             }}
           >
-            {/* Show all images in a row for smooth sliding */}
-            {(() => {
-              const allImages = project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image];
-              const prevIndex = currentImageIndex === 0 ? allImages.length - 1 : currentImageIndex - 1;
-              const nextIndex = currentImageIndex === allImages.length - 1 ? 0 : currentImageIndex + 1;
-              
-              return (
-                <div 
-                  className="flex items-center justify-center h-full"
-                  style={{
-                    transform: `translateX(${swipeOffset}px)`,
-                    transition: isSwiping ? 'none' : 'transform 0.3s ease-out'
-                  }}
-                >
-                  {/* Previous image */}
-                  <img
-                    src={allImages[prevIndex]}
-                    alt={`${project.name} - Image ${prevIndex + 1}`}
-                    className="absolute max-w-full max-h-full object-contain select-none p-4"
-                    style={{
-                      transform: 'translateX(-100vw)',
-                    }}
-                    draggable={false}
-                  />
-                  {/* Current image */}
-                  <img
-                    src={allImages[currentImageIndex]}
-                    alt={`${project.name} - Image ${currentImageIndex + 1}`}
-                    className="max-w-full max-h-full object-contain select-none p-4"
-                    draggable={false}
-                  />
-                  {/* Next image */}
-                  <img
-                    src={allImages[nextIndex]}
-                    alt={`${project.name} - Image ${nextIndex + 1}`}
-                    className="absolute max-w-full max-h-full object-contain select-none p-4"
-                    style={{
-                      transform: 'translateX(100vw)',
-                    }}
-                    draggable={false}
-                  />
-                </div>
-              );
-            })()}
+            <AnimatePresence initial={false} custom={slideDirection} mode="popLayout">
+              <motion.img
+                key={currentImageIndex}
+                src={(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image])[currentImageIndex]}
+                alt={`${project.name} - Image ${currentImageIndex + 1}`}
+                className="max-w-full max-h-full object-contain select-none p-4"
+                draggable={false}
+                custom={slideDirection}
+                initial={{ x: slideDirection > 0 ? 300 : -300, opacity: 0 }}
+                animate={{ 
+                  x: swipeOffset, 
+                  opacity: 1,
+                  transition: { 
+                    x: { type: isSwiping ? 'tween' : 'spring', stiffness: 300, damping: 30, duration: isSwiping ? 0 : 0.3 },
+                    opacity: { duration: 0.2 }
+                  }
+                }}
+                exit={{ 
+                  x: slideDirection > 0 ? -300 : 300, 
+                  opacity: 0,
+                  transition: { duration: 0.2 }
+                }}
+              />
+            </AnimatePresence>
           </div>
 
           {/* Dot indicators at bottom */}
