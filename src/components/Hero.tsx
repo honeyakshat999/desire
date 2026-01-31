@@ -46,7 +46,7 @@ const Hero = () => {
             >
               <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
               <span className="text-sm text-gold-light font-medium">
-                Now Booking: Desire Heights
+                Now Booking: Brajeshwar Avenue
               </span>
             </motion.div>
 
