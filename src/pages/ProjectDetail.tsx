@@ -1,4 +1,5 @@
-﻿import { useParams, Link } from "react-router-dom";
+﻿import { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -10,9 +11,18 @@ import {
   Layers,
   Phone,
   MessageCircle,
+  X,
+  ZoomIn,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { projects } from "@/data/projects";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -73,6 +83,9 @@ const amenityIcons: Record<string, string> = {
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
   const project = projects.find((p) => p.id === id);
+  const [showOverlay, setShowOverlay] = useState(true);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!project) {
     return (
@@ -106,50 +119,91 @@ const ProjectDetail = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px]">
-        <img
-          src={project.image}
-          alt={project.name}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/50 to-transparent" />
-
-        <div className="absolute inset-0 flex items-end">
-          <div className="container mx-auto px-4 pb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Link
-                to="/#projects"
-                className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-4 transition-colors"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Back to Projects
-              </Link>
-
-              <div className="flex flex-wrap items-center gap-4 mb-4">
-                <Badge
-                  className={`capitalize ${statusColors[project.status]}`}
+      {/* Hero Section with Image Slider */}
+      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
+        <Carousel className="w-full h-full" opts={{ loop: true }}>
+          <CarouselContent className="h-[60vh] min-h-[400px] ml-0">
+            {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).map((img, index) => (
+              <CarouselItem key={index} className="pl-0 basis-full">
+                <div
+                  className="relative w-full h-[60vh] min-h-[400px] cursor-pointer"
+                  onClick={() => setShowOverlay(!showOverlay)}
                 >
-                  {project.status}
-                </Badge>
-                <span className="text-white/70 text-sm">{project.rera}</span>
-              </div>
+                  <img
+                    src={img}
+                    alt={`${project.name} - ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Click hint */}
+                  {showOverlay && (
+                    <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2 pointer-events-none">
+                      <ZoomIn className="h-4 w-4" />
+                      Click to view
+                    </div>
+                  )}
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {project.gallery.length > 0 && (
+            <>
+              <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 border-none text-white h-12 w-12 z-20" />
+              <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 border-none text-white h-12 w-12 z-20" />
+            </>
+          )}
+        </Carousel>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-4">
-                {project.name}
-              </h1>
+        {/* Gradient overlay - only show when showOverlay is true */}
+        {showOverlay && (
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/50 to-transparent pointer-events-none transition-opacity duration-300" />
+        )}
 
-              <div className="flex items-center gap-2 text-white/80">
-                <MapPin className="h-5 w-5 text-gold-light" />
-                <span className="text-lg">{project.location}</span>
-              </div>
-            </motion.div>
+        {/* Close button when overlay is hidden */}
+        {!showOverlay && (
+          <button
+            onClick={() => setShowOverlay(true)}
+            className="absolute top-4 right-4 bg-black/70 hover:bg-black/90 text-white p-3 rounded-full z-30 transition-colors"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        )}
+
+        {/* Project info overlay - only show when showOverlay is true */}
+        {showOverlay && (
+          <div className="absolute inset-0 flex items-end pointer-events-none transition-opacity duration-300">
+            <div className="container mx-auto px-4 pb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Link
+                  to="/#projects"
+                  className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-4 transition-colors pointer-events-auto"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Projects
+                </Link>
+
+                <div className="flex flex-wrap items-center gap-4 mb-4">
+                  <Badge className={`capitalize ${statusColors[project.status]}`}>
+                    {project.status}
+                  </Badge>
+                  <span className="text-white/70 text-sm">{project.rera}</span>
+                </div>
+
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-4">
+                  {project.name}
+                </h1>
+
+                <div className="flex items-center gap-2 text-white/80">
+                  <MapPin className="h-5 w-5 text-gold-light" />
+                  <span className="text-lg">{project.location}</span>
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
       {/* Main Content */}
@@ -359,6 +413,60 @@ const ProjectDetail = () => {
           </div>
         </div>
       </section>
+
+
+      {/* Fullscreen Lightbox Modal */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center">
+          {/* Close button */}
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full z-60 transition-colors backdrop-blur-sm"
+          >
+            <X className="h-8 w-8" />
+          </button>
+
+          {/* Image container */}
+          <div className="relative w-full h-full flex items-center justify-center p-4">
+            <img
+              src={(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image])[currentImageIndex]}
+              alt={`${project.name} - Image ${currentImageIndex + 1}`}
+              className="max-w-full max-h-full object-contain"
+            />
+
+            {/* Navigation arrows - only show if multiple images */}
+            {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length > 1 && (
+              <>
+                <button
+                  onClick={() => {
+                    const totalImages = (project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length;
+                    setCurrentImageIndex(currentImageIndex === 0 ? totalImages - 1 : currentImageIndex - 1);
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full z-60 transition-colors backdrop-blur-sm"
+                >
+                  <ArrowLeft className="h-8 w-8" />
+                </button>
+                <button
+                  onClick={() => {
+                    const totalImages = (project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length;
+                    setCurrentImageIndex(currentImageIndex === totalImages - 1 ? 0 : currentImageIndex + 1);
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full z-60 transition-colors backdrop-blur-sm"
+                >
+                  <ArrowLeft className="h-8 w-8 rotate-180" />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Image counter */}
+          {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full backdrop-blur-sm">
+              {currentImageIndex + 1} / {(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image]).length}
+            </div>
+          )}
+        </div>
+      )}
 
       <Footer />
       <WhatsAppButton projectName={project.name} />
