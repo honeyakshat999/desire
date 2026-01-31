@@ -500,14 +500,14 @@ const ProjectDetail = () => {
                   x: swipeOffset, 
                   opacity: 1,
                   transition: { 
-                    x: { type: isSwiping ? 'tween' : 'spring', stiffness: 300, damping: 30, duration: isSwiping ? 0 : 0.3 },
-                    opacity: { duration: 0.2 }
+                    x: { type: isSwiping ? 'tween' : 'spring', stiffness: 120, damping: 20, duration: isSwiping ? 0 : 0.5 },
+                    opacity: { duration: 0.4, ease: 'easeOut' }
                   }
                 }}
                 exit={{ 
                   x: slideDirection > 0 ? -300 : 300, 
                   opacity: 0,
-                  transition: { duration: 0.2 }
+                  transition: { duration: 0.4, ease: 'easeInOut' }
                 }}
               />
             </AnimatePresence>
