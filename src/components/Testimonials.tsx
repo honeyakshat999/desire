@@ -20,7 +20,7 @@ const testimonials = [
   },
   {
     name: "Anand Mehta",
-    role: "Investor, Desire Greens",
+    role: "Investor, Ganesh Vihar",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
     content:
       "As a real estate investor, I value transparency and timely delivery. Desire Realty checks all boxes. My plot investment has already appreciated significantly.",

@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+﻿import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -29,7 +29,7 @@ const amenityIcons: Record<string, string> = {
   "Swimming Pool": "🏊",
   "Gymnasium": "🏋️",
   "Clubhouse": "🏛️",
-  "Children's Play Area": "🎢",
+  "Children's Play Area": "🛝",
   "Landscaped Gardens": "🌳",
   "24/7 Security": "🔒",
   "Covered Parking": "🅿️",
@@ -53,6 +53,21 @@ const amenityIcons: Record<string, string> = {
   "Smart Home Features": "📱",
   "Rooftop Deck": "🌅",
   "Pet Zone": "🐕",
+  "Underground Electricity / Water Lines": "💡",
+  "Gated Township": "🏘️",
+  "Park / Children Play area": "🎾",
+  "Temple": "🛕",
+  "RERA Approved": "✅",
+  "Green & Open Spaces": "🌳",
+  "Plot Demarcation": "📍",
+  "Mini Theater": "🎭",
+  "Terrace Garden": "🌺",
+  "Gazebo": "🛖",
+  "Water Harvesting": "💧",
+  "Smart Featured Lifts system": "🛗",
+  "CCTV Surveillance": "📹",
+  "Fire Safety Systems": "🚒",
+  "Underground Electricity Lines": "💡",
 };
 
 const ProjectDetail = () => {
@@ -352,3 +367,5 @@ const ProjectDetail = () => {
 };
 
 export default ProjectDetail;
+
+

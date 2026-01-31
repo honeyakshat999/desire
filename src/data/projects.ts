@@ -21,30 +21,70 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "desire-heights",
-    name: "Desire Heights",
-    location: "Whitefield, Bangalore",
+    id: "ganesh-vihar",
+    name: "Ganesh Vihar",
+    location: "Chaksu, NH - 8 Jaipur, Jaipur",
+    status: "completed",
+    highlights: ["Premium Residential Plots", "RERA Approved", "Close to Bus Stand", "On National Highway"],
+    description: "Invest in your dream home at Ganesh Vihar, a premium villa plot project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Ganesh Vihar offers a well-connected, future-ready foundation for building your ideal home.",
+    image: "/project-3.jpeg",
+    price: "Starting ₹10 Lakh",
+    rera: "RAJ/P/2025/4132",
+    amenities: ["Wide Internal Roads", "Underground Electricity Lines", "Sewage Treatment", "Water Supply", "Street Lighting", "Gated Township", "Parks", "Kids Play Zone", "Temple", "RERA Approved","Green & Open Spaces","Plot Demarcation"],
+    specifications: {
+      type: "Residential Plots",
+      area: "933 - 2504 sq.ft.",
+      units: "99+ Plots",
+      floors: "N/A"
+    },
+    gallery: [],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3568.036054986725!2d75.94573997542817!3d26.583218276845088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDM0JzU5LjYiTiA3NcKwNTYnNTMuOSJF!5e0!3m2!1sen!2sin!4v1769846625631!5m2!1sen!2sin"
+  },
+  {
+    id: "brajeshwar-avenue",
+    name: "Brajeshwar Avenue",
+    location: "AT GANDHI PATH WEST, VAISHALI NAGAR, JAIPUR",
     status: "ongoing",
-    highlights: ["Premium 2/3 BHK Apartments", "Rooftop Infinity Pool", "Smart Home Ready"],
+    highlights: ["Premium 3/4 BHK Apartments", "World Class Facilities","Rera Approved", "JDA Approved"],
     description: "Experience luxury living at its finest with Desire Heights. Located in the heart of Whitefield, this premium residential project offers world-class amenities and contemporary architecture designed for modern families.",
-    image: "/project-1.jpg",
+    image: "/project-avenue.png",
     price: "Starting ₹1.2 Cr",
     rera: "RERA/KA/PROJA/2024/001234",
-    amenities: ["Swimming Pool", "Gymnasium", "Clubhouse", "Children's Play Area", "Landscaped Gardens", "24/7 Security", "Covered Parking", "Power Backup"],
+    amenities: ["Mini Theater","Swimming Pool", "Gymnasium", "Clubhouse", "Children's Play Area", "Terrace Garden","Gazebo","EV Charging","Temple", "Landscaped Gardens","Water Harvesting", "24/7 Security", "Covered Parking", "Power Backup", "Smart Featured Lifts system","CCTV Surveillance","Fire Safety Systems"],
     specifications: {
       type: "2, 3 BHK Apartments",
       area: "1,200 - 2,100 sq.ft.",
       units: "240 Units",
       floors: "G + 24 Floors"
     },
-    gallery: [],
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.7252068675045!2d77.7410!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU4JzE3LjgiTiA3N8KwNDQnMjcuNiJF!5e0!3m2!1sen!2sin!4v1234567890"
+    gallery: ["/brijeshwar avenue/ameneties.png", "/brijeshwar avenue/first_floor.png", "/brijeshwar avenue/flats.png", "/brijeshwar avenue/location_map.png", "/brijeshwar avenue/specifications.png"],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3558.299135892591!2d75.69098107543886!3d26.893999976658318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUzJzM4LjQiTiA3NcKwNDEnMzYuOCJF!5e0!3m2!1sen!2sin!4v1769861421134!5m2!1sen!2sin"
   },
   {
-    id: "desire-villa-gardens",
-    name: "Desire Villa Gardens",
-    location: "Sarjapur Road, Bangalore",
-    status: "completed",
+    id: "smart-city",
+    name: "Smart City",
+    location: "test, Jaipur",
+    status: "upcoming",
+    highlights: ["Premium Residential Plots", "RERA Approved", "Close to Bus Stand", "On National Highway"],
+    description: "Invest in your dream home at Smart City, a premium villa plot project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Smart City offers a well-connected, future-ready foundation for building your ideal home.",
+    image: "/project-5.jpeg",
+    price: "Starting ₹10 Lakh",
+    rera: "TEST",
+    amenities: ["Wide Internal Roads", "Underground Electricity Lines", "Sewage Treatment", "Water Supply", "Street Lighting", "Gated Township", "Parks", "Kids Play Zone", "Temple", "RERA Approved","Green & Open Spaces","Plot Demarcation"],
+    specifications: {
+      type: "Residential Plots",
+      area: "933 - 2504 sq.ft.",
+      units: "99+ Plots",
+      floors: "N/A"
+    },
+    gallery: [],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3568.036054986725!2d75.94573997542817!3d26.583218276845088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDM0JzU5LjYiTiA3NcKwNTYnNTMuOSJF!5e0!3m2!1sen!2sin!4v1769846625631!5m2!1sen!2sin"
+  },
+  {
+    id: "brajeshwar-crown",
+    name: "Brajeshwar Crown",
+    location: "200 FT. road, Jaipur",
+    status: "upcoming",
     highlights: ["Luxury Independent Villas", "Private Gardens", "Gated Community"],
     description: "A prestigious gated villa community offering spacious independent homes with private gardens. Each villa is crafted with attention to detail, providing the perfect blend of privacy and community living.",
     image: "/project-2.jpg",
@@ -61,43 +101,24 @@ export const projects: Project[] = [
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.0!2d77.7800!3d12.9000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU0JzAwLjAiTiA3N8KwNDYnNDguMCJF!5e0!3m2!1sen!2sin!4v1234567890"
   },
   {
-    id: "desire-greens",
-    name: "Desire Greens",
-    location: "Devanahalli, Bangalore",
-    status: "ongoing",
-    highlights: ["Premium Villa Plots", "BMRDA Approved", "Close to Airport"],
-    description: "Invest in your dream home with Desire Greens premium villa plots. Strategically located near the international airport with excellent connectivity, these BMRDA approved plots offer the perfect foundation for your future.",
-    image: "/project-3.jpg",
-    price: "Starting ₹65 Lakh",
-    rera: "RERA/KA/PROJA/2024/009876",
-    amenities: ["Wide Internal Roads", "Underground Electricity", "Sewage Treatment", "Water Supply", "Street Lighting", "Gated Entry", "Parks", "Commercial Zone"],
+    id: "kesar-bagh",
+    name: "Kesar Bagh",
+    location: "TEST, Jaipur",
+    status: "upcoming",
+    highlights: ["Premium Residential Plots", "RERA Approved","On National Highway"],
+    description: "Invest in your dream home at Kesar Bagh, a premium villa plot project located directly on the National Highway with excellent accessibility. the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Kesar Bagh offers a well-connected, future-ready foundation for building your ideal home.",
+    image: "/project-5.jpeg",
+    price: "Starting ₹20 Lakh",
+    rera: "TEST",
+    amenities: ["TEST", "TEST", "TEST", "TEST", "TEST", "TEST", "Parks", "Kids Play Zone", "Temple", "RERA Approved","Green & Open Spaces","Plot Demarcation"],
     specifications: {
-      type: "Villa Plots",
-      area: "1,200 - 2,400 sq.ft.",
-      units: "156 Plots",
+      type: "Residential Plots",
+      area: "TEST",
+      units: "test+ Plots",
       floors: "N/A"
     },
     gallery: [],
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.0!2d77.7100!3d13.2000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDEyJzAwLjAiTiA3N8KwNDInMzYuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
-  },
-  {
-    id: "desire-urbania",
-    name: "Desire Urbania",
-    location: "Electronic City, Bangalore",
-    status: "upcoming",
-    highlights: ["Modern Townhouses", "Pre-Launch Prices", "IT Hub Location"],
-    description: "Coming soon to Electronic City, Desire Urbania presents contemporary townhouses designed for the modern professional. Enjoy pre-launch benefits and be among the first to own a home in this premium development.",
-    image: "/project-4.jpg",
-    price: "Pre-Launch Price Available",
-    rera: "RERA Registration Pending",
-    amenities: ["Clubhouse", "Swimming Pool", "Gym", "Co-working Space", "EV Charging", "Smart Home Features", "Rooftop Deck", "Pet Zone"],
-    specifications: {
-      type: "3, 4 BHK Townhouses",
-      area: "1,800 - 2,600 sq.ft.",
-      units: "120 Units",
-      floors: "G + 3 Floors"
-    },
-    gallery: [],
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.0!2d77.6600!3d12.8400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDUwJzI0LjAiTiA3N8KwMzknMzYuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3568.036054986725!2d75.94573997542817!3d26.583218276845088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDM0JzU5LjYiTiA3NcKwNTYnNTMuOSJF!5e0!3m2!1sen!2sin!4v1769846625631!5m2!1sen!2sin"
   }
 ];
+

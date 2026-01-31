@@ -101,10 +101,11 @@ const Footer = () => {
             <h3 className="font-serif text-lg mb-4">Our Projects</h3>
             <ul className="space-y-3">
               {[
-                { name: "Desire Heights", id: "desire-heights" },
-                { name: "Desire Villa Gardens", id: "desire-villa-gardens" },
-                { name: "Desire Greens", id: "desire-greens" },
-                { name: "Desire Urbania", id: "desire-urbania" },
+                { name: "Brajeshwar Avenue", id: "brajeshwar-avenue" },
+                { name: "Ganesh Vihar", id: "ganesh-vihar" },
+                { name: "Kesar Bagh", id: "kesar-bagh" },
+                { name: "Smart City", id: "smart-city" },
+                { name: "Brajeshwar Crown", id: "brajeshwar-crown" },
               ].map((project, index) => (
                 <li key={index}>
                   <button
