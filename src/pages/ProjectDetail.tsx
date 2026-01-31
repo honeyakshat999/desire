@@ -88,6 +88,8 @@ const ProjectDetail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState<any>(null);
+  const [swipeOffset, setSwipeOffset] = useState(0);
+  const [isSwiping, setIsSwiping] = useState(false);
 
   // Track current slide
   React.useEffect(() => {
@@ -450,16 +452,25 @@ const ProjectDetail = () => {
 
           {/* Image container with swipe support */}
           <div 
-            className="relative w-full flex-1 flex items-center justify-center p-4 touch-pan-x"
+            className="relative w-full flex-1 flex items-center justify-center p-4 touch-pan-x overflow-hidden"
             onTouchStart={(e) => {
               const touch = e.touches[0];
               (e.currentTarget as any).startX = touch.clientX;
+              setIsSwiping(true);
+            }}
+            onTouchMove={(e) => {
+              if (!isSwiping) return;
+              const touch = e.touches[0];
+              const startX = (e.currentTarget as any).startX;
+              const diff = touch.clientX - startX;
+              setSwipeOffset(diff);
             }}
             onTouchEnd={(e) => {
               const touch = e.changedTouches[0];
               const startX = (e.currentTarget as any).startX;
               const diff = touch.clientX - startX;
               const allImages = project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image];
+              
               if (Math.abs(diff) > 50) {
                 if (diff > 0) {
                   // Swipe right - go to previous
@@ -469,12 +480,19 @@ const ProjectDetail = () => {
                   setCurrentImageIndex(currentImageIndex === allImages.length - 1 ? 0 : currentImageIndex + 1);
                 }
               }
+              setSwipeOffset(0);
+              setIsSwiping(false);
             }}
           >
             <img
               src={(project.gallery.length > 0 ? [project.image, ...project.gallery] : [project.image])[currentImageIndex]}
               alt={`${project.name} - Image ${currentImageIndex + 1}`}
               className="max-w-full max-h-full object-contain select-none"
+              style={{
+                transform: `translateX(${swipeOffset}px) scale(${1 - Math.abs(swipeOffset) * 0.0005})`,
+                opacity: 1 - Math.abs(swipeOffset) * 0.002,
+                transition: isSwiping ? 'none' : 'transform 0.3s ease-out, opacity 0.3s ease-out'
+              }}
               draggable={false}
             />
           </div>
