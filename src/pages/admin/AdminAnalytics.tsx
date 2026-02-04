@@ -17,11 +17,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
 import { Loader2, RefreshCw, Eye, MousePointerClick, TrendingUp } from "lucide-react";
 import {
   LineChart,
@@ -32,6 +27,7 @@ import {
   ResponsiveContainer,
   BarChart,
   Bar,
+  Tooltip,
 } from "recharts";
 
 interface AnalyticsData {
@@ -160,7 +156,7 @@ const AdminAnalytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              Page Views
+              All Page Views
             </CardTitle>
             <Eye className="h-4 w-4 text-blue-500" />
           </CardHeader>
@@ -213,7 +209,13 @@ const AdminAnalytics = () => {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" fontSize={12} />
                     <YAxis fontSize={12} />
-                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "hsl(var(--background))",
+                        border: "1px solid hsl(var(--border))",
+                        borderRadius: "8px"
+                      }}
+                    />
                     <Line
                       type="monotone"
                       dataKey="views"
@@ -242,7 +244,13 @@ const AdminAnalytics = () => {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" fontSize={12} />
                     <YAxis dataKey="name" type="category" fontSize={12} width={100} />
-                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "hsl(var(--background))",
+                        border: "1px solid hsl(var(--border))",
+                        borderRadius: "8px"
+                      }}
+                    />
                     <Bar dataKey="clicks" fill="hsl(40, 45%, 60%)" radius={4} />
                   </BarChart>
                 </ResponsiveContainer>
