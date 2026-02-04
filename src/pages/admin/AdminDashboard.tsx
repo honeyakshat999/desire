@@ -80,7 +80,7 @@ const AdminDashboard = () => {
 
   const stats = [
     {
-      title: "Page Views",
+      title: "Total Pages Views",
       value: data?.summary.totalPageViews || 0,
       icon: Eye,
       description: "Last 30 days",
