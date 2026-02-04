@@ -1,23 +1,30 @@
 import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import { neon } from "@neondatabase/serverless";
-
-const sql = neon(process.env.DATABASE_URL!);
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-in-production";
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL!;
+import jwt from "jsonwebtoken";
 
 // CORS headers
 const headers = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
-  "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE, PATCH, OPTIONS",
   "Content-Type": "application/json",
+};
+
+// Get database connection
+const getDb = () => {
+  const dbUrl = process.env.DATABASE_URL;
+  if (!dbUrl) {
+    throw new Error("DATABASE_URL environment variable is not set");
+  }
+  return neon(dbUrl);
 };
 
 // Verify JWT token
 const verifyToken = (token: string): { email: string } | null => {
   try {
-    const jwt = require("jsonwebtoken");
-    const decoded = jwt.verify(token, JWT_SECRET) as { email: string };
+    const secret = process.env.JWT_SECRET;
+    if (!secret) return null;
+    const decoded = jwt.verify(token, secret) as { email: string };
     return decoded;
   } catch {
     return null;
@@ -32,7 +39,8 @@ const isAuthenticated = (event: HandlerEvent): boolean => {
   }
   const token = authHeader.split(" ")[1];
   const decoded = verifyToken(token);
-  return decoded !== null && decoded.email === ADMIN_EMAIL;
+  const adminEmail = process.env.ADMIN_EMAIL;
+  return decoded !== null && adminEmail !== undefined && decoded.email.toLowerCase() === adminEmail.toLowerCase();
 };
 
 // Generate slug from title
@@ -49,10 +57,22 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     return { statusCode: 200, headers, body: "" };
   }
 
+  // Check environment variables
+  if (!process.env.DATABASE_URL) {
+    console.error("Missing DATABASE_URL environment variable");
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ error: "Server configuration error - DATABASE_URL not set" }),
+    };
+  }
+
   const path = event.path.replace("/.netlify/functions/blogs-api", "");
   const pathParts = path.split("/").filter(Boolean);
 
   try {
+    const sql = getDb();
+
     // GET /blogs - List all blogs (public: only published, admin: all)
     if (event.httpMethod === "GET" && pathParts.length === 0) {
       const isAdmin = isAuthenticated(event);
