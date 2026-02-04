@@ -5,6 +5,8 @@ import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +14,8 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Bold,
   Italic,
@@ -30,6 +33,8 @@ import {
   Heading3,
   Minus,
   Pilcrow,
+  Upload,
+  Loader2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -68,10 +73,14 @@ const MenuButton = ({
 );
 
 const MenuBar = ({ editor }: { editor: Editor }) => {
+  const { token } = useAuth();
   const [linkDialogOpen, setLinkDialogOpen] = useState(false);
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
   const [linkUrl, setLinkUrl] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   if (!editor) return null;
 
@@ -93,7 +102,75 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
       editor.chain().focus().setImage({ src: imageUrl }).run();
     }
     setImageUrl("");
+    setUploadError(null);
     setImageDialogOpen(false);
+  };
+
+  const handleFileUpload = async (file: File) => {
+    if (!file.type.startsWith("image/")) {
+      setUploadError("Please select an image file");
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      setUploadError("Image size must be less than 10MB");
+      return;
+    }
+
+    setIsUploading(true);
+    setUploadError(null);
+
+    try {
+      // Convert file to base64
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64 = reader.result as string;
+
+        try {
+          const response = await fetch("/.netlify/functions/upload-image", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ image: base64 }),
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            setImageUrl(result.url);
+          } else {
+            const error = await response.json();
+            setUploadError(error.error || "Upload failed");
+          }
+        } catch (err) {
+          setUploadError("Network error during upload");
+        } finally {
+          setIsUploading(false);
+        }
+      };
+      reader.onerror = () => {
+        setUploadError("Failed to read file");
+        setIsUploading(false);
+      };
+      reader.readAsDataURL(file);
+    } catch (err) {
+      setUploadError("Failed to process image");
+      setIsUploading(false);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      handleFileUpload(file);
+    }
+  };
+
+  const openImageDialog = () => {
+    setImageUrl("");
+    setUploadError(null);
+    setImageDialogOpen(true);
   };
 
   return (
@@ -198,7 +275,7 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         <MenuButton onClick={() => setLinkDialogOpen(true)} title="Add Link">
           <LinkIcon className="h-4 w-4" />
         </MenuButton>
-        <MenuButton onClick={() => setImageDialogOpen(true)} title="Add Image">
+        <MenuButton onClick={openImageDialog} title="Add Image">
           <ImageIcon className="h-4 w-4" />
         </MenuButton>
 
@@ -244,21 +321,112 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
 
       {/* Image Dialog */}
       <Dialog open={imageDialogOpen} onOpenChange={setImageDialogOpen}>
-        <DialogContent>
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Add Image</DialogTitle>
           </DialogHeader>
-          <Input
-            placeholder="https://example.com/image.jpg"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && addImage()}
-          />
+          
+          <Tabs defaultValue="upload" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="upload">Upload</TabsTrigger>
+              <TabsTrigger value="url">Image URL</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="upload" className="space-y-4">
+              <div className="space-y-2">
+                <Label>Choose an image to upload</Label>
+                <div 
+                  className={cn(
+                    "border-2 border-dashed rounded-lg p-6 text-center cursor-pointer hover:border-primary transition-colors",
+                    isUploading && "opacity-50 pointer-events-none"
+                  )}
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  {isUploading ? (
+                    <div className="flex flex-col items-center gap-2">
+                      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                      <p className="text-sm text-muted-foreground">Uploading...</p>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2">
+                      <Upload className="h-8 w-8 text-muted-foreground" />
+                      <p className="text-sm text-muted-foreground">
+                        Click to select an image
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Max size: 10MB
+                      </p>
+                    </div>
+                  )}
+                </div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+              </div>
+              
+              {imageUrl && (
+                <div className="space-y-2">
+                  <Label>Preview</Label>
+                  <div className="border rounded-lg p-2">
+                    <img 
+                      src={imageUrl} 
+                      alt="Preview" 
+                      className="max-h-40 mx-auto rounded"
+                    />
+                  </div>
+                  <Input
+                    value={imageUrl}
+                    readOnly
+                    className="text-xs"
+                  />
+                </div>
+              )}
+              
+              {uploadError && (
+                <p className="text-sm text-destructive">{uploadError}</p>
+              )}
+            </TabsContent>
+            
+            <TabsContent value="url" className="space-y-4">
+              <div className="space-y-2">
+                <Label>Image URL</Label>
+                <Input
+                  placeholder="https://example.com/image.jpg"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && addImage()}
+                />
+              </div>
+              
+              {imageUrl && imageUrl.startsWith("http") && (
+                <div className="space-y-2">
+                  <Label>Preview</Label>
+                  <div className="border rounded-lg p-2">
+                    <img 
+                      src={imageUrl} 
+                      alt="Preview" 
+                      className="max-h-40 mx-auto rounded"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+            </TabsContent>
+          </Tabs>
+
           <DialogFooter>
             <Button variant="outline" onClick={() => setImageDialogOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={addImage}>Add Image</Button>
+            <Button onClick={addImage} disabled={!imageUrl || isUploading}>
+              Add Image
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

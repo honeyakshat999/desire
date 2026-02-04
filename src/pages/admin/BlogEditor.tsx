@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -13,9 +13,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import RichTextEditor from "@/components/admin/RichTextEditor";
-import { ArrowLeft, Save, Loader2, Eye } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Eye, Upload, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface BlogFormData {
   title: string;
@@ -41,6 +43,8 @@ const BlogEditor = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(isEditing);
+  const [isUploadingCover, setIsUploadingCover] = useState(false);
+  const coverImageInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch existing blog if editing
   useEffect(() => {
@@ -135,6 +139,86 @@ const BlogEditor = () => {
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleCoverImageUpload = async (file: File) => {
+    if (!file.type.startsWith("image/")) {
+      toast({
+        title: "Error",
+        description: "Please select an image file",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      toast({
+        title: "Error",
+        description: "Image size must be less than 10MB",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsUploadingCover(true);
+
+    try {
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64 = reader.result as string;
+
+        try {
+          const response = await fetch("/.netlify/functions/upload-image", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ image: base64 }),
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            setFormData((prev) => ({ ...prev, cover_image: result.url }));
+            toast({
+              title: "Success",
+              description: "Cover image uploaded successfully",
+            });
+          } else {
+            const error = await response.json();
+            toast({
+              title: "Upload Failed",
+              description: error.error || "Failed to upload image",
+              variant: "destructive",
+            });
+          }
+        } catch (err) {
+          toast({
+            title: "Error",
+            description: "Network error during upload",
+            variant: "destructive",
+          });
+        } finally {
+          setIsUploadingCover(false);
+        }
+      };
+      reader.onerror = () => {
+        toast({
+          title: "Error",
+          description: "Failed to read file",
+          variant: "destructive",
+        });
+        setIsUploadingCover(false);
+      };
+      reader.readAsDataURL(file);
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: "Failed to process image",
+        variant: "destructive",
+      });
+      setIsUploadingCover(false);
     }
   };
 
@@ -270,28 +354,85 @@ const BlogEditor = () => {
                 <CardTitle>Cover Image</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="cover_image">Image URL</Label>
-                  <Input
-                    id="cover_image"
-                    placeholder="https://example.com/image.jpg"
-                    value={formData.cover_image}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, cover_image: e.target.value }))
-                    }
-                  />
-                </div>
-
-                {formData.cover_image && (
-                  <div className="aspect-video rounded-lg overflow-hidden bg-muted">
-                    <img
-                      src={formData.cover_image}
-                      alt="Cover preview"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = "https://placehold.co/600x400?text=Invalid+Image";
+                <Tabs defaultValue="upload" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="upload">Upload</TabsTrigger>
+                    <TabsTrigger value="url">URL</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="upload" className="space-y-3">
+                    <div
+                      className={cn(
+                        "border-2 border-dashed rounded-lg p-4 text-center cursor-pointer hover:border-primary transition-colors",
+                        isUploadingCover && "opacity-50 pointer-events-none"
+                      )}
+                      onClick={() => coverImageInputRef.current?.click()}
+                    >
+                      {isUploadingCover ? (
+                        <div className="flex flex-col items-center gap-2 py-2">
+                          <Loader2 className="h-6 w-6 animate-spin text-primary" />
+                          <p className="text-sm text-muted-foreground">Uploading...</p>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center gap-2 py-2">
+                          <Upload className="h-6 w-6 text-muted-foreground" />
+                          <p className="text-sm text-muted-foreground">
+                            Click to upload
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            Max: 10MB
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <input
+                      ref={coverImageInputRef}
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) handleCoverImageUpload(file);
                       }}
                     />
+                  </TabsContent>
+                  
+                  <TabsContent value="url" className="space-y-3">
+                    <div className="space-y-2">
+                      <Label htmlFor="cover_image">Image URL</Label>
+                      <Input
+                        id="cover_image"
+                        placeholder="https://example.com/image.jpg"
+                        value={formData.cover_image}
+                        onChange={(e) =>
+                          setFormData((prev) => ({ ...prev, cover_image: e.target.value }))
+                        }
+                      />
+                    </div>
+                  </TabsContent>
+                </Tabs>
+
+                {formData.cover_image && (
+                  <div className="relative">
+                    <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+                      <img
+                        src={formData.cover_image}
+                        alt="Cover preview"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = "https://placehold.co/600x400?text=Invalid+Image";
+                        }}
+                      />
+                    </div>
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="absolute top-2 right-2 h-8 w-8"
+                      onClick={() => setFormData((prev) => ({ ...prev, cover_image: "" }))}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
                   </div>
                 )}
               </CardContent>

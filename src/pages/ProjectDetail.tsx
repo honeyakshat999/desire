@@ -13,6 +13,8 @@ import {
   MessageCircle,
   X,
   ZoomIn,
+  Clock,
+  Bell,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -147,6 +149,161 @@ const ProjectDetail = () => {
           </Link>
         </div>
         <Footer />
+      </div>
+    );
+  }
+
+  // Coming Soon Page for projects under construction
+  if (project.comingSoon) {
+    const whatsappNumber = "918619421661";
+    const whatsappMessage = encodeURIComponent(
+      `Hi, I'm interested in ${project.name}. Please notify me when it launches.`
+    );
+
+    return (
+      <div className="min-h-screen bg-background overflow-x-hidden">
+        <Navbar />
+
+        {/* Hero Section */}
+        <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
+          <img
+            src={project.image}
+            alt={project.name}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/70 to-navy-dark/40" />
+          
+          <div className="absolute inset-0 flex items-end">
+            <div className="container mx-auto px-4 pb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Link
+                  to="/#projects"
+                  className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-4 transition-colors"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Projects
+                </Link>
+
+                <div className="flex flex-wrap items-center gap-4 mb-4">
+                  <Badge className="bg-amber-500 text-white border-amber-600 shadow-sm">
+                    Coming Soon
+                  </Badge>
+                </div>
+
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-4">
+                  {project.name}
+                </h1>
+
+                <div className="flex items-center gap-2 text-white/80">
+                  <MapPin className="h-5 w-5 text-gold-light" />
+                  <span className="text-lg">{project.location}</span>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Coming Soon Content */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="mb-12"
+              >
+                <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-amber-100 mb-8">
+                  <Clock className="h-12 w-12 text-amber-600" />
+                </div>
+                
+                <h2 className="text-3xl md:text-4xl font-serif text-primary mb-6">
+                  Something Extraordinary is Coming
+                </h2>
+                
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  {project.name} is currently under development. We're working hard to bring you 
+                  an exceptional living experience. Stay tuned for updates on this exciting new project.
+                </p>
+
+                <div className="flex flex-wrap justify-center gap-4 mb-12">
+                  {project.highlights.map((highlight, index) => (
+                    <Badge 
+                      key={index} 
+                      variant="outline" 
+                      className="px-4 py-2 text-sm border-accent text-accent"
+                    >
+                      {highlight}
+                    </Badge>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Get Notified Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="bg-primary text-primary-foreground rounded-2xl p-8 shadow-luxury"
+              >
+                <Bell className="h-10 w-10 text-gold-light mx-auto mb-4" />
+                <h3 className="text-2xl font-serif text-white mb-3">
+                  Be the First to Know
+                </h3>
+                <p className="text-white/70 mb-6">
+                  Register your interest now and get exclusive updates about launch date, 
+                  pricing, and early-bird offers.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    size="lg"
+                    className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2"
+                    onClick={() => window.open("tel:+918619421661")}
+                  >
+                    <Phone className="h-4 w-4" />
+                    Call Us
+                  </Button>
+                  <Button
+                    size="lg"
+                    className="bg-emerald-500 hover:bg-emerald-600 text-white gap-2"
+                    onClick={() =>
+                      window.open(
+                        `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
+                        "_blank"
+                      )
+                    }
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    WhatsApp Us
+                  </Button>
+                </div>
+              </motion.div>
+
+              {/* Back to Projects */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="mt-12"
+              >
+                <Link to="/#projects">
+                  <Button variant="outline" size="lg" className="gap-2">
+                    <ArrowLeft className="h-4 w-4" />
+                    Explore Other Projects
+                  </Button>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+        <WhatsAppButton projectName={project.name} />
       </div>
     );
   }

@@ -44,9 +44,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         
         {/* Status Badge */}
         <Badge
-          className={`absolute top-4 left-4 capitalize ${statusColors[project.status]}`}
+          className={`absolute top-4 left-4 capitalize ${project.comingSoon ? "bg-amber-500 text-white border-amber-600 shadow-sm" : statusColors[project.status]}`}
         >
-          {project.status}
+          {project.comingSoon ? "Coming Soon" : project.status}
         </Badge>
 
         {/* Quick View on Hover */}

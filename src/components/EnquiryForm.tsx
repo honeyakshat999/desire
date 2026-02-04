@@ -28,7 +28,6 @@ const EnquiryForm = ({ selectedProject, onSuccess }: EnquiryFormProps) => {
   const [formData, setFormData] = useState({
     name: "",
     mobile: "",
-    email: "",
     project: selectedProject || "",
     message: "",
   });
@@ -55,7 +54,6 @@ const EnquiryForm = ({ selectedProject, onSuccess }: EnquiryFormProps) => {
         body: JSON.stringify({
           name: formData.name,
           mobile: formData.mobile,
-          email: formData.email,
           project: formData.project,
           message: formData.message || null,
         }),
@@ -140,39 +138,24 @@ const EnquiryForm = ({ selectedProject, onSuccess }: EnquiryFormProps) => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <div>
-          <Input
-            type="email"
-            placeholder="Email Address (Optional)"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-            className="bg-background"
-          />
-        </div>
-        <div>
-          <Select
-            value={formData.project}
-            onValueChange={(value) =>
-              setFormData({ ...formData, project: value })
-            }
-          >
-            <SelectTrigger className="bg-background">
-              <SelectValue placeholder="Interested Projects (Optional)" />
-            </SelectTrigger>
-            <SelectContent>
-              {projects.map((project) => (
-                <SelectItem key={project.id} value={project.id}>
-                  {project.name}
-                </SelectItem>
-              ))}
-              <SelectItem value="general">General Enquiry</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
+      <Select
+        value={formData.project}
+        onValueChange={(value) =>
+          setFormData({ ...formData, project: value })
+        }
+      >
+        <SelectTrigger className="bg-background">
+          <SelectValue placeholder="Interested Projects (Optional)" />
+        </SelectTrigger>
+        <SelectContent>
+          {projects.map((project) => (
+            <SelectItem key={project.id} value={project.id}>
+              {project.name}
+            </SelectItem>
+          ))}
+          <SelectItem value="general">General Enquiry</SelectItem>
+        </SelectContent>
+      </Select>
 
       <Textarea
         placeholder="Your Message (Optional)"

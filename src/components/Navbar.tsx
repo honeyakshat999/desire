@@ -11,6 +11,9 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Pages with dark hero backgrounds that need light navbar text
+  const hasDarkHero = location.pathname.startsWith("/blogs") || location.pathname.startsWith("/admin");
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -112,7 +115,7 @@ const Navbar = () => {
                 key={link.name}
                 onClick={() => scrollToSection(link.path)}
                 className={`text-sm font-medium transition-colors hover:text-accent ${
-                  isScrolled ? "text-foreground" : "text-foreground"
+                  isScrolled ? "text-foreground" : hasDarkHero ? "text-white" : "text-foreground"
                 }`}
               >
                 {link.name}
@@ -125,7 +128,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-2"
+              className={`gap-2 ${!isScrolled && hasDarkHero ? "text-white hover:text-white/80 hover:bg-white/10" : ""}`}
               onClick={() => window.open("tel:+918619421661")}
             >
               <Phone className="h-4 w-4" />
@@ -149,7 +152,7 @@ const Navbar = () => {
             {isOpen ? (
               <X className="h-6 w-6 text-foreground" />
             ) : (
-              <Menu className="h-6 w-6 text-foreground" />
+              <Menu className={`h-6 w-6 ${!isScrolled && hasDarkHero ? "text-white" : "text-foreground"}`} />
             )}
           </button>
         </div>
