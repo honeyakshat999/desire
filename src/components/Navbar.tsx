@@ -28,37 +28,52 @@ const Navbar = () => {
   ];
 
   const scrollToSection = (path: string) => {
-    // Always close mobile nav
+    // Close mobile nav first
     setIsOpen(false);
 
-    // Home should scroll to top
-    if (path === "/") {
-      if (location.pathname !== "/") {
-        navigate("/");
-        setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-      return;
-    }
-
-    // Section links like /#projects
-    if (path.startsWith("/#")) {
-      const sectionId = path.replace("/#", "");
-      const doScroll = () => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+    // Use a timeout to allow the mobile menu to close before scrolling
+    // This fixes touch event issues on mobile devices
+    const performNavigation = () => {
+      // Home should scroll to top
+      if (path === "/") {
+        if (location.pathname !== "/") {
+          navigate("/");
+          setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }
-      };
-
-      if (location.pathname !== "/") {
-        navigate("/");
-        setTimeout(doScroll, 80);
-      } else {
-        doScroll();
+        return;
       }
-    }
+
+      // Section links like /#projects
+      if (path.startsWith("/#")) {
+        const sectionId = path.replace("/#", "");
+        const doScroll = () => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            // Calculate offset for fixed navbar
+            const navbarHeight = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth"
+            });
+          }
+        };
+
+        if (location.pathname !== "/") {
+          navigate("/");
+          setTimeout(doScroll, 150);
+        } else {
+          doScroll();
+        }
+      }
+    };
+
+    // Delay navigation on mobile to ensure menu closes properly
+    setTimeout(performNavigation, 50);
   };
 
   return (
@@ -118,9 +133,10 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 z-50 relative"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
+            style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
           >
             {isOpen ? (
               <X className="h-6 w-6 text-foreground" />
@@ -131,6 +147,20 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Menu Backdrop */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="lg:hidden fixed inset-0 bg-black/20 z-40"
+            onClick={() => setIsOpen(false)}
+            style={{ top: "80px" }}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
@@ -138,14 +168,20 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background border-t"
+            className="lg:hidden bg-background border-t relative z-50"
+            style={{ touchAction: "pan-y" }}
           >
             <div className="container mx-auto px-4 py-6 space-y-4">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.path)}
-                  className="block w-full text-left py-3 text-foreground font-medium hover:text-accent transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    scrollToSection(link.path);
+                  }}
+                  className="block w-full text-left py-4 text-foreground font-medium hover:text-accent active:text-accent transition-colors cursor-pointer select-none"
+                  style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
                 >
                   {link.name}
                 </button>
@@ -161,7 +197,10 @@ const Navbar = () => {
                 </Button>
                 <Button
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
-                  onClick={() => scrollToSection("/#contact")}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("/#contact");
+                  }}
                 >
                   Schedule Site Visit
                 </Button>
