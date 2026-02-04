@@ -126,7 +126,7 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background overflow-x-hidden">
         <Navbar />
         <div className="container mx-auto px-4 py-32 text-center">
           <h1 className="text-3xl font-serif text-primary mb-4">
@@ -153,7 +153,7 @@ const ProjectDetail = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
 
       {/* Hero Section with Image Slider */}
