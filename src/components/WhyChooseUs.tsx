@@ -45,7 +45,7 @@ const values = [
     icon: Shield,
     title: "RERA Compliant",
     description:
-      "All projects are registered and compliant with RERA regulations for your peace of mind.",
+      "All projects are registered and compliant with RERA regulations for your peace of mind.RERA No: RAJ/A/2026/17214",
   },
   {
     icon: HeartHandshake,

@@ -54,10 +54,10 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-medium text-foreground mb-1">Email Us</h3>
                   <a
-                    href="mailto:sales@desirerealty.com"
+                    href="mailto:sales@desirerealty.in"
                     className="text-muted-foreground hover:text-accent transition-colors"
                   >
-                    sales@desirerealty.com
+                    sales@desirerealty.in
                   </a>
                 </div>
               </div>

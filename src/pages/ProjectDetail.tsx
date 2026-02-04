@@ -28,6 +28,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquiryForm from "@/components/EnquiryForm";
+import { usePageView } from "@/hooks/useAnalytics";
 
 const statusColors = {
   ongoing: "bg-emerald-600 text-white border-emerald-700 shadow-sm",
@@ -93,6 +94,9 @@ const ProjectDetail = () => {
   const [slideDirection, setSlideDirection] = useState(0); // -1 for left, 1 for right
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = React.useRef(0);
+
+  // Track page view
+  usePageView();
 
   // Track current slide
   React.useEffect(() => {

@@ -7,8 +7,12 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import StickyEnquiryCTA from "@/components/StickyEnquiryCTA";
+import { usePageView } from "@/hooks/useAnalytics";
 
 const Index = () => {
+  // Track page view
+  usePageView();
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />

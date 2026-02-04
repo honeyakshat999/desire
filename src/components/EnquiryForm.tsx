@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { projects } from "@/data/projects";
 import { useToast } from "@/hooks/use-toast";
+import { trackEnquiryClick } from "@/hooks/useAnalytics";
 
 interface EnquiryFormProps {
   selectedProject?: string;
@@ -35,6 +36,14 @@ const EnquiryForm = ({ selectedProject, onSuccess }: EnquiryFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Track enquiry click
+    const selectedProjectData = projects.find(p => p.name === formData.project);
+    trackEnquiryClick(
+      selectedProjectData?.id || "general",
+      formData.project || "General Enquiry",
+      "enquiry_form"
+    );
 
     try {
       // Save to database via Netlify function

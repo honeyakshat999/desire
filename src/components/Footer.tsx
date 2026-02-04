@@ -82,11 +82,19 @@ const Footer = () => {
                 { name: "Projects", path: "/#projects" },
                 { name: "About Us", path: "/#about" },
                 { name: "Testimonials", path: "/#testimonials" },
+                { name: "Blog", path: "/blogs" },
                 { name: "Contact", path: "/#contact" },
               ].map((link, index) => (
                 <li key={index}>
                   <button
-                    onClick={() => scrollToSection(link.path)}
+                    onClick={() => {
+                      if (link.path.startsWith("/#")) {
+                        scrollToSection(link.path);
+                      } else {
+                        navigate(link.path);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }}
                     className="text-white/70 hover:text-gold-light transition-colors text-sm cursor-pointer text-left"
                   >
                     {link.name}
@@ -146,10 +154,10 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-gold-light" />
                 <a
-                  href="mailto:sales@desirerealty.com"
+                  href="mailto:sales@desirerealty.in"
                   className="text-white/70 hover:text-gold-light transition-colors text-sm"
                 >
-                  sales@desirerealty.com
+                  sales@desirerealty.in
                 </a>
               </li>
             </ul>

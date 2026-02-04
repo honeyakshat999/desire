@@ -24,6 +24,7 @@ const Navbar = () => {
     { name: "Projects", path: "/#projects" },
     { name: "About", path: "/#about" },
     { name: "Testimonials", path: "/#testimonials" },
+    { name: "Blog", path: "/blogs" },
     { name: "Contact", path: "/#contact" },
   ];
 
@@ -42,6 +43,13 @@ const Navbar = () => {
         } else {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
+        return;
+      }
+
+      // Regular page navigation (like /blogs)
+      if (!path.startsWith("/#")) {
+        navigate(path);
+        window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
 
