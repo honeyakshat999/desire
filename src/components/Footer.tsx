@@ -218,42 +218,42 @@ const Footer = () => {
               >
                 kyleinnovate.com
               </a>
-              <div className="flex gap-3">
+              <div className="flex gap-4 relative z-[60]">
                 <a
                   href="https://facebook.com/kyleinnovate"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 hover:text-gold-light transition-colors"
+                  className="text-white/60 hover:text-gold-light transition-colors p-2 -m-2"
                   aria-label="Facebook"
                 >
-                  <Facebook className="h-4 w-4" />
+                  <Facebook className="h-5 w-5" />
                 </a>
                 <a
                   href="https://instagram.com/kyleinnovate"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 hover:text-gold-light transition-colors"
+                  className="text-white/60 hover:text-gold-light transition-colors p-2 -m-2"
                   aria-label="Instagram"
                 >
-                  <Instagram className="h-4 w-4" />
+                  <Instagram className="h-5 w-5" />
                 </a>
                 <a
                   href="https://twitter.com/kyleinnovate"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 hover:text-gold-light transition-colors"
+                  className="text-white/60 hover:text-gold-light transition-colors p-2 -m-2"
                   aria-label="Twitter"
                 >
-                  <Twitter className="h-4 w-4" />
+                  <Twitter className="h-5 w-5" />
                 </a>
                 <a
                   href="https://linkedin.com/company/kyleinnovate"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/60 hover:text-gold-light transition-colors"
+                  className="text-white/60 hover:text-gold-light transition-colors p-2 -m-2"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="h-4 w-4" />
+                  <Linkedin className="h-5 w-5" />
                 </a>
               </div>
             </div>
