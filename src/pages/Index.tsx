@@ -14,7 +14,7 @@ const Index = () => {
   usePageView();
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background">
       <Navbar />
       <Hero />
       <ProjectsSection />

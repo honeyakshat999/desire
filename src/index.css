@@ -116,13 +116,18 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
     overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
     width: 100%;
+    min-height: 100vh;
+    -webkit-overflow-scrolling: touch;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -201,9 +206,11 @@
   }
 }
 
-/* Prevent pull-to-refresh on mobile when not needed */
-body {
-  overscroll-behavior-y: contain;
+/* Allow normal scrolling behavior on mobile */
+@media (max-width: 1024px) {
+  body {
+    overscroll-behavior-y: auto;
+  }
 }
 
 /* Improve touch feedback for interactive elements */
