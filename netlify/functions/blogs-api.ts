@@ -8,6 +8,7 @@ const headers = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
   "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE, PATCH, OPTIONS",
   "Content-Type": "application/json",
+  "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
 };
 
 // Get database connection
