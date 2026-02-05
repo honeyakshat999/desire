@@ -3,25 +3,25 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Rajesh Kumar",
-    role: "Homeowner, Desire Heights",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    name: "Ankit Singhal",
+    role: "Plot Owner, Ganesh Vihar",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/v1770270658/ankit_edited_new_dxxxpw.jpg",
     content:
-      "The entire experience with Desire Realty was exceptional. From site visits to possession, their team was professional and transparent. Our new home exceeds all expectations.",
+      "The entire experience with Desire Realty was exceptional. From site visits to possession, their team was professional and transparent. Our new Plot exceeds all expectations.",
     rating: 5,
   },
   {
     name: "Priya Sharma",
-    role: "Villa Owner, Desire Villa Gardens",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
+    role: "Homeowner, Brajeshwar Avenue",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/v1770271253/Image_add_yfj3kx.jpg",
     content:
-      "We chose Desire Realty for their reputation, and they delivered beyond promises. The quality of construction and attention to detail in our villa is remarkable.",
+      "We chose Desire Realty for their reputation, and they delivered beyond promises. The quality of construction and attention to detail in our Home is remarkable.",
     rating: 5,
   },
   {
-    name: "Anand Mehta",
-    role: "Investor, Ganesh Vihar",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    name: "Manoj Kumar",
+    role: "Investor, Smart City",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/v1770271919/Manoj_kumar_jywhxy.png",
     content:
       "As a real estate investor, I value transparency and timely delivery. Desire Realty checks all boxes. My plot investment has already appreciated significantly.",
     rating: 5,

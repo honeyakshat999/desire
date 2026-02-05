@@ -7,7 +7,7 @@ export interface Project {
   description: string;
   image: string;
   price: string;
-  rera: string;
+  rera: string | string[];
   amenities: string[];
   specifications: {
     type: string;
@@ -27,15 +27,15 @@ export const projects: Project[] = [
     location: "AT GANDHI PATH WEST, VAISHALI NAGAR, JAIPUR",
     status: "ongoing",
     highlights: ["Ultra Luxurious 3/4 BHK Apartments", "World Class Facilities","Rera Approved", "JDA Approved"],
-    description: "Experience luxury living at its finest with Desire Heights. Located in the heart of Whitefield, this premium residential project offers world-class amenities and contemporary architecture designed for modern families.",
+    description: "Experience luxury living at its finest with Brajeshwar Avenue. Located in the heart of Jaipur, this premium residential project offers world-class amenities and contemporary architecture designed for modern families.",
     image: "/project-avenue.png",
-    price: "Starting ₹80 Lakh",
-    rera: "RERA/KA/PROJA/2024/001234",
+    price: "Starting ₹80 Lakh", 
+    rera: ["RAJ/P/2025/4285"],
     amenities: ["Mini Theater","Swimming Pool", "Gymnasium", "Clubhouse", "Children's Play Area", "Terrace Garden","Gazebo","EV Charging","Temple", "Landscaped Gardens","Water Harvesting", "24/7 Security", "Covered Parking", "Power Backup", "Smart Featured Lifts system","CCTV Surveillance","Fire Safety Systems"],
     specifications: {
       type: "3, 4 BHK Apartments",
       area: "1,135 - 1,697 sq.ft.",
-      units: "40 Units",
+      units: "30 Units",
       floors: "G + 6 Floors"
     },
     gallery: ["/brijeshwar avenue/ameneties.png", "/brijeshwar avenue/first_floor.png", "/brijeshwar avenue/flats.png", "/brijeshwar avenue/location_map.png", "/brijeshwar avenue/specifications.png"],
@@ -46,12 +46,12 @@ export const projects: Project[] = [
     name: "Smart City",
     location: "Chaksu, NH - 8 Jaipur, Jaipur",
     status: "completed",
-    highlights: ["Premium Residential Plots", "RERA Approved", "Close to Bus Stand", "On National Highway"],
-    description: "Invest in your dream home at Smart City, a premium villa plot project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Smart City offers a well-connected, future-ready foundation for building your ideal home.",
+    highlights: ["Premium Residential Plots", "Gated Township", "Close to Bus Stand", "On National Highway"],
+    description: "Invest in your dream home at Smart City, a premium villa plots project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Smart City offers a well-connected, future-ready foundation for building your ideal home.",
     image: "/Smart_City/first.png",
     price: "Starting ₹10 Lakh",
-    rera: "TEST",
-    amenities: ["Wide Internal Roads", "Underground Electricity Lines", "Water Supply", "Street Lighting", "Gated Township", "Parks", "Kids Play Zone", "Temple", "RERA Approved","Green & Open Spaces","Plot Demarcation"],
+    rera: "",
+    amenities: ["Wide Internal Roads", "Underground Electricity Lines", "Water Supply", "Street Lighting", "Gated Township", "Parks", "Kids Play Zone", "Temple", "Easy Connectivity","Green & Open Spaces","Plot Demarcation"],
     specifications: {
       type: "Residential Plots",
       area: "450 - 1530 sq.ft.",
@@ -67,10 +67,10 @@ export const projects: Project[] = [
     location: "Chaksu, NH - 8 Jaipur, Jaipur",
     status: "completed",
     highlights: ["Premium Residential Plots", "RERA Approved", "Close to Bus Stand", "On National Highway"],
-    description: "Invest in your dream home at Ganesh Vihar, a premium villa plot project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Ganesh Vihar offers a well-connected, future-ready foundation for building your ideal home.",
+    description: "Invest in your dream home at Ganesh Vihar, a premium villa plots project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Ganesh Vihar offers a well-connected, future-ready foundation for building your ideal home.",
     image: "/project-3.jpeg",
     price: "Starting ₹10 Lakh",
-    rera: "RAJ/P/2025/4132",
+    rera: "RAJ/P/2025/4132 | RAJ/P/2025/4111",
     amenities: ["Wide Internal Roads", "Underground Electricity Lines", "Sewage Treatment", "Water Supply", "Street Lighting", "Gated Township", "Parks", "Kids Play Zone", "Temple", "RERA Approved","Green & Open Spaces","Plot Demarcation"],
     specifications: {
       type: "Residential Plots",

@@ -81,6 +81,7 @@ const amenityIcons: Record<string, string> = {
   "CCTV Surveillance": "📹",
   "Fire Safety Systems": "🚒",
   "Underground Electricity Lines": "💡",
+  "Easy Connectivity": "🚗",
 };
 
 const ProjectDetail = () => {
@@ -400,7 +401,11 @@ const ProjectDetail = () => {
                   <Badge className={`capitalize ${statusColors[project.status]}`}>
                     {project.status}
                   </Badge>
-                  <span className="text-white/70 text-sm">{project.rera}</span>
+                  {project.rera && (
+                    <span className="text-white/70 text-sm">
+                      RERA: {Array.isArray(project.rera) ? project.rera.join(" | ") : project.rera}
+                    </span>
+                  )}
                 </div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-4">
