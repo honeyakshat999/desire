@@ -192,6 +192,74 @@ const Footer = () => {
           </p>
         </div>
       </div>
+
+      {/* Developer Credit Bar */}
+      <div className="bg-black/30 py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+            <p className="text-white/60 text-xs text-center md:text-left">
+              Designed & Developed by{" "}
+              <a
+                href="https://kyleinnovate.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold-light hover:text-gold transition-colors font-medium"
+              >
+                KyleInnovate
+              </a>{" "}
+              | All Rights Reserved © {currentYear}
+            </p>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://kyleinnovate.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-gold-light transition-colors text-xs"
+              >
+                kyleinnovate.com
+              </a>
+              <div className="flex gap-3">
+                <a
+                  href="https://facebook.com/kyleinnovate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-gold-light transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://instagram.com/kyleinnovate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-gold-light transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://twitter.com/kyleinnovate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-gold-light transition-colors"
+                  aria-label="Twitter"
+                >
+                  <Twitter className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://linkedin.com/company/kyleinnovate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-gold-light transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };
