@@ -110,9 +110,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { name: "Brajeshwar Avenue", id: "brajeshwar-avenue" },
-                { name: "Ganesh Vihar", id: "ganesh-vihar" },
-                { name: "Kesar Bagh", id: "kesar-bagh" },
                 { name: "Smart City", id: "smart-city" },
+                { name: "Ganesh Vihar", id: "ganesh-vihar" },
                 { name: "Brajeshwar Crown", id: "brajeshwar-crown" },
               ].map((project, index) => (
                 <li key={index}>
