@@ -11,9 +11,9 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "Priya Sharma",
+    name: "Akshat Singhal",
     role: "Homeowner, Brajeshwar Avenue",
-    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/v1770271253/Image_add_yfj3kx.jpg",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/v1770298773/Akshat_singhal_qz3ypg.jpg",
     content:
       "We chose Desire Realty for their reputation, and they delivered beyond promises. The quality of construction and attention to detail in our Home is remarkable.",
     rating: 5,
