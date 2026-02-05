@@ -194,7 +194,7 @@ const Footer = () => {
       </div>
 
       {/* Developer Credit Bar */}
-      <div className="bg-black/30 py-4">
+      <div className="bg-black/30 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <p className="text-white/60 text-xs text-center md:text-left">

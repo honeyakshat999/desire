@@ -32,7 +32,7 @@ const StickyEnquiryCTA = () => {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
-            className="fixed bottom-0 left-0 right-0 z-40 bg-primary shadow-lg border-t border-gold/20 md:hidden"
+            className="fixed bottom-0 left-0 right-0 z-40 bg-primary shadow-lg border-t border-gold/20 md:hidden pb-[env(safe-area-inset-bottom)]"
           >
             <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
               <div className="text-white text-sm">
