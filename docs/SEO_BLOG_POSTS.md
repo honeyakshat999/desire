@@ -35,9 +35,13 @@ Discover why Jaipur is India's fastest-growing real estate market in 2026. Exper
 ```
 [H2] Why Jaipur Real Estate is Booming in 2026
 
+![Modern Jaipur Real Estate](/project-1.jpg)
+
 Jaipur, the **Pink City of India**, has emerged as one of the most promising real estate destinations in the country. With its perfect blend of heritage charm and modern infrastructure, investing in **Jaipur property** has never been more attractive. In this comprehensive guide, we'll explore why 2026 is the ideal time to invest in Jaipur real estate.
 
 [H2] 1. Excellent Infrastructure Development
+
+![Jaipur Infrastructure](/project-2.jpg)
 
 The city has witnessed remarkable infrastructure improvements including:
 
@@ -111,6 +115,8 @@ Choosing the right property partner makes all the difference. At **Desire Realty
 • End-to-End Customer Support
 
 [H2] Featured Projects by Desire Realty
+
+![Brajeshwar Avenue Amenities](/brijeshwar avenue/amenities.png)
 
 [H3] Brajeshwar Avenue - Vaishali Nagar
 

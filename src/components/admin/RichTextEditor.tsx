@@ -185,6 +185,8 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         .replace(/\[H2\]\s*(.*?)(?=\n|$)/g, '<h2>$1</h2>')
         // Convert [H3] markers to h3 tags  
         .replace(/\[H3\]\s*(.*?)(?=\n|$)/g, '<h3>$1</h3>')
+        // Convert markdown images ![alt](src) to img tags
+        .replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="width: 100%; height: auto; border-radius: 8px; margin: 20px 0;" />')
         // Convert **text** to <strong>text</strong>
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         // Convert bullet points (• or *) to list items
