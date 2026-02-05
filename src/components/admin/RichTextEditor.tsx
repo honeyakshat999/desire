@@ -14,7 +14,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   Bold,
@@ -35,6 +35,8 @@ import {
   Pilcrow,
   Upload,
   Loader2,
+  FileCode,
+  Clipboard,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -76,8 +78,10 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
   const { token } = useAuth();
   const [linkDialogOpen, setLinkDialogOpen] = useState(false);
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
+  const [htmlDialogOpen, setHtmlDialogOpen] = useState(false);
   const [linkUrl, setLinkUrl] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [htmlContent, setHtmlContent] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -171,6 +175,50 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
     setImageUrl("");
     setUploadError(null);
     setImageDialogOpen(true);
+  };
+
+  const insertHtmlContent = () => {
+    if (htmlContent.trim()) {
+      // Convert common markdown-style markers to HTML
+      let processedContent = htmlContent
+        // Convert [H2] markers to h2 tags
+        .replace(/\[H2\]\s*(.*?)(?=\n|$)/g, '<h2>$1</h2>')
+        // Convert [H3] markers to h3 tags  
+        .replace(/\[H3\]\s*(.*?)(?=\n|$)/g, '<h3>$1</h3>')
+        // Convert **text** to <strong>text</strong>
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        // Convert bullet points (• or *) to list items
+        .replace(/^[•*]\s+(.*)$/gm, '<li>$1</li>')
+        // Convert numbered lists (1. 2. etc) to ordered list items
+        .replace(/^\d+\.\s+(.*)$/gm, '<li>$1</li>')
+        // Convert line breaks to paragraphs
+        .split('\n\n')
+        .map(paragraph => {
+          paragraph = paragraph.trim();
+          if (!paragraph) return '';
+          
+          // If it contains list items, wrap in ul or ol
+          if (paragraph.includes('<li>')) {
+            // Check if it's a numbered list context or bullet list
+            const originalText = htmlContent.includes('1.') || htmlContent.includes('2.') ? 'ol' : 'ul';
+            return `<${originalText}>${paragraph}</${originalText}>`;
+          }
+          
+          // If it's already a heading, don't wrap in p tag
+          if (paragraph.startsWith('<h')) {
+            return paragraph;
+          }
+          
+          // Wrap regular content in p tag
+          return `<p>${paragraph}</p>`;
+        })
+        .join('');
+
+      // Insert the processed HTML content
+      editor.chain().focus().insertContent(processedContent).run();
+      setHtmlContent("");
+      setHtmlDialogOpen(false);
+    }
   };
 
   return (
@@ -277,6 +325,9 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         </MenuButton>
         <MenuButton onClick={openImageDialog} title="Add Image">
           <ImageIcon className="h-4 w-4" />
+        </MenuButton>
+        <MenuButton onClick={() => setHtmlDialogOpen(true)} title="Paste HTML/Formatted Content">
+          <FileCode className="h-4 w-4" />
         </MenuButton>
 
         <div className="w-px h-6 bg-border mx-1 self-center" />
@@ -430,6 +481,64 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* HTML Paste Dialog */}
+      <Dialog open={htmlDialogOpen} onOpenChange={setHtmlDialogOpen}>
+        <DialogContent className="sm:max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Paste HTML or Formatted Content</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label>Content to Insert</Label>
+              <p className="text-sm text-muted-foreground">
+                Paste your content below. It supports:
+              </p>
+              <ul className="text-xs text-muted-foreground space-y-1 ml-4">
+                <li>• Raw HTML tags</li>
+                <li>• [H2] and [H3] markers for headings</li>
+                <li>• **bold text** formatting</li>
+                <li>• Bullet points with • or *</li>
+                <li>• Numbered lists (1. 2. 3.)</li>
+              </ul>
+              <textarea
+                className="w-full min-h-[300px] p-3 border border-input bg-background text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring rounded-md"
+                placeholder="Paste your content here...
+
+Example:
+[H2] Why Jaipur Real Estate is Booming
+
+Jaipur, the **Pink City of India**, has emerged as one of the most promising destinations.
+
+[H3] Key Benefits
+
+• **Metro Rail Expansion** - Connecting major hubs
+• **Smart City Initiatives** - Modern amenities  
+• **RERA Protection** - Buyer safety
+
+[H2] Investment Options
+
+1. Luxury apartments in Vaishali Nagar
+2. Premium plots in Chaksu  
+3. Commercial spaces"
+                value={htmlContent}
+                onChange={(e) => setHtmlContent(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setHtmlDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={insertHtmlContent} disabled={!htmlContent.trim()}>
+              <Clipboard className="mr-2 h-4 w-4" />
+              Insert Content
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
@@ -441,7 +550,11 @@ const RichTextEditor = ({
 }: RichTextEditorProps) => {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
       Image.configure({
         HTMLAttributes: {
           class: "rounded-lg max-w-full h-auto",
@@ -464,10 +577,17 @@ const RichTextEditor = ({
     editorProps: {
       attributes: {
         class:
-          "prose prose-sm sm:prose max-w-none p-4 min-h-[300px] focus:outline-none",
+          "prose prose-sm sm:prose lg:prose-lg max-w-none p-4 min-h-[300px] focus:outline-none prose-headings:font-serif prose-headings:text-primary prose-p:text-foreground prose-strong:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-li:text-foreground prose-blockquote:border-l-accent prose-a:text-accent",
       },
     },
   });
+
+  // Update editor content when prop changes (e.g., when editing existing blog)
+  useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      editor.commands.setContent(content);
+    }
+  }, [content, editor]);
 
   return (
     <div className="border rounded-lg overflow-hidden bg-background">

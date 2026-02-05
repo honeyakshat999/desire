@@ -165,15 +165,12 @@ const BlogDetail = () => {
             className="max-w-3xl mx-auto"
           >
             <div
-              className="prose prose-lg max-w-none
-                prose-headings:font-serif prose-headings:text-primary
-                prose-p:text-muted-foreground prose-p:leading-relaxed
-                prose-a:text-accent prose-a:no-underline hover:prose-a:underline
-                prose-strong:text-foreground
-                prose-blockquote:border-l-accent prose-blockquote:bg-muted/50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
-                prose-img:rounded-xl prose-img:shadow-lg
-                prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-                prose-pre:bg-primary prose-pre:text-primary-foreground"
+              className="blog-content"
+              style={{
+                fontSize: '16px',
+                lineHeight: '1.75',
+                color: 'hsl(var(--foreground))'
+              }}
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
           </motion.article>
