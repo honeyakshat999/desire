@@ -159,6 +159,11 @@ const Footer = () => {
                   sales@desirerealty.in
                 </a>
               </li>
+              <li className="mt-4 p-3 bg-white/10 rounded-lg">
+                <p className="text-white/90 text-sm font-medium">
+                  RERA No: RAJ/A/2026/17214
+                </p>
+              </li>
             </ul>
           </div>
         </div>

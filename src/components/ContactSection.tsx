@@ -77,6 +77,12 @@ const ContactSection = () => {
                   </p>
                 </div>
               </div>
+
+              <div className="mt-4 p-3 bg-accent/10 rounded-lg">
+                <p className="text-sm font-medium text-foreground">
+                  RERA No: RAJ/A/2026/17214
+                </p>
+              </div>
             </div>
 
             {/* WhatsApp CTA */}

@@ -12,7 +12,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   // Pages with dark hero backgrounds that need light navbar text
-  const hasDarkHero = location.pathname.startsWith("/blogs") || location.pathname.startsWith("/admin");
+  const hasDarkHero = location.pathname === "/" || location.pathname.startsWith("/blogs") || location.pathname.startsWith("/admin") || location.pathname.startsWith("/project");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,7 +104,7 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Desire Realty"
-              className="h-14 w-auto object-contain"
+              className="h-14 w-auto object-contain lg:h-20 lg:w-auto"
             />
           </Link>
 
@@ -114,8 +114,12 @@ const Navbar = () => {
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.path)}
-                className={`text-sm font-medium transition-colors hover:text-accent ${
-                  isScrolled ? "text-foreground" : hasDarkHero ? "text-white" : "text-foreground"
+                className={`text-sm font-semibold transition-colors ${
+                  isScrolled 
+                    ? "text-primary hover:text-accent" 
+                    : hasDarkHero 
+                      ? "text-white hover:text-white/80 drop-shadow-sm" 
+                      : "text-primary hover:text-accent"
                 }`}
               >
                 {link.name}
