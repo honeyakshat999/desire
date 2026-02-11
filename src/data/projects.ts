@@ -34,7 +34,7 @@ export const projects: Project[] = [
     amenities: ["Mini Theater","Swimming Pool", "Gymnasium", "Clubhouse", "Children's Play Area", "Terrace Garden","Gazebo","EV Charging","Temple", "Landscaped Gardens","Water Harvesting", "24/7 Security", "Covered Parking", "Power Backup", "Smart Featured Lifts system","CCTV Surveillance","Fire Safety Systems"],
     specifications: {
       type: "3, 4 BHK Apartments",
-      area: "1,135 - 1,697 sq.ft.",
+      area: "1,588.8 - 2,375.1 sq.ft.",
       units: "30 Units",
       floors: "G + 6 Floors"
     },
