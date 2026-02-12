@@ -21,7 +21,7 @@ A modern real estate website built with React, TypeScript, and Tailwind CSS.
 
 ```sh
 # Clone the repository
-git clone [github_repo](https://github.com/honeyakshat999/desire.git)
+git clone https://github.com/honeyakshat999/desire.git
 
 # Navigate to the project directory
 cd desire
