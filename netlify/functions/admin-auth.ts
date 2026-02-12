@@ -2,13 +2,29 @@ import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-// CORS headers
-const headers = {
-  "Access-Control-Allow-Origin": "*",
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  "https://desirerealty.in",
+  "https://www.desirerealty.in",
+  process.env.URL, // Netlify deploy URL
+].filter(Boolean);
+
+const getCorsOrigin = (event: any) => {
+  const origin = event?.headers?.origin || "";
+  if (ALLOWED_ORIGINS.includes(origin)) return origin;
+  // Allow localhost in dev
+  if (origin.startsWith("http://localhost:")) return origin;
+  return ALLOWED_ORIGINS[0] || "";
+};
+
+// CORS headers factory
+const getHeaders = (event?: any) => ({
+  "Access-Control-Allow-Origin": event ? getCorsOrigin(event) : ALLOWED_ORIGINS[0] || "",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
   "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
   "Content-Type": "application/json",
-};
+  "Vary": "Origin",
+});
 
 // Get environment variables inside handler to ensure they're loaded
 const getEnvVars = () => {
@@ -29,7 +45,26 @@ const verifyToken = (token: string, secret: string): { email: string } | null =>
   }
 };
 
+// Simple in-memory rate limiting for login attempts
+const loginAttempts = new Map<string, { count: number; lastAttempt: number }>();
+const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
+const MAX_ATTEMPTS = 5;
+
+const isRateLimited = (ip: string): boolean => {
+  const now = Date.now();
+  const attempts = loginAttempts.get(ip);
+  if (!attempts || now - attempts.lastAttempt > RATE_LIMIT_WINDOW) {
+    loginAttempts.set(ip, { count: 1, lastAttempt: now });
+    return false;
+  }
+  attempts.count++;
+  attempts.lastAttempt = now;
+  return attempts.count > MAX_ATTEMPTS;
+};
+
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+  const headers = getHeaders(event);
+
   // Handle CORS preflight
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 200, headers, body: "" };
@@ -58,6 +93,16 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
   try {
     // Login endpoint
     if (event.httpMethod === "POST" && (path === "/login" || path === "")) {
+      // Rate limit check
+      const clientIp = event.headers["x-forwarded-for"] || event.headers["client-ip"] || "unknown";
+      if (isRateLimited(clientIp)) {
+        return {
+          statusCode: 429,
+          headers,
+          body: JSON.stringify({ error: "Too many login attempts. Please try again later." }),
+        };
+      }
+
       const { email, password } = JSON.parse(event.body || "{}");
 
       if (!email || !password) {
@@ -87,8 +132,8 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
         };
       }
 
-      // Generate JWT token
-      const token = jwt.sign({ email: ADMIN_EMAIL }, JWT_SECRET, { expiresIn: "7d" });
+      // Generate JWT token (short-lived for security)
+      const token = jwt.sign({ email: ADMIN_EMAIL }, JWT_SECRET, { expiresIn: "2h" });
 
       return {
         statusCode: 200,
@@ -140,7 +185,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: "Internal server error", details: String(error) }),
+      body: JSON.stringify({ error: "Internal server error" }),
     };
   }
 };

@@ -2,14 +2,28 @@ import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import { neon } from "@neondatabase/serverless";
 import jwt from "jsonwebtoken";
 
-// CORS headers
-const headers = {
-  "Access-Control-Allow-Origin": "*",
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  "https://desirerealty.in",
+  "https://www.desirerealty.in",
+  process.env.URL,
+].filter(Boolean);
+
+const getCorsOrigin = (event: any) => {
+  const origin = event?.headers?.origin || "";
+  if (ALLOWED_ORIGINS.includes(origin)) return origin;
+  if (origin.startsWith("http://localhost:")) return origin;
+  return ALLOWED_ORIGINS[0] || "";
+};
+
+const getHeaders = (event?: any) => ({
+  "Access-Control-Allow-Origin": event ? getCorsOrigin(event) : ALLOWED_ORIGINS[0] || "",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
   "Access-Control-Allow-Methods": "POST, GET, PUT, DELETE, PATCH, OPTIONS",
   "Content-Type": "application/json",
   "Cache-Control": "public, max-age=60, stale-while-revalidate=300",
-};
+  "Vary": "Origin",
+});
 
 // Get database connection
 const getDb = () => {
@@ -53,6 +67,8 @@ const generateSlug = (title: string): string => {
 };
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+  const headers = getHeaders(event);
+
   // Handle CORS preflight
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 200, headers, body: "" };
@@ -267,7 +283,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: "Internal server error", details: String(error) }),
+      body: JSON.stringify({ error: "Internal server error" }),
     };
   }
 };

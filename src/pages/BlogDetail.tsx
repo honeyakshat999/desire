@@ -1,12 +1,38 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import DOMPurify from "dompurify";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Calendar, ArrowLeft, Clock } from "lucide-react";
 import { usePageView } from "@/hooks/useAnalytics";
+
+// Allowed domains for images and iframes in blog content
+const ALLOWED_IMAGE_DOMAINS = ["res.cloudinary.com"];
+const ALLOWED_IFRAME_DOMAINS = ["www.google.com", "www.youtube.com", "youtube.com", "player.vimeo.com"];
+
+// Configure DOMPurify to restrict external resources
+DOMPurify.addHook("uponSanitizeAttribute", (node, data) => {
+  if (data.attrName === "src") {
+    try {
+      const url = new URL(data.attrValue);
+      const tag = node.tagName.toLowerCase();
+      if (tag === "img" && !ALLOWED_IMAGE_DOMAINS.includes(url.hostname)) {
+        data.attrValue = "";
+        node.setAttribute("alt", "[External image blocked]");
+      } else if (tag === "iframe" && !ALLOWED_IFRAME_DOMAINS.includes(url.hostname)) {
+        data.attrValue = "";
+      }
+    } catch {
+      // Relative URLs or invalid URLs — allow relative, block invalid
+      if (data.attrValue.startsWith("http")) {
+        data.attrValue = "";
+      }
+    }
+  }
+});
 
 interface Blog {
   id: string;
@@ -171,7 +197,7 @@ const BlogDetail = () => {
                 lineHeight: '1.75',
                 color: 'hsl(var(--foreground))'
               }}
-              dangerouslySetInnerHTML={{ __html: blog.content }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.content, { ADD_TAGS: ['iframe'], ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target'] }) }}
             />
           </motion.article>
 

@@ -7,3 +7,13 @@ update facebook, twitter, instagram, linkdin
 Completed:Ganesh Vihar
 changes pending:
 
+Completed Security Fixes:
+- XSS protection: Blog content sanitized with DOMPurify before rendering
+- CORS restricted: All API endpoints now only accept requests from desirerealty.in (no more wildcard *)
+- Error leaks fixed: All functions return generic error messages, no internal details exposed
+- SSL fix: Removed rejectUnauthorized:false from Neon DB connection
+- Rate limiting: Login endpoint now blocks after 5 failed attempts per IP (15 min window)
+- JWT expiry: Reduced from 7 days to 2 hours for better security
+- Input sanitization: track-event endpoint now validates and sanitizes all input data
+- Lazy DB init: track-event no longer crashes if DATABASE_URL is missing at module load
+

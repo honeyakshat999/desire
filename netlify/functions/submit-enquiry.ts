@@ -33,7 +33,7 @@ export const handler = async (event) => {
       database: process.env.NEON_DATABASE,
       user: process.env.NEON_USER,
       password: process.env.NEON_PASSWORD,
-      ssl: { rejectUnauthorized: false },
+      ssl: true,
     });
 
     await client.connect();
@@ -108,9 +108,7 @@ export const handler = async (event) => {
     return { 
       statusCode: 500, 
       body: JSON.stringify({ 
-        error: 'Error saving enquiry', 
-        details: err instanceof Error ? err.message : 'Unknown error',
-        hint: 'Check Netlify function logs for details'
+        error: 'Error saving enquiry. Please try again or contact us directly.'
       })
     };
   }
