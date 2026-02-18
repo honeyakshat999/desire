@@ -42,6 +42,61 @@ export const projects: Project[] = [
     mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3558.299135892591!2d75.69098107543886!3d26.893999976658318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUzJzM4LjQiTiA3NcKwNDEnMzYuOCJF!5e0!3m2!1sen!2sin!4v1769861421134!5m2!1sen!2sin"
   },
 {
+  id: "nri-avenue",
+  name: "NRI AVENUE",
+  location: "Jagatpura, Jaipur, Rajasthan",
+  status: "completed",
+  highlights: [
+    "Situated on 200 Ft. Road adjoining Jaipur Chaupati",
+    "Two Side Open Project",
+    "G+11 Mixed-Use Development with Shopping, Offices & Studio Apartments",
+    "TAJ Group of Hostels on Floors 11th–14th Floors"
+  ],
+  description: "NRI Avenue is a premium vertical lifestyle destination located in the heart of Jagatpura, adjoining Jaipur Chaupati & opposite the iconic NRI Scheme. This G+11 marvel offers exclusive shopping on lower ground & first floor, a gaming zone & food court on the second floor, corporate offices on floors 3–5, studio apartments with gym & indoor games on the sixth floor, and studio apartments from the seventh to eleventh floor — with a multifunctional terrace at the top.",
+  image: "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413514/NRI_AVENUE_FRONT_2_dizckp.png",
+  price: "Contact for Pricing",
+  rera: "RAJ/P/2025/3620",
+  amenities: [
+    "Gaming Zone & Bowling Alley",
+    "Food Court & Lounge",
+    "Gym & Indoor Games",
+    "Multifunctional Rooftop Terrace",
+    "Clubhouse with Premium Amenities",
+    "Centralized AC (Shopping Floors)",
+    "24-Hour Power Backup",
+    "Multilevel Security with CCTV",
+    "Hydro Pneumatic Water Supply",
+    "Rainwater Harvesting",
+    "3 High-Quality Lifts for Studio Apartments",
+    "2 Dedicated Lifts for Offices",
+    "Escalators from First to Second Floor",
+    "2 Basement Parking Levels"
+  ],
+  specifications: {
+    type: "Studio Apartments, Corporate Offices, Retail Shops, Food Kiosks",
+    area: "93 - 6,297 sq.ft. (varies by unit type)",
+    units: "Multiple Units across all floors",
+    floors: "G + 14 Floors + 2 Basements"
+  },
+  gallery: [
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413514/NRI_AVENUE_FRONT_2_dizckp.png",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413512/NRI_AVENUE_FRONT_fd4lxi.png",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413518/NRI_AVENUE_GAMING_ZONE_ubfwzi.jpg",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413522/NRI_AVENUE_HOME_INTERIORS_dfv3ax.jpg",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413527/NRI_AVENUE_OUTDOOR_PORTION_ztj9dl.jpg",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413525/NRI_AVENUE_MAP_fonir0.png",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413538/NRI_AVENUE_SHOPPING_COMPLEX_i5htpm.jpg",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413542/NRI_AVENUE_TOP_VIEW_swhmzt.jpg",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413521/NRI_AVENUE_GROUND_FLOOR_PLAN_asn1nd.png",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413523/NRI_AVENUE_FIRST_FLOOR_PLAN_eblq8h.png",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413526/NRI_AVENUE_LOWER_GROUND_FLOOR_PLAN_wjwytu.png",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413533/NRI_AVENUE_SECOND_FLOOR_PLAN_yhyv7x.png",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413511/NRI_AVENUE_FOUR_AND_FIFTH_FLOOR_PLAN_loqet5.png",
+    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413534/NRI_AVENUE_SEVENTH_TO_ELEVENTH_FLOOR_PLAN_ewc7dp.png"
+  ],
+  mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.724667792751!2d75.84657659999999!3d26.8168942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dc90078acc7d7%3A0x5fef64f742c65495!2sVirat%20NRI%20Avenue%20-%20Commercial%20Space%20in%20Jagatpura%2C%20Jaipur!5e0!3m2!1sen!2sin!4v1771413965370!5m2!1sen!2sin"
+},
+{
     id: "smart-city",
     name: "Smart City",
     location: "Chaksu, NH - 8 Jaipur, Jaipur",
