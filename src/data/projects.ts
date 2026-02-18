@@ -78,21 +78,20 @@ export const projects: Project[] = [
     units: "Multiple Units across all floors",
     floors: "G + 14 Floors + 2 Basements"
   },
-  gallery: [
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413514/NRI_AVENUE_FRONT_2_dizckp.png",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413512/NRI_AVENUE_FRONT_fd4lxi.png",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413518/NRI_AVENUE_GAMING_ZONE_ubfwzi.jpg",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413522/NRI_AVENUE_HOME_INTERIORS_dfv3ax.jpg",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413527/NRI_AVENUE_OUTDOOR_PORTION_ztj9dl.jpg",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413525/NRI_AVENUE_MAP_fonir0.png",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413538/NRI_AVENUE_SHOPPING_COMPLEX_i5htpm.jpg",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413542/NRI_AVENUE_TOP_VIEW_swhmzt.jpg",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413521/NRI_AVENUE_GROUND_FLOOR_PLAN_asn1nd.png",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413526/NRI_AVENUE_LOWER_GROUND_FLOOR_PLAN_wjwytu.png",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413533/NRI_AVENUE_SECOND_FLOOR_PLAN_yhyv7x.png",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413511/NRI_AVENUE_FOUR_AND_FIFTH_FLOOR_PLAN_loqet5.png",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413534/NRI_AVENUE_SEVENTH_TO_ELEVENTH_FLOOR_PLAN_ewc7dp.png"
-  ],
+  gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413514/NRI_AVENUE_FRONT_2_dizckp.png",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413512/NRI_AVENUE_FRONT_fd4lxi.png",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413518/NRI_AVENUE_GAMING_ZONE_ubfwzi.jpg",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413522/NRI_AVENUE_HOME_INTERIORS_dfv3ax.jpg",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413527/NRI_AVENUE_OUTDOOR_PORTION_ztj9dl.jpg",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413525/NRI_AVENUE_MAP_fonir0.png",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413538/NRI_AVENUE_SHOPPING_COMPLEX_i5htpm.jpg",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413542/NRI_AVENUE_TOP_VIEW_swhmzt.jpg",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413521/NRI_AVENUE_GROUND_FLOOR_PLAN_asn1nd.png",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413526/NRI_AVENUE_LOWER_GROUND_FLOOR_PLAN_wjwytu.png",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413533/NRI_AVENUE_SECOND_FLOOR_PLAN_yhyv7x.png",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413511/NRI_AVENUE_FOUR_AND_FIFTH_FLOOR_PLAN_loqet5.png",
+"https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413534/NRI_AVENUE_SEVENTH_TO_ELEVENTH_FLOOR_PLAN_ewc7dp.png"
+],
   mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.724667792751!2d75.84657659999999!3d26.8168942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396dc90078acc7d7%3A0x5fef64f742c65495!2sVirat%20NRI%20Avenue%20-%20Commercial%20Space%20in%20Jagatpura%2C%20Jaipur!5e0!3m2!1sen!2sin!4v1771413965370!5m2!1sen!2sin"
 },
 {
