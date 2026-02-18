@@ -82,6 +82,21 @@ const amenityIcons: Record<string, string> = {
   "Fire Safety Systems": "🚒",
   "Underground Electricity Lines": "💡",
   "Easy Connectivity": "🚗",
+  // NRI AVENUE specific amenities
+  "Gaming Zone & Bowling Alley": "🎳",
+  "Food Court & Lounge": "🍽️",
+  "Gym & Indoor Games": "🏋️",
+  "Multifunctional Rooftop Terrace": "🏢",
+  "Clubhouse with Premium Amenities": "🏛️",
+  "Centralized AC (Shopping Floors)": "❄️",
+  "24-Hour Power Backup": "⚡",
+  "Multilevel Security with CCTV": "🔐",
+  "Hydro Pneumatic Water Supply": "💧",
+  "Rainwater Harvesting": "🌧️",
+  "3 High-Quality Lifts for Studio Apartments": "🛗",
+  "2 Dedicated Lifts for Offices": "🛗",
+  "Escalators from First to Second Floor": "🚶",
+  "2 Basement Parking Levels": "🅿️",
 };
 
 const ProjectDetail = () => {

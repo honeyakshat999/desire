@@ -88,7 +88,6 @@ export const projects: Project[] = [
     "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413538/NRI_AVENUE_SHOPPING_COMPLEX_i5htpm.jpg",
     "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413542/NRI_AVENUE_TOP_VIEW_swhmzt.jpg",
     "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413521/NRI_AVENUE_GROUND_FLOOR_PLAN_asn1nd.png",
-    "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413523/NRI_AVENUE_FIRST_FLOOR_PLAN_eblq8h.png",
     "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413526/NRI_AVENUE_LOWER_GROUND_FLOOR_PLAN_wjwytu.png",
     "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413533/NRI_AVENUE_SECOND_FLOOR_PLAN_yhyv7x.png",
     "https://res.cloudinary.com/ddnjyktnc/image/upload/v1771413511/NRI_AVENUE_FOUR_AND_FIFTH_FLOOR_PLAN_loqet5.png",
