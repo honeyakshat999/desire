@@ -14,6 +14,7 @@ dist-ssr
 
 # Environment variables
 .env
+.env.*
 .env.local
 .env.*.local
 
@@ -30,3 +31,24 @@ dist-ssr
 
 # Local Netlify folder
 .netlify
+
+# Python virtual environment
+.venv/
+
+# Lock files (project uses bun.lockb — keep only one)
+deno.lock
+package-lock.json
+
+# Build output
+dist/
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Empty/temp folders
+public/New folder (2)/
+
+# Internal notes (not needed in repo)
+chnages to be done.txt
