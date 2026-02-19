@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm install:*)",
       "Bash(wsl:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(npm run build)",
+      "Bash(node_modules/.bin/vite build:*)"
     ]
   }
 }

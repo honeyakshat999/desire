@@ -7,11 +7,11 @@ import {
   Clock,
   HeartHandshake,
 } from "lucide-react";
-import sbiLogo from "@/assets/banks/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482821/Desire-Realty-website-images/src/assets/banks/sbi.png";
-import hdfcLogo from "@/assets/banks/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482823/Desire-Realty-website-images/src/assets/banks/hdfc.jpg";
-import iciciLogo from "@/assets/banks/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482822/Desire-Realty-website-images/src/assets/banks/icici.jpg";
-import axisLogo from "@/assets/banks/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482824/Desire-Realty-website-images/src/assets/banks/axis.jpg";
-import licLogo from "@/assets/banks/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482825/Desire-Realty-website-images/src/assets/banks/LIC.png";
+const sbiLogo = "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482821/Desire-Realty-website-images/src/assets/banks/sbi.png";
+const hdfcLogo = "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482823/Desire-Realty-website-images/src/assets/banks/hdfc.jpg";
+const iciciLogo = "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482822/Desire-Realty-website-images/src/assets/banks/icici.jpg";
+const axisLogo = "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482824/Desire-Realty-website-images/src/assets/banks/axis.jpg";
+const licLogo = "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482825/Desire-Realty-website-images/src/assets/banks/LIC.png";
 
 const stats = [
   {
