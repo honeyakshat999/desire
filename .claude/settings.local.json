@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(wsl:*)"
+      "Bash(wsl:*)",
+      "Bash(python3:*)"
     ]
   }
 }

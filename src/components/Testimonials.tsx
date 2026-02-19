@@ -5,7 +5,7 @@ const testimonials = [
   {
     name: "Ankit Singhal",
     role: "Plot Owner, Ganesh Vihar",
-    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/v1770270658/ankit_edited_new_dxxxpw.jpg",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1770270658/ankit_edited_new_dxxxpw.jpg",
     content:
       "The entire experience with Desire Realty was exceptional. From site visits to possession, their team was professional and transparent. Our new Plot exceeds all expectations.",
     rating: 5,
@@ -13,7 +13,7 @@ const testimonials = [
   {
     name: "Akshat Singhal",
     role: "Homeowner, Brajeshwar Avenue",
-    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/v1770298773/Akshat_singhal_qz3ypg.jpg",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1770298773/Akshat_singhal_qz3ypg.jpg",
     content:
       "We chose Desire Realty for their reputation, and they delivered beyond promises. The quality of construction and attention to detail in our Home is remarkable.",
     rating: 5,
@@ -21,7 +21,7 @@ const testimonials = [
   {
     name: "Manoj Kumar",
     role: "Investor, Smart City",
-    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/v1770271919/Manoj_kumar_jywhxy.png",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1770271919/Manoj_kumar_jywhxy.png",
     content:
       "As a real estate investor, I value transparency and timely delivery. Desire Realty checks all boxes. My plot investment has already appreciated significantly.",
     rating: 5,
