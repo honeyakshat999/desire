@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import imageCompression from "browser-image-compression";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -152,18 +153,23 @@ const BlogEditor = () => {
       return;
     }
 
-    if (file.size > 10 * 1024 * 1024) {
-      toast({
-        title: "Error",
-        description: "Image size must be less than 10MB",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsUploadingCover(true);
 
     try {
+      let fileToUpload = file;
+      if (file.size > 9 * 1024 * 1024) {
+        toast({
+          title: "Compressing image...",
+          description: "Reducing size while preserving quality",
+        });
+        fileToUpload = await imageCompression(file, {
+          maxSizeMB: 9.5,
+          initialQuality: 0.9,
+          useWebWorker: true,
+          preserveExif: true,
+        });
+      }
+
       const reader = new FileReader();
       reader.onload = async () => {
         const base64 = reader.result as string;
@@ -211,7 +217,7 @@ const BlogEditor = () => {
         });
         setIsUploadingCover(false);
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileToUpload);
     } catch (err) {
       toast({
         title: "Error",
@@ -380,7 +386,7 @@ const BlogEditor = () => {
                             Click to upload
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            Max: 10MB
+                            Auto-compressed to fit 10MB
                           </p>
                         </div>
                       )}

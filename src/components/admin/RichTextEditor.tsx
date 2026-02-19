@@ -1,4 +1,5 @@
 import { useEditor, EditorContent, Editor } from "@tiptap/react";
+import imageCompression from "browser-image-compression";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
@@ -116,16 +117,20 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
       return;
     }
 
-    if (file.size > 10 * 1024 * 1024) {
-      setUploadError("Image size must be less than 10MB");
-      return;
-    }
-
     setIsUploading(true);
     setUploadError(null);
 
     try {
-      // Convert file to base64
+      let fileToUpload = file;
+      if (file.size > 9 * 1024 * 1024) {
+        fileToUpload = await imageCompression(file, {
+          maxSizeMB: 9.5,
+          initialQuality: 0.9,
+          useWebWorker: true,
+          preserveExif: true,
+        });
+      }
+
       const reader = new FileReader();
       reader.onload = async () => {
         const base64 = reader.result as string;
@@ -157,7 +162,7 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
         setUploadError("Failed to read file");
         setIsUploading(false);
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(fileToUpload);
     } catch (err) {
       setUploadError("Failed to process image");
       setIsUploading(false);
@@ -407,7 +412,7 @@ const MenuBar = ({ editor }: { editor: Editor }) => {
                         Click to select an image
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        Max size: 10MB
+                        Auto-compressed to fit 10MB
                       </p>
                     </div>
                   )}
