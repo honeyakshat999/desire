@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/test_logo.png";
+import logo from "@/assets/https://res.cloudinary.com/ddnjyktnc/image/upload/v1771482813/Desire-Realty-website-images/src/assets/test_logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

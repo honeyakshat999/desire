@@ -8,7 +8,7 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
-import logo from "@/assets/logo.jpeg";
+import logo from "@/assets/https://res.cloudinary.com/ddnjyktnc/image/upload/v1771482819/Desire-Realty-website-images/src/assets/logo.jpg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

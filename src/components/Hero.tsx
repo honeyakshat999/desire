@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import EnquiryForm from "@/components/EnquiryForm";
-import heroImage from "@/assets/hero-building.jpg";
+import heroImage from "@/assets/https://res.cloudinary.com/ddnjyktnc/image/upload/v1771482820/Desire-Realty-website-images/src/assets/hero-building.jpg";
 
 const Hero = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
