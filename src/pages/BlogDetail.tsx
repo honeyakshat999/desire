@@ -174,6 +174,8 @@ const BlogDetail = () => {
                   src={blog.cover_image}
                   alt={blog.title}
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  fetchPriority="high"
                 />
               </div>
             </motion.div>

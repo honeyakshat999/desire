@@ -105,6 +105,8 @@ const Navbar = () => {
               src={logo}
               alt="Desire Realty"
               className="h-14 w-auto object-contain lg:h-20 lg:w-auto"
+              loading="eager"
+              fetchPriority="high"
             />
           </Link>
 

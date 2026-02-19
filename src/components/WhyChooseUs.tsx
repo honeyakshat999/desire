@@ -164,6 +164,7 @@ const WhyChooseUs = () => {
                   src={bank.logo}
                   alt={bank.name}
                   className="h-12 w-auto object-contain"
+                  loading="lazy"
                 />
               </div>
             ))}

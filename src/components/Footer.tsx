@@ -56,6 +56,7 @@ const Footer = () => {
               src={logo}
               alt="Desire Realty"
               className="h-16 w-auto mb-4 bg-white rounded-lg p-2"
+              loading="lazy"
             />
             <p className="text-white/70 text-sm leading-relaxed mb-6">
               Crafting premium land, farmhouses, and residential living spaces with 10 years of trusted real estate expertise.

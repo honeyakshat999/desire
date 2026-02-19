@@ -186,6 +186,8 @@ const ProjectDetail = () => {
             src={project.image}
             alt={project.name}
             className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/70 to-navy-dark/40" />
           
