@@ -28,7 +28,7 @@ export const projects: Project[] = [
     status: "ongoing",
     highlights: ["Ultra Luxurious 3/4 BHK Apartments", "World Class Facilities","Rera Approved", "JDA Approved"],
     description: "Experience luxury living at its finest with Brajeshwar Avenue. Located in the heart of Jaipur, this premium residential project offers world-class amenities and contemporary architecture designed for modern families.",
-    image: "/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482788/Desire-Realty-website-images/public/project-avenue.png",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482788/Desire-Realty-website-images/public/project-avenue.png",
     price: "Starting ₹80 Lakh", 
     rera: ["RAJ/P/2025/4285"],
     amenities: ["Mini Theater","Swimming Pool", "Gymnasium", "Clubhouse", "Children's Play Area", "Terrace Garden","Gazebo","EV Charging","Temple", "Landscaped Gardens","Water Harvesting", "24/7 Security", "Covered Parking", "Power Backup", "Smart Featured Lifts system","CCTV Surveillance","Fire Safety Systems"],
@@ -38,7 +38,7 @@ export const projects: Project[] = [
       units: "30 Units",
       floors: "G + 6 Floors"
     },
-    gallery: ["/brijeshwar avenue/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482810/Desire-Realty-website-images/public/brijeshwar%20avenue/ameneties.png", "/brijeshwar avenue/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482808/Desire-Realty-website-images/public/brijeshwar%20avenue/first_floor.png", "/brijeshwar avenue/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482807/Desire-Realty-website-images/public/brijeshwar%20avenue/flats.png", "/brijeshwar avenue/location_https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482801/Desire-Realty-website-images/public/Smart_City/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482812/Desire-Realty-website-images/public/ganesh_vihar/map.png", "/brijeshwar avenue/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482804/Desire-Realty-website-images/public/brijeshwar%20avenue/specifications.png"],
+    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482810/Desire-Realty-website-images/public/brijeshwar%20avenue/ameneties.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482808/Desire-Realty-website-images/public/brijeshwar%20avenue/first_floor.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482807/Desire-Realty-website-images/public/brijeshwar%20avenue/flats.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482805/Desire-Realty-website-images/public/brijeshwar%20avenue/location_map.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482804/Desire-Realty-website-images/public/brijeshwar%20avenue/specifications.png"],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3558.299135892591!2d75.69098107543886!3d26.893999976658318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUzJzM4LjQiTiA3NcKwNDEnMzYuOCJF!5e0!3m2!1sen!2sin!4v1769861421134!5m2!1sen!2sin"
   },
 {
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     status: "completed",
     highlights: ["Premium Residential Plots", "Gated Township", "Close to Bus Stand", "On National Highway"],
     description: "Invest in your dream home at Smart City, a premium villa plots project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Smart City offers a well-connected, future-ready foundation for building your ideal home.",
-    image: "/Smart_City/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482803/Desire-Realty-website-images/public/Smart_City/first.png",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482803/Desire-Realty-website-images/public/Smart_City/first.png",
     price: "Starting ₹10 Lakh",
     rera: "",
     amenities: ["Wide Internal Roads", "Underground Electricity Lines", "Water Supply", "Street Lighting", "Gated Township", "Parks", "Kids Play Zone", "Temple", "Easy Connectivity","Green & Open Spaces","Plot Demarcation"],
@@ -111,7 +111,7 @@ export const projects: Project[] = [
       units: "40+ Plots",
       floors: "N/A"
     },
-    gallery: ["/Smart_City/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482800/Desire-Realty-website-images/public/Smart_City/second.png", "/Smart_City/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482801/Desire-Realty-website-images/public/Smart_City/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482812/Desire-Realty-website-images/public/ganesh_vihar/map.png"],
+    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482800/Desire-Realty-website-images/public/Smart_City/second.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482801/Desire-Realty-website-images/public/Smart_City/map.png"],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3568.036054986725!2d75.94573997542817!3d26.583218276845088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDM0JzU5LjYiTiA3NcKwNTYnNTMuOSJF!5e0!3m2!1sen!2sin!4v1769846625631!5m2!1sen!2sin"
   },
   {
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     status: "completed",
     highlights: ["Premium Residential Plots", "RERA Approved", "Close to Bus Stand", "On National Highway"],
     description: "Invest in your dream home at Ganesh Vihar, a premium villa plots project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Ganesh Vihar offers a well-connected, future-ready foundation for building your ideal home.",
-    image: "/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482790/Desire-Realty-website-images/public/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482815/Desire-Realty-website-images/src/assets/project-3.jpg",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482815/Desire-Realty-website-images/src/assets/project-3.jpg",
     price: "Starting ₹10 Lakh",
     rera: "RAJ/P/2025/4132 | RAJ/P/2025/4111",
     amenities: ["Wide Internal Roads", "Underground Electricity Lines", "Sewage Treatment", "Water Supply", "Street Lighting", "Gated Township", "Parks", "Kids Play Zone", "Temple", "RERA Approved","Green & Open Spaces","Plot Demarcation"],
@@ -142,7 +142,7 @@ export const projects: Project[] = [
     comingSoon: true,
     highlights: ["Luxury Flats", "Hanging Gardens", "Gated Community"],
     description: "A prestigious gated community offering spacious independent Flats with hanging gardens. Each flat is crafted with attention to detail, providing the perfect blend of privacy and community living.",
-    image: "/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482792/Desire-Realty-website-images/public/https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482817/Desire-Realty-website-images/src/assets/project-2.jpg",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482817/Desire-Realty-website-images/src/assets/project-2.jpg",
     price: "Starting ₹60 Lakh",
     rera: "",
     amenities: ["Clubhouse", "Swimming Pool", "Tennis Court", "Jogging Track", "Kids Play Zone", "24/7 Security", "Community Hall", "Landscaped Parks"],
