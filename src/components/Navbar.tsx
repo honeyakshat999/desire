@@ -138,7 +138,7 @@ const Navbar = () => {
               onClick={() => window.open("tel:+918619421661")}
             >
               <Phone className="h-4 w-4" />
-              +91 86194 21661
+              +918619421661
             </Button>
             <Button
               className="bg-accent hover:bg-accent/90 text-accent-foreground"
@@ -210,7 +210,7 @@ const Navbar = () => {
                   onClick={() => window.open("tel:+918619421661")}
                 >
                   <Phone className="h-4 w-4" />
-                  +91 86194 21661
+                  +918619421661
                 </Button>
                 <Button
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"

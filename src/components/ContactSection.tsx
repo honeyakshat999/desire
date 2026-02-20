@@ -42,7 +42,7 @@ const ContactSection = () => {
                     href="tel:+918619421661"
                     className="text-muted-foreground hover:text-accent transition-colors"
                   >
-                    +91 86194 21661
+                    +918619421661
                   </a>
                 </div>
               </div>
