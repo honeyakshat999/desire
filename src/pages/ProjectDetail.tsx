@@ -31,6 +31,9 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import EnquiryForm from "@/components/EnquiryForm";
 import { usePageView } from "@/hooks/useAnalytics";
+import { SEOHead } from "@/components/SEOHead";
+import { Helmet } from "react-helmet-async";
+import { SchemaBreadcrumb } from "@/components/SchemaBreadcrumb";
 
 const statusColors = {
   ongoing: "bg-emerald-600 text-white border-emerald-700 shadow-sm",
@@ -186,8 +189,11 @@ const ProjectDetail = () => {
             src={project.image}
             alt={project.name}
             className="w-full h-full object-cover"
+            width="1200"
+            height="600"
             loading="eager"
             fetchPriority="high"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/70 to-navy-dark/40" />
           
@@ -333,6 +339,48 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEOHead
+        title={project.name}
+        description={`${project.description} Located at ${project.location}. ${project.price}.`}
+        image={project.image}
+      />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "RealEstateListing",
+          "name": project.name,
+          "description": project.description,
+          "url": `https://desirerealty.in/project/${project.id}`,
+          "image": project.image,
+          "offers": {
+            "@type": "Offer",
+            "price": project.price,
+            "priceCurrency": "INR",
+            "availability": project.status === "ongoing" ? "https://schema.org/InStock" : "https://schema.org/PreOrder"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": project.location,
+            "addressLocality": "Jaipur",
+            "addressRegion": "Rajasthan",
+            "addressCountry": "IN"
+          },
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": project.specifications.area,
+            "unitCode": "FTK"
+          },
+          "numberOfRooms": project.specifications.units,
+          "identifier": {
+            "@type": "PropertyValue",
+            "name": "RERA Registration",
+            "value": Array.isArray(project.rera) ? project.rera[0] : project.rera
+          },
+          "seller": {
+            "@id": "https://desirerealty.in/#business"
+          }
+        })}</script>
+      </Helmet>
       <Navbar />
 
       {/* Hero Section with Image Slider */}
@@ -352,6 +400,8 @@ const ProjectDetail = () => {
                     src={img}
                     alt={`${project.name} - ${index + 1}`}
                     className="w-full h-full object-cover"
+                    width="1200"
+                    height="600"
                     loading={index === 0 ? "eager" : "lazy"}
                     fetchPriority={index === 0 ? "high" : "auto"}
                     decoding="async"
@@ -406,6 +456,13 @@ const ProjectDetail = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
+                <div className="mb-4 pointer-events-auto">
+                  <SchemaBreadcrumb items={[
+                    { name: "Home", href: "/" },
+                    { name: "Projects", href: "/#projects" },
+                    { name: project.name, href: `/project/${project.id}` },
+                  ]} />
+                </div>
                 <Link
                   to="/#projects"
                   className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-4 transition-colors pointer-events-auto"

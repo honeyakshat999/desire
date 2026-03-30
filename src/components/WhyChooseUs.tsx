@@ -45,7 +45,7 @@ const values = [
     icon: Shield,
     title: "RERA Compliant",
     description:
-      "All projects are registered and compliant with RERA regulations for your peace of mind.RERA No: RAJ/A/2026/17214",
+      "All projects are registered and compliant with RERA regulations for your peace of mind. RERA No: RAJ/A/2026/17214",
   },
   {
     icon: HeartHandshake,
@@ -164,7 +164,10 @@ const WhyChooseUs = () => {
                   src={bank.logo}
                   alt={bank.name}
                   className="h-12 w-auto object-contain"
+                  width="80"
+                  height="48"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}

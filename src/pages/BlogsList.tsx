@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, ArrowRight } from "lucide-react";
 import { usePageView } from "@/hooks/useAnalytics";
+import { SEOHead } from "@/components/SEOHead";
 
 interface Blog {
   id: string;
@@ -49,6 +50,10 @@ const BlogsList = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEOHead
+        title="Real Estate Blog — Jaipur Property Insights"
+        description="Latest real estate trends, investment tips, and property updates from Desire Realty. Stay informed about Jaipur's residential market."
+      />
       <Navbar />
 
       {/* Hero */}
@@ -115,7 +120,10 @@ const BlogsList = () => {
                             src={blog.cover_image}
                             alt={blog.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            width="600"
+                            height="338"
                             loading="lazy"
+                            decoding="async"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10">

@@ -1,4 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { ReraLink } from "@/components/ReraLink";
 import {
   Phone,
   Mail,
@@ -56,21 +57,51 @@ const Footer = () => {
               src={logo}
               alt="Desire Realty"
               className="h-16 w-auto mb-4 bg-white rounded-lg p-2"
+              width="120"
+              height="64"
               loading="lazy"
+              decoding="async"
             />
             <p className="text-white/70 text-sm leading-relaxed mb-6">
               Crafting premium land, farmhouses, and residential living spaces with 10 years of trusted real estate expertise.
             </p>
             <div className="flex gap-4">
-              {[Facebook, Instagram, Twitter, Linkedin].map((Icon, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
+              <a
+                href="https://www.facebook.com/people/Desire-realty/61588022965768/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/desire__realty/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a
+                href="https://twitter.com/desirerealty"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-4 w-4" />
+              </a>
+              <a
+                href="https://linkedin.com/company/desirerealty"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
@@ -81,7 +112,7 @@ const Footer = () => {
               {[
                 { name: "Home", path: "/" },
                 { name: "Projects", path: "/#projects" },
-                { name: "About Us", path: "/#about" },
+                { name: "About Us", path: "/about" },
                 { name: "Testimonials", path: "/#testimonials" },
                 { name: "Blog", path: "/blogs" },
                 { name: "Contact", path: "/#contact" },
@@ -162,7 +193,7 @@ const Footer = () => {
               </li>
               <li className="mt-4 p-3 bg-white/10 rounded-lg">
                 <p className="text-white/90 text-sm font-medium">
-                  RERA No: RAJ/A/2026/17214
+                  RERA No: <ReraLink />
                 </p>
               </li>
             </ul>
@@ -249,7 +280,7 @@ const Footer = () => {
                   <Twitter className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://linkedin.com/company/kyleinnovate"
+                  href="https://www.linkedin.com/company/kyleinnovate-solutions/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/60 hover:text-gold-light transition-colors p-2 -m-2"

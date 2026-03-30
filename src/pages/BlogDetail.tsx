@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Calendar, ArrowLeft, Clock } from "lucide-react";
 import { usePageView } from "@/hooks/useAnalytics";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaBreadcrumb } from "@/components/SchemaBreadcrumb";
+import { Helmet } from "react-helmet-async";
 
 // Allowed domains for images and iframes in blog content
 const ALLOWED_IMAGE_DOMAINS = ["res.cloudinary.com"];
@@ -119,6 +122,39 @@ const BlogDetail = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEOHead
+        title={blog.title}
+        description={blog.excerpt || `${blog.title} — Desire Realty Blog`}
+        image={blog.cover_image}
+      />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": blog.title,
+          "description": blog.excerpt || blog.title,
+          "image": blog.cover_image || "https://desirerealty.in/og-image.jpg",
+          "datePublished": blog.published_at || blog.created_at,
+          "dateModified": blog.published_at || blog.created_at,
+          "author": {
+            "@type": "Organization",
+            "name": "Desire Realty",
+            "@id": "https://desirerealty.in/#business"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Desire Realty",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://desirerealty.in/logo.png"
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://desirerealty.in/blogs/${blog.slug}`
+          }
+        })}</script>
+      </Helmet>
       <Navbar />
 
       {/* Hero */}
@@ -129,6 +165,13 @@ const BlogDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl mx-auto"
           >
+            <div className="mb-4">
+              <SchemaBreadcrumb items={[
+                { name: "Home", href: "/" },
+                { name: "Blog", href: "/blogs" },
+                { name: blog.title, href: `/blogs/${blog.slug}` },
+              ]} />
+            </div>
             <Link
               to="/blogs"
               className="inline-flex items-center text-white/70 hover:text-white mb-6 transition-colors"
@@ -143,13 +186,20 @@ const BlogDetail = () => {
 
             <div className="flex flex-wrap items-center gap-4 text-white/70">
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                {new Date(blog.published_at || blog.created_at).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                <span className="text-white/90 font-medium text-sm">Desire Realty Team</span>
               </div>
+              <span className="text-white/40">·</span>
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                <time dateTime={blog.published_at || blog.created_at}>
+                  {new Date(blog.published_at || blog.created_at).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+              </div>
+              <span className="text-white/40">·</span>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
                 {getReadingTime(blog.content)} min read
@@ -174,8 +224,11 @@ const BlogDetail = () => {
                   src={blog.cover_image}
                   alt={blog.title}
                   className="w-full h-full object-cover"
+                  width="800"
+                  height="450"
                   loading="eager"
                   fetchPriority="high"
+                  decoding="async"
                 />
               </div>
             </motion.div>

@@ -19,8 +19,10 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
-          alt="Luxury residential development"
+          alt="Desire Realty — Residential plots and apartments in Jaipur"
           className="w-full h-full object-cover"
+          width="1920"
+          height="1080"
           loading="eager"
           fetchPriority="high"
           decoding="async"

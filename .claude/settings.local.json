@@ -5,7 +5,9 @@
       "Bash(wsl:*)",
       "Bash(python3:*)",
       "Bash(npm run build)",
-      "Bash(node_modules/.bin/vite build:*)"
+      "Bash(node_modules/.bin/vite build:*)",
+      "Bash(powershell.exe -Command \"cd ''c:\\\\Users\\\\honey\\\\Downloads\\\\bbhbjbnjbjbjk-main\\\\desire''; npm install react-helmet-async 2>&1\")",
+      "Bash(powershell.exe -Command \"Get-Command node,npm,pnpm,yarn -ErrorAction SilentlyContinue | Select-Object Name, Source\")"
     ]
   }
 }

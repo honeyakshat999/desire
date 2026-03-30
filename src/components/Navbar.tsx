@@ -12,7 +12,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   // Pages with dark hero backgrounds that need light navbar text
-  const hasDarkHero = location.pathname === "/" || location.pathname.startsWith("/blogs") || location.pathname.startsWith("/admin") || location.pathname.startsWith("/project");
+  const hasDarkHero = location.pathname === "/" || location.pathname.startsWith("/blogs") || location.pathname.startsWith("/admin") || location.pathname.startsWith("/project") || location.pathname === "/about" || location.pathname === "/privacy" || location.pathname === "/terms";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Projects", path: "/#projects" },
-    { name: "About", path: "/#about" },
+    { name: "About", path: "/about" },
     { name: "Testimonials", path: "/#testimonials" },
     { name: "Blog", path: "/blogs" },
     { name: "Contact", path: "/#contact" },
@@ -105,8 +105,11 @@ const Navbar = () => {
               src={logo}
               alt="Desire Realty"
               className="h-14 w-auto object-contain lg:h-20 lg:w-auto"
+              width="120"
+              height="80"
               loading="eager"
               fetchPriority="high"
+              decoding="async"
             />
           </Link>
 

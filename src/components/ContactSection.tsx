@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
+import { ReraLink } from "@/components/ReraLink";
 import { Button } from "@/components/ui/button";
 import EnquiryForm from "./EnquiryForm";
 
@@ -80,7 +81,7 @@ const ContactSection = () => {
 
               <div className="mt-4 p-3 bg-accent/10 rounded-lg">
                 <p className="text-sm font-medium text-foreground">
-                  RERA No: RAJ/A/2026/17214
+                  RERA No: <ReraLink />
                 </p>
               </div>
             </div>
