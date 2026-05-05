@@ -26,7 +26,7 @@ export const projects: Project[] = [
     name: "Nilgiri",
     location: "AJMER ROAD, MAHLA JAIPUR",
     status: "ongoing",
-    highlights: ["Residential And Commercial Plots","160 Ft roads", "World Class Facilities", "Gated Township" ,"Rera Approved", "JDA Approved"],
+    highlights: ["Residential And Commercial Plots","160 Ft roads", "World Class Facilities", "Gated Township" ,"Rera And JDA Approved"],
     description: "Discover Nilgiri — a RERA & JDA approved gated township on Ajmer Road, Jaipur, offering residential and commercial plots along with ready shops. Thoughtfully planned with all modern amenities and a prime location, it's the perfect destination for families and investors alike.",
     image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1778003234/Nilgiri-project_negkbt.png",
     price: "Starting ₹15 Lakh", 
