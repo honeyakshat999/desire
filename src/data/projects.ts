@@ -38,8 +38,8 @@ export const projects: Project[] = [
       units: "565 Units",
       floors: "N/A"
     },
-    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482810/Desire-Realty-website-images/public/brijeshwar%20avenue/ameneties.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482808/Desire-Realty-website-images/public/brijeshwar%20avenue/first_floor.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482807/Desire-Realty-website-images/public/brijeshwar%20avenue/flats.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482805/Desire-Realty-website-images/public/brijeshwar%20avenue/location_map.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482804/Desire-Realty-website-images/public/brijeshwar%20avenue/specifications.png"],
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3558.299135892591!2d75.69098107543886!3d26.893999976658318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUzJzM4LjQiTiA3NcKwNDEnMzYuOCJF!5e0!3m2!1sen!2sin!4v1769861421134!5m2!1sen!2sin"
+    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1778003234/Nilgiri-project_negkbt.png"],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7123.071381566011!2d75.44870434722138!3d26.79106658191701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDQ3JzI0LjgiTiA3NcKwMjYnNTUuNyJF!5e0!3m2!1sen!2sin!4v1778003565707!5m2!1sen!2sin"
   },
   {
     id: "brajeshwar-avenue",
