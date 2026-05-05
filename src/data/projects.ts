@@ -45,7 +45,7 @@ export const projects: Project[] = [
     id: "brajeshwar-avenue",
     name: "Brajeshwar Avenue",
     location: "AT GANDHI PATH WEST, VAISHALI NAGAR, JAIPUR",
-    status: "ongoing",
+    status: "completed",
     highlights: ["Ultra Luxurious 3/4 BHK Apartments", "World Class Facilities","Rera Approved", "JDA Approved"],
     description: "Experience luxury living at its finest with Brajeshwar Avenue. Located in the heart of Jaipur, this premium residential project offers world-class amenities and contemporary architecture designed for modern families.",
     image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482788/Desire-Realty-website-images/public/project-avenue.png",
