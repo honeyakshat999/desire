@@ -21,6 +21,26 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+    {
+    id: "nilgiri-project",
+    name: "Nilgiri",
+    location: "AJMER ROAD, MAHLA JAIPUR",
+    status: "ongoing",
+    highlights: ["Residential And Commercial Plots","160 Ft roads", "World Class Facilities", "Gated Township" ,"Rera Approved", "JDA Approved"],
+    description: "Discover Nilgiri — a RERA & JDA approved gated township on Ajmer Road, Jaipur, offering residential and commercial plots along with ready shops. Thoughtfully planned with all modern amenities and a prime location, it's the perfect destination for families and investors alike.",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1778003234/Nilgiri-project_negkbt.png",
+    price: "Starting ₹15 Lakh", 
+    rera: ["RAJ/P/2017/427"],
+    amenities: ["Gated Township","Underground Electrification","Swarage Management System", "Overhead Water tank", "Drainage System", "Landscaped Gardens","Swimming Pool","Greener common aeras","Tower lighing roads","Children's Play Area", "High visibility Location","Shop Friendly","Strong footfall Potential","Temple", "Landscaped Gardens","Water Harvesting", "24/7 Security", "Dedicated Commercial Zone"],
+    specifications: {
+      type: "Residential Plots,Comercial Spaces, Retail Shops",
+      area: "50 - 1775 sq.ft",
+      units: "565 Units",
+      floors: "N/A"
+    },
+    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482810/Desire-Realty-website-images/public/brijeshwar%20avenue/ameneties.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482808/Desire-Realty-website-images/public/brijeshwar%20avenue/first_floor.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482807/Desire-Realty-website-images/public/brijeshwar%20avenue/flats.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482805/Desire-Realty-website-images/public/brijeshwar%20avenue/location_map.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482804/Desire-Realty-website-images/public/brijeshwar%20avenue/specifications.png"],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3558.299135892591!2d75.69098107543886!3d26.893999976658318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUzJzM4LjQiTiA3NcKwNDEnMzYuOCJF!5e0!3m2!1sen!2sin!4v1769861421134!5m2!1sen!2sin"
+  },
   {
     id: "brajeshwar-avenue",
     name: "Brajeshwar Avenue",
