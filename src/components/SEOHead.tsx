@@ -16,7 +16,7 @@ export const SEOHead = ({ title, description, image }: SEOHeadProps) => {
 
   return (
     <Helmet>
-      <title>{title} | Desire Realty Jaipur</title>
+      <title>{title} | Desire Realty</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={canonical} />
       <meta property="og:url" content={canonical} />

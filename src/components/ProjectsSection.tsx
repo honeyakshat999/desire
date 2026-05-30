@@ -17,11 +17,12 @@ const ProjectsSection = () => {
             Our Portfolio
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary mt-3 mb-4">
-            Featured Projects
+            RERA &amp; JDA Approved Projects in Jaipur
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Explore our carefully curated selection of residential and land
-            developments, each designed to exceed expectations.
+            Explore our carefully curated selection of residential plots,
+            apartments and commercial developments across Jaipur — each RERA &amp;
+            JDA approved.
           </p>
         </motion.div>
 

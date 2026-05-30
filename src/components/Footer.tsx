@@ -141,7 +141,9 @@ const Footer = () => {
             <h3 className="font-serif text-lg mb-4">Our Projects</h3>
             <ul className="space-y-3">
               {[
+                { name: "Nilgiri", id: "nilgiri-project" },
                 { name: "Brajeshwar Avenue", id: "brajeshwar-avenue" },
+                { name: "NRI Avenue", id: "nri-avenue" },
                 { name: "Smart City", id: "smart-city" },
                 { name: "Ganesh Vihar", id: "ganesh-vihar" },
                 { name: "Brajeshwar Crown", id: "brajeshwar-crown" },

@@ -351,7 +351,7 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <SEOHead
-        title={project.name}
+        title={`${project.name} — RERA & JDA Approved in Jaipur`}
         description={`${project.description} Located at ${project.location}. ${project.price}.`}
         image={project.image}
       />

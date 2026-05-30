@@ -32,9 +32,9 @@ const stats = [
 const values = [
   {
     icon: Shield,
-    title: "RERA Compliant",
+    title: "RERA & JDA Approved",
     description:
-      "All our projects are registered under RERA (RAJ/A/2026/17214), ensuring complete transparency and buyer protection at every step.",
+      "All our projects are RERA registered (RAJ/A/2026/17214) and JDA approved, ensuring complete transparency and buyer protection at every step.",
   },
   {
     icon: HeartHandshake,

@@ -54,16 +54,15 @@ const Hero = () => {
 
             {/* Headline */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-white leading-tight mb-6">
-              Crafting{" "}
-              <span className="text-gold-light">Premium Land</span>
+              <span className="text-gold-light">JDA &amp; RERA Approved</span>
               <br />
-              & Residential living spaces
+              Plots &amp; Apartments in Jaipur
             </h1>
 
             {/* Sub-headline */}
             <p className="text-lg md:text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
-              With over 10 years of trust and 1 million sq.ft. delivered, we
-              transform your aspirations into addresses of prestige.
+              Crafting premium land &amp; residential living spaces — with over 10
+              years of trust and 1 million sq.ft. delivered across Jaipur.
             </p>
 
             {/* CTAs */}

@@ -43,9 +43,9 @@ const stats = [
 const values = [
   {
     icon: Shield,
-    title: "RERA Compliant",
+    title: "RERA & JDA Approved",
     description:
-      "All projects are registered and compliant with RERA regulations for your peace of mind. RERA No: RAJ/A/2026/17214",
+      "All projects are RERA registered and JDA approved for your peace of mind. RERA No: RAJ/A/2026/17214",
   },
   {
     icon: HeartHandshake,
@@ -76,7 +76,7 @@ const WhyChooseUs = () => {
             Why Desire Realty
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary mt-3 mb-4">
-            Building Trust, Delivering Dreams
+            Why Choose a RERA &amp; JDA Approved Developer in Jaipur
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Choose a developer who values your aspirations as much as you do.

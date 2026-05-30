@@ -18,8 +18,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="RERA Approved Plots & Apartments in Jaipur"
-        description="Desire Realty — RERA registered developer in Jaipur. 5 active projects in Vaishali Nagar, Jagatpura & Chaksu. SBI/HDFC approved. RERA: RAJ/A/2026/17214."
+        title="JDA & RERA Approved Plots & Apartments in Jaipur"
+        description="Desire Realty — JDA & RERA approved developer in Jaipur. 6 projects across Vaishali Nagar, Jagatpura, Ajmer Road & Chaksu. SBI/HDFC approved. RERA: RAJ/A/2026/17214."
       />
       <Navbar />
       <Hero />
