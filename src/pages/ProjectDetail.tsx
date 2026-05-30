@@ -100,6 +100,17 @@ const amenityIcons: Record<string, string> = {
   "2 Dedicated Lifts for Offices": "🛗",
   "Escalators from First to Second Floor": "🚶",
   "2 Basement Parking Levels": "🅿️",
+  // Nilgiri specific amenities
+  "Dedicated Commercial Zone": "🏬",
+  "Shop Friendly": "🛍️",
+  "High visibility Location": "👁️",
+  "Strong footfall Potential": "🚶‍♂️",
+  "Tower lighing roads": "🏮",
+  "Drainage System": "🚰",
+  "Greener common aeras": "🌿",
+  "Overhead Water tank": "🛢️",
+  "Swarage Management System": "♻️",
+  "Underground Electrification": "⚡",
 };
 
 const ProjectDetail = () => {

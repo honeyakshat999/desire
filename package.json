@@ -7,8 +7,34 @@
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "postbuild": "react-snap",
     "lint": "eslint .",
     "preview": "vite preview"
+  },
+  "reactSnap": {
+    "source": "dist",
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    },
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "skipThirdPartyRequests": true,
+    "include": [
+      "/",
+      "/about",
+      "/blogs",
+      "/privacy",
+      "/terms",
+      "/project/nilgiri-project",
+      "/project/brajeshwar-avenue",
+      "/project/nri-avenue",
+      "/project/smart-city",
+      "/project/ganesh-vihar",
+      "/project/brajeshwar-crown"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -61,6 +87,7 @@
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.3.0",
+    "nodemailer": "^6.10.1",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
@@ -68,8 +95,8 @@
     "react-hook-form": "^7.61.1",
     "react-resizable-panels": "^2.1.9",
     "react-router-dom": "^6.30.1",
+    "react-snap": "^1.23.0",
     "recharts": "^2.15.4",
-    "resend": "^3.2.0",
     "slugify": "^1.6.6",
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.6.0",
@@ -82,6 +109,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/dompurify": "^3.0.5",
     "@types/node": "^22.16.5",
+    "@types/nodemailer": "^6.4.23",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react-swc": "^3.11.0",

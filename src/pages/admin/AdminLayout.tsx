@@ -1,4 +1,5 @@
 import { Navigate, Outlet, Link, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import {
@@ -45,6 +46,9 @@ const AdminLayout = () => {
 
   return (
     <div className="min-h-screen bg-muted flex">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div

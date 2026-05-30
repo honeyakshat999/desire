@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
     <title>Desire Realty | RERA Approved Developer in Jaipur</title>
 
-    <!-- Primary Meta -->
-    <meta name="description" content="RERA-registered real estate developer in Jaipur, Rajasthan. Plots & apartments in Vaishali Nagar, Jagatpura, Chaksu & 200 FT Road. SBI/HDFC approved. RERA: RAJ/A/2026/17214." />
+    <!-- Primary Meta — description, canonical & OG url/title/description/image
+         are set per-route via react-helmet (SEOHead). Do not hardcode them here
+         or the prerendered pages emit duplicate (homepage) tags. -->
     <meta name="author" content="Desire Realty" />
     <meta name="keywords" content="plots in Jaipur, flats in Jaipur, RERA developer Jaipur, Vaishali Nagar plots, Jagatpura apartments, Chaksu NH-8 plots, 200 FT Road Jaipur" />
 
@@ -17,12 +18,8 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="format-detection" content="telephone=no" />
 
-    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) — url/title/description/image set per-route by SEOHead -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://desirerealty.in/" />
-    <meta property="og:title" content="Desire Realty — RERA Approved Developer in Jaipur" />
-    <meta property="og:description" content="5 active residential projects in Jaipur. SBI, HDFC, ICICI, Axis & LIC Housing approved. RERA: RAJ/A/2026/17214." />
-    <meta property="og:image" content="https://desirerealty.in/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Desire Realty — Jaipur Real Estate Developer" />
@@ -39,8 +36,7 @@
     <!-- Preload hero image — critical for LCP -->
     <link rel="preload" as="image" href="https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482820/Desire-Realty-website-images/src/assets/hero-building.jpg" fetchpriority="high" />
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://desirerealty.in/" />
+    <!-- Canonical set per-route by react-helmet (SEOHead) -->
     <link rel="icon" type="image/png" href="/favicon.ico" />
 
     <!-- Organization + LocalBusiness (RealEstateAgent) Schema -->

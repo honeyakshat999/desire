@@ -1,7 +1,5 @@
 import { Client } from '@neondatabase/serverless';
-import { Resend } from 'resend';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from 'nodemailer';
 
 export const handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -11,10 +9,10 @@ export const handler = async (event) => {
   try {
     const body = JSON.parse(event.body || '{}');
     const { name, mobile, email, project, message } = body;
-    
+
     if (!name || !mobile) {
-      return { 
-        statusCode: 400, 
+      return {
+        statusCode: 400,
         body: JSON.stringify({ error: 'Missing required fields', required: ['name', 'mobile'] })
       };
     }
@@ -22,8 +20,8 @@ export const handler = async (event) => {
     // Check if environment variables are set
     if (!process.env.NEON_HOST || !process.env.NEON_DATABASE || !process.env.NEON_USER || !process.env.NEON_PASSWORD) {
       console.error('Missing Neon environment variables');
-      return { 
-        statusCode: 500, 
+      return {
+        statusCode: 500,
         body: JSON.stringify({ error: 'Database configuration missing. Please contact administrator.' })
       };
     }
@@ -38,7 +36,7 @@ export const handler = async (event) => {
 
     await client.connect();
     console.log('Database connected successfully');
-    
+
     await client.query(
       `insert into enquiries (name, mobile, email, project, message)
        values ($1, $2, $3, $4, $5)`,
@@ -50,28 +48,43 @@ export const handler = async (event) => {
         message || null,
       ]
     );
-    
+
     await client.end();
     console.log('Enquiry saved successfully');
-    
-    // Send email notification
+
+    // Send email notification via HostGator SMTP
     console.log('Checking email config:', {
-      hasApiKey: !!process.env.RESEND_API_KEY,
+      hasSmtpHost: !!process.env.SMTP_HOST,
+      hasSmtpUser: !!process.env.SMTP_USER,
+      hasSmtpPass: !!process.env.SMTP_PASS,
       hasNotificationEmail: !!process.env.NOTIFICATION_EMAIL,
       notificationEmail: process.env.NOTIFICATION_EMAIL ? '***configured***' : 'MISSING'
     });
-    
-    if (process.env.RESEND_API_KEY && process.env.NOTIFICATION_EMAIL) {
+
+    if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS && process.env.NOTIFICATION_EMAIL) {
       try {
-        console.log('Attempting to send email...');
-        console.log('FROM:', 'notifications@send.desirerealty.in');
+        const port = Number(process.env.SMTP_PORT) || 465;
+        console.log('Attempting to send email via SMTP...');
+        console.log('HOST:', process.env.SMTP_HOST, 'PORT:', port);
+        console.log('FROM:', process.env.SMTP_USER);
         console.log('TO:', process.env.NOTIFICATION_EMAIL);
-        
+
+        const transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port,
+          secure: port === 465, // true for 465 (SSL), false for 587 (STARTTLS)
+          auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
+          },
+        });
+
         const displayProject = project || 'General Enquiry';
         const displayEmail = email || 'Not provided';
-        const emailResponse = await resend.emails.send({
-          from: 'Desire Realty <notifications@send.desirerealty.in>',
+        const info = await transporter.sendMail({
+          from: `Desire Realty <${process.env.SMTP_USER}>`,
           to: process.env.NOTIFICATION_EMAIL,
+          replyTo: email || undefined,
           subject: `New Enquiry: ${displayProject}`,
           html: `
             <h2>New Enquiry Received</h2>
@@ -83,31 +96,25 @@ export const handler = async (event) => {
             <p><em>Submitted on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</em></p>
           `,
         });
-        
-        console.log('Resend API Response:', JSON.stringify(emailResponse, null, 2));
-        
-        if (emailResponse.error) {
-          console.error('Resend error:', emailResponse.error);
-        } else {
-          console.log('Email sent successfully! ID:', emailResponse.data?.id);
-        }
+
+        console.log('Email sent successfully! Message ID:', info.messageId);
       } catch (emailError) {
         console.error('Email error (non-critical):', emailError);
         // Don't fail the request if email fails
       }
     } else {
-      console.warn('Email not sent - missing environment variables');
+      console.warn('Email not sent - missing SMTP environment variables');
     }
-    
-    return { 
-      statusCode: 200, 
+
+    return {
+      statusCode: 200,
       body: JSON.stringify({ success: true, message: 'Enquiry submitted successfully' })
     };
   } catch (err) {
     console.error('Function error:', err);
-    return { 
-      statusCode: 500, 
-      body: JSON.stringify({ 
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
         error: 'Error saving enquiry. Please try again or contact us directly.'
       })
     };
