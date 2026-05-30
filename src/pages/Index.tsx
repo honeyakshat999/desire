@@ -18,7 +18,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="JDA & RERA Plots & Apartments in Jaipur"
+        title="JDA & RERA Approved Plots in Jaipur"
         description="JDA & RERA approved developer in Jaipur. 6 projects — plots & apartments across Vaishali Nagar, Jagatpura, Ajmer Road & Chaksu. SBI/HDFC approved."
       />
       <Navbar />
