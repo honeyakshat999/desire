@@ -57,8 +57,10 @@ export const projects: Project[] = [
     status: "completed",
     highlights: ["Ultra Luxurious 3/4 BHK Apartments", "World Class Facilities","Rera Approved", "JDA Approved"],
     description: "Experience luxury living at its finest with Brajeshwar Avenue. Located in the heart of Jaipur, this premium residential project offers world-class amenities and contemporary architecture designed for modern families.",
+    seoDescription: "RERA & JDA approved 3 & 4 BHK luxury apartments at Gandhi Path West, Vaishali Nagar, Jaipur. World-class amenities from ₹80 Lakh.",
     image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482788/Desire-Realty-website-images/public/project-avenue.png",
-    price: "Starting ₹80 Lakh", 
+    price: "Starting ₹80 Lakh",
+    priceValue: 8000000,
     rera: ["RAJ/P/2025/4285"],
     amenities: ["Mini Theater","Swimming Pool", "Gymnasium", "Clubhouse", "Children's Play Area", "Terrace Garden","Gazebo","EV Charging","Temple", "Landscaped Gardens","Water Harvesting", "24/7 Security", "Covered Parking", "Power Backup", "Smart Featured Lifts system","CCTV Surveillance","Fire Safety Systems"],
     specifications: {
@@ -82,6 +84,7 @@ export const projects: Project[] = [
     "TAJ Group of Hostels on Floors 11th–14th Floors"
   ],
   description: "NRI Avenue is a premium vertical lifestyle destination located in the heart of Jagatpura, adjoining Jaipur Chaupati & opposite the iconic NRI Scheme. This G+11 marvel offers exclusive shopping on lower ground & first floor, a gaming zone & food court on the second floor, corporate offices on floors 3–5, studio apartments with gym & indoor games on the sixth floor, and studio apartments from the seventh to eleventh floor — with a multifunctional terrace at the top.",
+  seoDescription: "RERA-approved G+11 mixed-use project on 200 Ft Road, Jagatpura, Jaipur. Studio apartments, offices, shopping & food court near Jaipur Chaupati.",
   image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771413514/NRI_AVENUE_FRONT_2_dizckp.png",
   price: "Contact for Pricing",
   rera: "RAJ/P/2025/3620",
@@ -130,8 +133,10 @@ export const projects: Project[] = [
     status: "completed",
     highlights: ["Premium Residential Plots", "Gated Township", "Close to Bus Stand", "On National Highway"],
     description: "Invest in your dream home at Smart City, a premium villa plots project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Smart City offers a well-connected, future-ready foundation for building your ideal home.",
+    seoDescription: "Premium residential plots on NH-8, Chaksu, Jaipur from ₹10 Lakh. Gated township near bus stand, Nagar Palika approved, walk-to-highway access.",
     image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482803/Desire-Realty-website-images/public/Smart_City/first.png",
     price: "Starting ₹10 Lakh",
+    priceValue: 1000000,
     rera: "",
     amenities: ["Wide Internal Roads", "Underground Electricity Lines", "Water Supply", "Street Lighting", "Gated Township", "Parks", "Kids Play Zone", "Temple", "Easy Connectivity","Green & Open Spaces","Plot Demarcation"],
     specifications: {
@@ -150,8 +155,10 @@ export const projects: Project[] = [
     status: "completed",
     highlights: ["Premium Residential Plots", "RERA Approved", "Close to Bus Stand", "On National Highway"],
     description: "Invest in your dream home at Ganesh Vihar, a premium villa plots project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Ganesh Vihar offers a well-connected, future-ready foundation for building your ideal home.",
+    seoDescription: "RERA-approved residential plots on NH-8, Chaksu, Jaipur from ₹10 Lakh. Gated township near bus stand with parks, water supply & street lighting.",
     image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482815/Desire-Realty-website-images/src/assets/project-3.jpg",
     price: "Starting ₹10 Lakh",
+    priceValue: 1000000,
     rera: "RAJ/P/2025/4132 | RAJ/P/2025/4111",
     amenities: ["Wide Internal Roads", "Underground Electricity Lines", "Sewage Treatment", "Water Supply", "Street Lighting", "Gated Township", "Parks", "Kids Play Zone", "Temple", "RERA Approved","Green & Open Spaces","Plot Demarcation"],
     specifications: {

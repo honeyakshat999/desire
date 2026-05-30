@@ -373,7 +373,7 @@ const ProjectDetail = () => {
               "price": project.priceValue,
               "priceCurrency": "INR",
               "description": project.price,
-              "availability": project.status === "ongoing" ? "https://schema.org/InStock" : "https://schema.org/PreOrder"
+              "availability": project.status === "upcoming" ? "https://schema.org/PreOrder" : "https://schema.org/InStock"
             }
           } : {}),
           "address": {
