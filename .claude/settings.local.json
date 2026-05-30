@@ -9,7 +9,8 @@
       "Bash(powershell.exe -Command \"cd ''c:\\\\Users\\\\honey\\\\Downloads\\\\bbhbjbnjbjbjk-main\\\\desire''; npm install react-helmet-async 2>&1\")",
       "Bash(powershell.exe -Command \"Get-Command node,npm,pnpm,yarn -ErrorAction SilentlyContinue | Select-Object Name, Source\")",
       "Bash(npm audit *)",
-      "Bash(npm view *)"
+      "Bash(npm view *)",
+      "PowerShell(npx tsc --noEmit -p tsconfig.json 2>&1)"
     ]
   }
 }

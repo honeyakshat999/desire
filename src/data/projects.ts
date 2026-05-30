@@ -5,8 +5,14 @@ export interface Project {
   status: "ongoing" | "completed" | "upcoming";
   highlights: string[];
   description: string;
+  /** Short tagline shown under the H1 — carries the location/type keyword for SEO. */
+  tagline?: string;
+  /** ≤155-char meta/OG description. Falls back to a truncated `description` when absent. */
+  seoDescription?: string;
   image: string;
   price: string;
+  /** Numeric INR value for schema.org Offer.price (the display `price` string is not valid there). */
+  priceValue?: number;
   rera: string | string[];
   amenities: string[];
   specifications: {
@@ -26,19 +32,22 @@ export const projects: Project[] = [
     name: "Nilgiri",
     location: "AJMER ROAD, MAHLA JAIPUR",
     status: "ongoing",
-    highlights: ["Residential And Commercial Plots","160 Ft roads", "World Class Facilities", "Gated Township" ,"Rera And JDA Approved"],
+    highlights: ["Residential And Commercial Plots","160 Ft Roads", "World Class Facilities", "Gated Township" ,"RERA And JDA Approved"],
     description: "Discover Nilgiri — a RERA & JDA approved gated township on Ajmer Road, Jaipur, offering residential and commercial plots along with ready shops. Thoughtfully planned with all modern amenities and a prime location, it's the perfect destination for families and investors alike.",
+    tagline: "Residential & Commercial Plots on Ajmer Road, Jaipur",
+    seoDescription: "RERA & JDA approved gated township on Ajmer Road, Jaipur. Residential & commercial plots plus ready shops from ₹15 Lakh. 160ft roads, full amenities.",
     image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1778003234/Nilgiri-project_negkbt.png",
-    price: "Starting ₹15 Lakh", 
+    price: "Starting ₹15 Lakh",
+    priceValue: 1500000,
     rera: ["RAJ/P/2017/427"],
-    amenities: ["Gated Township","Underground Electrification","Swarage Management System", "Overhead Water tank", "Drainage System", "Landscaped Gardens","Swimming Pool","Greener common aeras","Tower lighing roads","Children's Play Area", "High visibility Location","Shop Friendly","Strong footfall Potential","Temple", "Landscaped Gardens","Water Harvesting", "24/7 Security", "Dedicated Commercial Zone"],
+    amenities: ["Gated Township","Underground Electrification","Sewage Management System", "Overhead Water tank", "Drainage System", "Landscaped Gardens","Swimming Pool","Greener Common Areas","Tower Lighting Roads","Children's Play Area", "High visibility Location","Shop Friendly","Strong footfall Potential","Temple","Water Harvesting", "24/7 Security", "Dedicated Commercial Zone"],
     specifications: {
-      type: "Residential Plots,Comercial Spaces, Retail Shops",
+      type: "Residential Plots, Commercial Spaces, Retail Shops",
       area: "50 - 1775 sq.ft",
       units: "565 Units",
       floors: "N/A"
     },
-    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1778003234/Nilgiri-project_negkbt.png"],
+    gallery: [],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7123.071381566011!2d75.44870434722138!3d26.79106658191701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDQ3JzI0LjgiTiA3NcKwMjYnNTUuNyJF!5e0!3m2!1sen!2sin!4v1778003565707!5m2!1sen!2sin"
   },
   {

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { MapPin, ArrowUpRight, CheckCircle2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Project } from "@/data/projects";
@@ -17,12 +17,9 @@ const statusColors = {
 };
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
-  const navigate = useNavigate();
-
-  const handleProjectNavigation = (projectId: string) => {
-    navigate(`/project/${projectId}`);
+  const projectHref = `/project/${project.id}`;
+  const scrollTop = () =>
     setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
-  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -35,7 +32,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       <div className="relative h-64 overflow-hidden">
         <img
           src={project.image}
-          alt={project.name}
+          alt={`${project.name} — ${project.specifications.type} at ${project.location}`}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           width="600"
           height="400"
@@ -53,18 +50,20 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
         {/* Quick View on Hover */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button
-            onClick={() => handleProjectNavigation(project.id)}
-            className="cursor-pointer"
+          <Button
+            asChild
+            size="lg"
+            className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2"
           >
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2"
+            <Link
+              to={projectHref}
+              onClick={scrollTop}
+              aria-label={`View ${project.name} project`}
             >
               View Project
               <ArrowUpRight className="h-4 w-4" />
-            </Button>
-          </button>
+            </Link>
+          </Button>
         </div>
       </div>
 
@@ -72,7 +71,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       <div className="p-6">
         <div className="flex items-start justify-between gap-4 mb-3">
           <h3 className="text-xl font-serif text-primary group-hover:text-accent transition-colors">
-            {project.name}
+            <Link to={projectHref} onClick={scrollTop}>
+              {project.name}
+            </Link>
           </h3>
         </div>
 
@@ -97,18 +98,20 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <span className="text-xs text-muted-foreground">Starting from</span>
             <p className="text-lg font-semibold text-primary">{project.price}</p>
           </div>
-          <button
-            onClick={() => handleProjectNavigation(project.id)}
-            className="cursor-pointer"
+          <Button
+            asChild
+            variant="ghost"
+            className="text-accent hover:text-accent hover:bg-accent/10 gap-2"
           >
-            <Button
-              variant="ghost"
-              className="text-accent hover:text-accent hover:bg-accent/10 gap-2"
+            <Link
+              to={projectHref}
+              onClick={scrollTop}
+              aria-label={`View ${project.name} details`}
             >
               Details
               <ArrowUpRight className="h-4 w-4" />
-            </Button>
-          </button>
+            </Link>
+          </Button>
         </div>
       </div>
     </motion.div>

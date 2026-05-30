@@ -105,11 +105,11 @@ const amenityIcons: Record<string, string> = {
   "Shop Friendly": "🛍️",
   "High visibility Location": "👁️",
   "Strong footfall Potential": "🚶‍♂️",
-  "Tower lighing roads": "🏮",
+  "Tower Lighting Roads": "🏮",
   "Drainage System": "🚰",
-  "Greener common aeras": "🌿",
+  "Greener Common Areas": "🌿",
   "Overhead Water tank": "🛢️",
-  "Swarage Management System": "♻️",
+  "Sewage Management System": "♻️",
   "Underground Electrification": "⚡",
 };
 
@@ -352,7 +352,10 @@ const ProjectDetail = () => {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <SEOHead
         title={`${project.name} — RERA & JDA Approved in Jaipur`}
-        description={`${project.description} Located at ${project.location}. ${project.price}.`}
+        description={
+          project.seoDescription ||
+          `${project.description}`.slice(0, 152).trimEnd() + "…"
+        }
         image={project.image}
       />
       <Helmet>
@@ -363,12 +366,16 @@ const ProjectDetail = () => {
           "description": project.description,
           "url": `https://desirerealty.in/project/${project.id}`,
           "image": project.image,
-          "offers": {
-            "@type": "Offer",
-            "price": project.price,
-            "priceCurrency": "INR",
-            "availability": project.status === "ongoing" ? "https://schema.org/InStock" : "https://schema.org/PreOrder"
-          },
+          // Offer.price must be numeric; only emit when we have a real value.
+          ...(project.priceValue ? {
+            "offers": {
+              "@type": "Offer",
+              "price": project.priceValue,
+              "priceCurrency": "INR",
+              "description": project.price,
+              "availability": project.status === "ongoing" ? "https://schema.org/InStock" : "https://schema.org/PreOrder"
+            }
+          } : {}),
           "address": {
             "@type": "PostalAddress",
             "streetAddress": project.location,
@@ -495,6 +502,11 @@ const ProjectDetail = () => {
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-4">
                   {project.name}
+                  {project.tagline && (
+                    <span className="block text-lg md:text-xl font-sans text-white/80 mt-2">
+                      {project.tagline}
+                    </span>
+                  )}
                 </h1>
 
                 <div className="flex items-center gap-2 text-white/80">

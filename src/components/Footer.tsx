@@ -118,8 +118,10 @@ const Footer = () => {
                 { name: "Contact", path: "/#contact" },
               ].map((link, index) => (
                 <li key={index}>
-                  <button
-                    onClick={() => {
+                  <a
+                    href={link.path}
+                    onClick={(e) => {
+                      e.preventDefault();
                       if (link.path.startsWith("/#")) {
                         scrollToSection(link.path);
                       } else {
@@ -130,7 +132,7 @@ const Footer = () => {
                     className="text-white/70 hover:text-gold-light transition-colors text-sm cursor-pointer text-left"
                   >
                     {link.name}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -149,15 +151,15 @@ const Footer = () => {
                 { name: "Brajeshwar Crown", id: "brajeshwar-crown" },
               ].map((project, index) => (
                 <li key={index}>
-                  <button
+                  <Link
+                    to={`/project/${project.id}`}
                     onClick={() => {
-                      navigate(`/project/${project.id}`);
                       setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
                     }}
                     className="text-white/70 hover:text-gold-light transition-colors text-sm cursor-pointer text-left"
                   >
                     {project.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

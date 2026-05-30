@@ -116,19 +116,23 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <button
+              <a
                 key={link.name}
-                onClick={() => scrollToSection(link.path)}
+                href={link.path}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(link.path);
+                }}
                 className={`text-sm font-semibold transition-colors ${
-                  isScrolled 
-                    ? "text-primary hover:text-accent" 
-                    : hasDarkHero 
-                      ? "text-white hover:text-white/80 drop-shadow-sm" 
+                  isScrolled
+                    ? "text-primary hover:text-accent"
+                    : hasDarkHero
+                      ? "text-white hover:text-white/80 drop-shadow-sm"
                       : "text-primary hover:text-accent"
                 }`}
               >
                 {link.name}
-              </button>
+              </a>
             ))}
           </div>
 
@@ -193,8 +197,9 @@ const Navbar = () => {
           >
             <div className="container mx-auto px-4 py-6 space-y-4">
               {navLinks.map((link) => (
-                <button
+                <a
                   key={link.name}
+                  href={link.path}
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -204,7 +209,7 @@ const Navbar = () => {
                   style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
                 >
                   {link.name}
-                </button>
+                </a>
               ))}
               <div className="pt-4 border-t space-y-3">
                 <Button

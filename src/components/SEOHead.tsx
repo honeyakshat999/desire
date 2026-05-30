@@ -23,6 +23,14 @@ export const SEOHead = ({ title, description, image }: SEOHeadProps) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
+      {/* Per-route Twitter tags — override the generic site-level defaults in index.html */}
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
+      {/* Preload the page-specific hero so it becomes the LCP candidate (only when a real image is passed) */}
+      {image && (
+        <link rel="preload" as="image" href={image} fetchPriority="high" />
+      )}
     </Helmet>
   );
 };
