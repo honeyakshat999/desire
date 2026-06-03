@@ -11,7 +11,11 @@ interface SEOHeadProps {
 
 export const SEOHead = ({ title, description, image }: SEOHeadProps) => {
   const { pathname } = useLocation();
-  const canonical = `${BASE_URL}${pathname}`;
+  // Netlify serves the react-snap folder output at a trailing-slash URL and 301s
+  // the no-slash form to it. Normalize the canonical to that slash form so it points
+  // at the final, non-redirecting URL (root `/` stays as-is).
+  const slashPath = pathname === '/' ? '/' : pathname.replace(/\/?$/, '/');
+  const canonical = `${BASE_URL}${slashPath}`;
   const ogImage = image || `${BASE_URL}/og-image.jpg`;
 
   return (
