@@ -33,16 +33,31 @@ const BlogsList = () => {
   }, []);
 
   const fetchBlogs = async () => {
+    // Static snapshot first so react-snap prerenders the list for SSG/SEO;
+    // the live API call then refreshes it after hydration.
+    let loaded = false;
+    try {
+      const snap = await fetch("/blog-data/index.json");
+      if (snap.ok) {
+        const data = await snap.json();
+        setBlogs(data.blogs);
+        setIsLoading(false);
+        loaded = true;
+      }
+    } catch {
+      // no snapshot — fall through to live API
+    }
+
     try {
       const response = await fetch("/.netlify/functions/blogs-api");
       if (response.ok) {
         const data = await response.json();
         setBlogs(data.blogs);
-      } else {
+      } else if (!loaded) {
         setError("Failed to load blogs");
       }
     } catch (err) {
-      setError("Network error");
+      if (!loaded) setError("Network error");
     } finally {
       setIsLoading(false);
     }

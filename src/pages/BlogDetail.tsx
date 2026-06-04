@@ -64,16 +64,33 @@ const BlogDetail = () => {
   }, [slug]);
 
   const fetchBlog = async () => {
+    // Static snapshot first: this file is written at build time
+    // (scripts/generate-blog-routes.mjs) so react-snap captures real HTML for
+    // SSG, and production gets an instant paint. The live API call below then
+    // refreshes content for freshness after hydration.
+    let loaded = false;
+    try {
+      const snap = await fetch(`/blog-data/${slug}.json`);
+      if (snap.ok) {
+        const data = await snap.json();
+        setBlog(data.blog);
+        setIsLoading(false);
+        loaded = true;
+      }
+    } catch {
+      // no snapshot (e.g. dev or a not-yet-built post) — fall through to live API
+    }
+
     try {
       const response = await fetch(`/.netlify/functions/blogs-api/${slug}`);
       if (response.ok) {
         const data = await response.json();
         setBlog(data.blog);
-      } else {
+      } else if (!loaded) {
         setError("Blog not found");
       }
     } catch (err) {
-      setError("Network error");
+      if (!loaded) setError("Network error");
     } finally {
       setIsLoading(false);
     }

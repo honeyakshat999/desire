@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generate-blog-routes.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",
-    "postbuild": "react-snap",
+    "postbuild": "node scripts/snap.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

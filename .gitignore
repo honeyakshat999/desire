@@ -42,6 +42,10 @@ package-lock.json
 # Build output
 dist/
 
+# Generated at build time by scripts/generate-blog-routes.mjs (SSG)
+reactsnap-routes.json
+public/blog-data/
+
 # OS generated files
 Thumbs.db
 Desktop.ini
