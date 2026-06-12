@@ -106,6 +106,63 @@ export const handler = async (event) => {
       console.warn('Email not sent - missing SMTP environment variables');
     }
 
+    // Send SMS notification via Twilio
+    console.log('Checking Twilio config:', {
+      hasSid: !!process.env.TWILIO_ACCOUNT_SID,
+      hasToken: !!process.env.TWILIO_AUTH_TOKEN,
+      hasFrom: !!process.env.TWILIO_SMS_FROM,
+    });
+
+    if (
+      process.env.TWILIO_ACCOUNT_SID &&
+      process.env.TWILIO_AUTH_TOKEN &&
+      process.env.TWILIO_SMS_FROM
+    ) {
+      try {
+        const sid = process.env.TWILIO_ACCOUNT_SID;
+        const token = process.env.TWILIO_AUTH_TOKEN;
+        const from = process.env.TWILIO_SMS_FROM;
+        // Destination (business owner). Defaults to +917339754521.
+        const to = process.env.TWILIO_SMS_TO || '+917339754521';
+
+        const displayProject = project || 'General Enquiry';
+        const submittedAt = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+        const smsBody = [
+          'New Enquiry - Desire Realty',
+          `Name: ${name}`,
+          `Mobile: ${mobile}`,
+          `Project: ${displayProject}`,
+          `Message: ${message || '-'}`,
+          submittedAt,
+        ].join('\n');
+
+        const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`;
+        const auth = Buffer.from(`${sid}:${token}`).toString('base64');
+
+        const smsResp = await fetch(twilioUrl, {
+          method: 'POST',
+          headers: {
+            Authorization: `Basic ${auth}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({ From: from, To: to, Body: smsBody }).toString(),
+        });
+
+        const smsJson = await smsResp.json().catch(() => ({}));
+        if (!smsResp.ok) {
+          console.error('Twilio SMS error:', smsResp.status, smsJson);
+        } else {
+          console.log('SMS sent! SID:', (smsJson as { sid?: string }).sid);
+        }
+      } catch (smsError) {
+        console.error('SMS error (non-critical):', smsError);
+        // Don't fail the request if SMS fails
+      }
+    } else {
+      console.warn('SMS not sent - missing Twilio environment variables');
+    }
+
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true, message: 'Enquiry submitted successfully' })
