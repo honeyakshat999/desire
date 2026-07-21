@@ -37,7 +37,7 @@ export const projects: Project[] = [
     seoDescription: "Government-approved gated residential plots near Kotkhawada, Dausa–Chaksu road, Jaipur from ₹9999/yard. 60ft roads, 24×7 security, loan facility available.",
     image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784645054/Pokecut_1784644724619_1_kdrn4e.jpg",
     price: "",
-    priceValue: xxxx,
+    priceValue: xxx,
     rera: "",
     amenities: ["60 FT Wide Roads", "Underground Electricity Lines", "Water Supply", "Street Lighting", "Gated Township", "Parks", "24*7 Security", "Easy Connectivity","Green & Open Spaces","Plot Demarcation"],
     specifications: {
