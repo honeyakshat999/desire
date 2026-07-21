@@ -33,8 +33,8 @@ export const projects: Project[] = [
     location: "Near Kotkhawada, Dausa Chaksu road, Jaipur",
     status: "ongoing",
     highlights: ["Premium Residential Plots", "Gated Township", "Government Appproved", "Loan Facility Avaialble"],
-    description: "Invest in your dream home at Smart City, a premium villa plots project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Smart City offers a well-connected, future-ready foundation for building your ideal home.",
-    seoDescription: "Premium residential plots on NH-8, Chaksu, Jaipur from ₹10 Lakh. Gated township near bus stand, Nagar Palika approved, walk-to-highway access.",
+    description: "Chinaar Wood is a premium gated residential plot township near Kotkhawada on the Dausa–Chaksu road, Jaipur. This government-approved project offers well-demarcated plots served by 60 ft wide roads, underground electricity lines, water supply, street lighting, landscaped parks, and 24×7 security. With a loan facility available and plots starting at just ₹9999/yard, Chinaar Wood is an ideal choice for end users and investors seeking long-term value in a fast-developing corridor of Jaipur.",
+    seoDescription: "Government-approved gated residential plots near Kotkhawada, Dausa–Chaksu road, Jaipur from ₹9999/yard. 60ft roads, 24×7 security, loan facility available.",
     image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634042/WhatsApp_Image_2026-07-20_at_5.30.18_PM_wqei3q.jpg",
     price: "Starting ₹9999/yard ",
     priceValue: 9999,
@@ -46,14 +46,14 @@ export const projects: Project[] = [
       units: "100+ Plots",
       floors: "N/A"
     },
-    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634042/WhatsApp_Image_2026-07-20_at_5.30.18_PM_wqei3q.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/v1784634042/WhatsApp_Image_2026-07-20_at_5.30.19_PM_bd8uwc.jpg", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634336/chinar_wood.pdf_ksby5w.pdf"],
+    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634042/WhatsApp_Image_2026-07-20_at_5.30.19_PM_bd8uwc.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634788/map_vkhfoe.png"],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3566.3842087204525!2d76.08950507542991!3d26.63617827681314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDM4JzEwLjIiTiA3NsKwMDUnMzEuNSJF!5e0!3m2!1sen!2sin!4v1784634504364!5m2!1sen!2sin"
   }
 ,{
     id: "nilgiri-project",
     name: "Nilgiri",
     location: "AJMER ROAD, MAHLA JAIPUR",
-    status: "ongoing",
+    status: "completed",
     highlights: ["Residential And Commercial Plots","160 Ft Roads", "World Class Facilities", "Gated Township" ,"RERA And JDA Approved"],
     description: "Discover Nilgiri — a RERA & JDA approved gated township on Ajmer Road, Jaipur, offering residential and commercial plots along with ready shops. Thoughtfully planned with all modern amenities and a prime location, it's the perfect destination for families and investors alike.",
     tagline: "Residential & Commercial Plots on Ajmer Road, Jaipur",
