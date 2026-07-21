@@ -35,9 +35,9 @@ export const projects: Project[] = [
     highlights: ["Premium Residential Plots", "Gated Township", "Government Appproved", "Loan Facility Avaialble"],
     description: "Chinaar Wood is a premium gated residential plot township near Kotkhawada on the Dausa–Chaksu road, Jaipur. This government-approved project offers well-demarcated plots served by 60 ft wide roads, underground electricity lines, water supply, street lighting, landscaped parks, and 24×7 security. With a loan facility available and plots starting at just ₹9999/yard, Chinaar Wood is an ideal choice for end users and investors seeking long-term value in a fast-developing corridor of Jaipur.",
     seoDescription: "Government-approved gated residential plots near Kotkhawada, Dausa–Chaksu road, Jaipur from ₹9999/yard. 60ft roads, 24×7 security, loan facility available.",
-    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634042/WhatsApp_Image_2026-07-20_at_5.30.18_PM_wqei3q.jpg",
-    price: "Starting ₹9999/yard ",
-    priceValue: 9999,
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784645054/Pokecut_1784644724619_1_kdrn4e.jpg",
+    price: "",
+    priceValue: xxxx,
     rera: "",
     amenities: ["60 FT Wide Roads", "Underground Electricity Lines", "Water Supply", "Street Lighting", "Gated Township", "Parks", "24*7 Security", "Easy Connectivity","Green & Open Spaces","Plot Demarcation"],
     specifications: {
@@ -46,7 +46,7 @@ export const projects: Project[] = [
       units: "100+ Plots",
       floors: "N/A"
     },
-    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634042/WhatsApp_Image_2026-07-20_at_5.30.19_PM_bd8uwc.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634788/map_vkhfoe.png"],
+    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784645258/Plots_with_number_render_12th_v5znxz.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784645258/Plots_with_number_render_12th_v5znxz.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784645192/WhatsApp_Image_2026-07-21_at_8.04.33_PM_lpc8qs.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784645192/WhatsApp_Image_2026-07-21_at_8.04.33_PM_1_r9ndch.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784645192/WhatsApp_Image_2026-07-21_at_8.04.34_PM_2_wzq3tq.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784645193/WhatsApp_Image_2026-07-21_at_8.04.34_PM_1_gv2zha.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634788/map_vkhfoe.png"],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3566.3842087204525!2d76.08950507542991!3d26.63617827681314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDM4JzEwLjIiTiA3NsKwMDUnMzEuNSJF!5e0!3m2!1sen!2sin!4v1784634504364!5m2!1sen!2sin"
   }
 ,{
