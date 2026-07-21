@@ -36,7 +36,7 @@ export const projects: Project[] = [
     description: "Chinaar Wood is a premium gated residential plot township near Kotkhawada on the Dausa–Chaksu road, Jaipur. This government-approved project offers well-demarcated plots served by 60 ft wide roads, underground electricity lines, water supply, street lighting, landscaped parks, and 24×7 security. With a loan facility available and plots starting at just ₹9999/yard, Chinaar Wood is an ideal choice for end users and investors seeking long-term value in a fast-developing corridor of Jaipur.",
     seoDescription: "Government-approved gated residential plots near Kotkhawada, Dausa–Chaksu road, Jaipur from ₹9999/yard. 60ft roads, 24×7 security, loan facility available.",
     image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784645054/Pokecut_1784644724619_1_kdrn4e.jpg",
-    price: "",
+    price: "xxx",
     priceValue: xxx,
     rera: "",
     amenities: ["60 FT Wide Roads", "Underground Electricity Lines", "Water Supply", "Street Lighting", "Gated Township", "Parks", "24*7 Security", "Easy Connectivity","Green & Open Spaces","Plot Demarcation"],
