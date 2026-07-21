@@ -27,7 +27,29 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-    {
+{
+    id: "chinaar-wood",
+    name: "Chinaar Wood",
+    location: "Near Kotkhawada, Dausa Chaksu road, Jaipur",
+    status: "ongoing",
+    highlights: ["Premium Residential Plots", "Gated Township", "Government Appproved", "Loan Facility Avaialble"],
+    description: "Invest in your dream home at Smart City, a premium villa plots project located directly on the National Highway with excellent accessibility. Situated within walking distance from the bus stand and officially approved by the Chaksu Municipality (Nagar Palika), the project ensures both convenience and regulatory assurance. Designed for end users seeking long-term value, Smart City offers a well-connected, future-ready foundation for building your ideal home.",
+    seoDescription: "Premium residential plots on NH-8, Chaksu, Jaipur from ₹10 Lakh. Gated township near bus stand, Nagar Palika approved, walk-to-highway access.",
+    image: "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634042/WhatsApp_Image_2026-07-20_at_5.30.18_PM_wqei3q.jpg",
+    price: "Starting ₹9999/yard ",
+    priceValue: 9999,
+    rera: "",
+    amenities: ["60 FT Wide Roads", "Underground Electricity Lines", "Water Supply", "Street Lighting", "Gated Township", "Parks", "24*7 Security", "Easy Connectivity","Green & Open Spaces","Plot Demarcation"],
+    specifications: {
+      type: "Residential Plots",
+      area: "77.77 - 340 sq.ft.",
+      units: "100+ Plots",
+      floors: "N/A"
+    },
+    gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634042/WhatsApp_Image_2026-07-20_at_5.30.18_PM_wqei3q.jpg","https://res.cloudinary.com/ddnjyktnc/image/upload/v1784634042/WhatsApp_Image_2026-07-20_at_5.30.19_PM_bd8uwc.jpg", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1784634336/chinar_wood.pdf_ksby5w.pdf"],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3566.3842087204525!2d76.08950507542991!3d26.63617827681314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDM4JzEwLjIiTiA3NsKwMDUnMzEuNSJF!5e0!3m2!1sen!2sin!4v1784634504364!5m2!1sen!2sin"
+  }
+,{
     id: "nilgiri-project",
     name: "Nilgiri",
     location: "AJMER ROAD, MAHLA JAIPUR",
@@ -49,8 +71,8 @@ export const projects: Project[] = [
     },
     gallery: [],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7123.071381566011!2d75.44870434722138!3d26.79106658191701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDQ3JzI0LjgiTiA3NcKwMjYnNTUuNyJF!5e0!3m2!1sen!2sin!4v1778003565707!5m2!1sen!2sin"
-  },
-  {
+},
+{
     id: "brajeshwar-avenue",
     name: "Brajeshwar Avenue",
     location: "AT GANDHI PATH WEST, VAISHALI NAGAR, JAIPUR",
@@ -71,7 +93,7 @@ export const projects: Project[] = [
     },
     gallery: ["https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482810/Desire-Realty-website-images/public/brijeshwar%20avenue/ameneties.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482808/Desire-Realty-website-images/public/brijeshwar%20avenue/first_floor.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482807/Desire-Realty-website-images/public/brijeshwar%20avenue/flats.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482805/Desire-Realty-website-images/public/brijeshwar%20avenue/location_map.png", "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482804/Desire-Realty-website-images/public/brijeshwar%20avenue/specifications.png"],
     mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3558.299135892591!2d75.69098107543886!3d26.893999976658318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjbCsDUzJzM4LjQiTiA3NcKwNDEnMzYuOCJF!5e0!3m2!1sen!2sin!4v1769861421134!5m2!1sen!2sin"
-  },
+},
 {
   id: "nri-avenue",
   name: "NRI AVENUE",
