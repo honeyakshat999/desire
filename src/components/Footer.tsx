@@ -9,6 +9,7 @@ import {
   Linkedin,
   Twitter,
 } from "lucide-react";
+import { branches } from "@/data/branches";
 const logo = "https://res.cloudinary.com/ddnjyktnc/image/upload/f_auto,q_auto/v1771482819/Desire-Realty-website-images/src/assets/logo.jpg";
 
 const Footer = () => {
@@ -169,14 +170,17 @@ const Footer = () => {
           <div>
             <h3 className="font-serif text-lg mb-4">Contact Us</h3>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-gold-light flex-shrink-0 mt-0.5" />
-                <span className="text-white/70 text-sm">
-                  111/14, Sector-11, Kumbha Marg, Pratap Nagar
-                  <br />
-                  Jaipur, Rajasthan 302033
-                </span>
-              </li>
+              {branches.map((branch) => (
+                <li key={branch.id} className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-gold-light flex-shrink-0 mt-0.5" />
+                  <span className="text-white/70 text-sm">
+                    <span className="block text-gold-light">{branch.label}</span>
+                    {branch.street}
+                    <br />
+                    {branch.cityLine}
+                  </span>
+                </li>
+              ))}
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-gold-light" />
                 <a

@@ -12,7 +12,12 @@
       "Bash(npm view *)",
       "PowerShell(npx tsc --noEmit -p tsconfig.json 2>&1)",
       "Bash(curl -sL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) SEO-Audit\" \"https://desirerealty.in/\" -o /tmp/desire.html -w \"HTTP:%{http_code} SIZE:%{size_download} TIME:%{time_total}s REDIR:%{num_redirects} FINAL:%{url_effective}\\\\n\")",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(node -e ' *)",
+      "Bash(npm run *)",
+      "Bash(git checkout *)"
     ]
   }
 }

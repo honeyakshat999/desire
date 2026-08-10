@@ -21,6 +21,7 @@ import {
   Target,
   Eye,
 } from "lucide-react";
+import { branches } from "@/data/branches";
 
 const stats = [
   { icon: Clock, value: "10+", label: "Years of Excellence", description: "Building trust since 2015" },
@@ -283,11 +284,13 @@ const About = () => {
                 +91 86194 21661
               </Button>
             </div>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6 text-white/60 text-sm">
-              <span className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-accent" />
-                111/14, Sector-11, Pratap Nagar, Jaipur 302033
-              </span>
+            <div className="mt-10 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-6 text-white/60 text-sm">
+              {branches.map((branch) => (
+                <span key={branch.id} className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-accent" />
+                  {branch.shortAddress}
+                </span>
+              ))}
               <span className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-accent" />
                 sales@desirerealty.in
